@@ -273,6 +273,7 @@
       </el-pagination>
     </div>
 
+    <br>
 
   </div>
 </template>
@@ -352,17 +353,19 @@
       },
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`)
+        this.page_size = val;
+        this.fetchData()
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`)
-        this.currentPage = `${val}`
+        this.currentPage = val
+        this.fetchData()
       },
       fetchData() {
         this.listLoading = true;
-        getList(0, this.page_size).then(response => {
+        getList(this.currentPage, this.page_size).then(response => {
           this.tableData = response.data.tableData;
           this.totalPage = response.data.totalPage;
-          this.currentPage = response.data.currentPage
           this.tableData = response.data.tableData.map(v => {
             this.$set(v, 'edit', false)
             return v

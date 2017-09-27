@@ -80,6 +80,16 @@ export const asyncRouterMap = [
   },
 
   {
+    path: '/player',
+    component: Layout,
+    redirect: '/player/index',
+    icon: 'yonghuming',
+    noDropdown: true,
+    children: [
+      { path: 'index', name: '玩家管理', component: _import('player/index'), meta: { role: ['admin'] }}
+    ]
+  },
+  {
     path: '/charge',
     component: Layout,
     redirect: '/charge/index',
