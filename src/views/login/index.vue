@@ -41,8 +41,8 @@ export default {
       }
     }
     const validatePass = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('密码不能小于6位'))
+      if (value.length < 1) {
+        callback(new Error('密码不能小于1位'))
       } else {
         callback()
       }
