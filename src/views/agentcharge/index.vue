@@ -1,6 +1,10 @@
 <template>
   <div>
-
+    <br/>
+    <div class="filter-container">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<el-input @keyup.enter.native="handleClick" style="width: 150px;" class="filter-item" placeholder="用户名"></el-input>
+      &nbsp;<el-button class="filter-item" type="primary" v-waves icon="search" @click="handleClick">搜索</el-button>
+    </div>
 
     <!--搜索框 + 表格-->
     <div class="app-container calendar-list-container">
