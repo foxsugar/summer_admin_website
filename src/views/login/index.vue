@@ -34,11 +34,12 @@ export default {
   name: 'login',
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!isvalidUsername(value)) {
-        callback(new Error('请输入正确的用户名'))
-      } else {
-        callback()
-      }
+//      if (!isvalidUsername(value)) {
+//        callback(new Error('请输入正确的用户名'))
+//      } else {
+//        callback()
+//      }
+      callback()
     }
     const validatePass = (rule, value, callback) => {
       if (value.length < 1) {
@@ -61,6 +62,8 @@ export default {
   },
   methods: {
     handleLogin() {
+
+      console.log("-----------");
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
