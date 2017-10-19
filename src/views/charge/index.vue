@@ -33,7 +33,10 @@
     },
     methods: {
       onSubmit() {
+
+//        alert(JSON.stringify(this.chargeForm))
         charge(this.chargeForm).then(response => {
+
           console.log(response)
           this.$message({
             message: '充值成功',

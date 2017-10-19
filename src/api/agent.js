@@ -33,3 +33,11 @@ export function agent(agentForm, method) {
     }
   })
 }
+
+export function fetchList(query) {
+  return fetch({
+    url: '/agent/fetchdelegates',
+    method: 'get',
+    params: query
+  })
+}

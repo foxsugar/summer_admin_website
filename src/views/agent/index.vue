@@ -114,10 +114,16 @@
     <div class="app-container calendar-list-container">
 
       <div class="filter-container">
-        <el-input @keyup.enter.native="handleClick" style="width: 150px;" class="filter-item"
-                  placeholder="用户名"></el-input>
+        <!--<el-input @keyup.enter.native="handleClick" style="width: 150px;" class="filter-item"-->
+                  <!--placeholder="用户名"></el-input>-->
 
-        <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleClick">搜索</el-button>
+        <!--<el-button class="filter-item" type="primary" v-waves icon="search" @click="handleClick">搜索</el-button>-->
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="代理id" v-model="listQuery.title">
+        </el-input>
+        <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
+
         <el-button class="filter-item" style="margin-left: 10px;" @click="handleClick" type="primary" icon="plus">添加代理
         </el-button>
 
@@ -279,7 +285,7 @@
 </template>
 
 <script>
-  import {getList} from '@/api/agent'
+  import {getList, fetchList} from '@/api/agent'
   import {charge} from '@/api/agent'
   import {agent} from '@/api/agent'
   import waves from '@/directive/waves.js'// 水波纹指令
@@ -289,6 +295,25 @@
       waves
     },
     methods: {
+
+      handleFilter(){
+        this.listQuery.page = 1
+        console.log(this.listQuery)
+        this.getFilterList()
+      },
+
+      getFilterList() {
+        this.listLoading = true
+        fetchList(this.listQuery).then(response => {
+          this.list = response.data.items
+          this.total = response.data.total
+          this.listLoading = false
+          this.tableData = response.data.tableData
+          this.totalPage = response.data.totalPage
+          this.listLoading = false
+        })
+      },
+
       handleEditClick(scope){
         console.log("======000")
         scope.row.edit = !scope.row.edit
@@ -438,6 +463,15 @@
           id: '',
           username: '',
           num: 0
+        },
+
+        listQuery: {
+          page: 1,
+          limit: 20,
+          importance: undefined,
+          title: undefined,
+          type: undefined,
+          sort: '+id'
         },
         formLabelWidth: '120px',
         rules: {

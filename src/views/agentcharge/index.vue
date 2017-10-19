@@ -15,17 +15,17 @@
       <el-table :data="tableData" v-loading.body="listLoading" element-loading-text="给我一点时间" stripe border fit
                 highlight-current-row style="width: 100%">
 
-        <el-table-column align="center"  prop="id" label="订单id" width="200"></el-table-column>
+        <el-table-column align="center"  prop="id" label="订单id" width="160"></el-table-column>
 
-        <el-table-column align="center" prop="agent_id" label="代理id" width="200"></el-table-column>
+        <el-table-column align="center" prop="agent_id" label="代理id" width="160"></el-table-column>
 
-        <el-table-column align="center" prop="charge_src_agent" label="充值来源" width="200"></el-table-column>
+        <el-table-column align="center" prop="charge_src_agent" label="充值来源" width="160"></el-table-column>
 
-        <el-table-column align="center" prop="charge_type" label="充值类型" width="200"></el-table-column>
+        <el-table-column align="center" prop="charge_type" label="充值类型" width="160"></el-table-column>
 
-        <el-table-column align="center" prop="charge_num" label="充值金额" width="200"></el-table-column>
+        <el-table-column align="center" prop="charge_num" label="充值金额" width="160"></el-table-column>
 
-        <el-table-column align="center" prop="charge_time" label="充值时间" width="200"></el-table-column>
+        <el-table-column align="center" prop="charge_time" label="充值时间" width="160"></el-table-column>
 
       </el-table>
     </div>
