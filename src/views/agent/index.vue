@@ -120,7 +120,7 @@
         <!--<el-button class="filter-item" type="primary" v-waves icon="search" @click="handleClick">搜索</el-button>-->
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="代理id" v-model="listQuery.title">
+        <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="代理用户名" v-model="listQuery.title">
         </el-input>
         <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
 
