@@ -71,7 +71,6 @@
       },
 
       getFilterList() {
-        alert("1111111")
         this.listLoading = true
         fetchList(this.listQuery).then(response => {
           this.list = response.data.items

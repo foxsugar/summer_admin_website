@@ -6,8 +6,11 @@
     <div class="app-container calendar-list-container">
 
       <div class="filter-container">
-        <el-input @keyup.enter.native="handleClick" style="width: 150px;" class="filter-item" placeholder="用户名"></el-input>
-        <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleClick">搜索</el-button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="用户名"
+                  v-model="listQuery.title">
+        </el-input>
+        <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
       </div>
       <br/>
 
@@ -15,12 +18,12 @@
       <el-table :data="tableData" v-loading.body="listLoading" element-loading-text="给我一点时间" stripe border fit
                 highlight-current-row style="width: 100%">
 
-        <el-table-column align="center"  prop="id" label="id" width="120"></el-table-column>
+        <el-table-column align="center" prop="id" label="id" width="120"></el-table-column>
 
         <!--<el-table-column align="center" fixed prop="image" label="image" width="500">-->
-          <!--<template scope="scope">-->
-            <!--<img  :src="scope.row.image+'/96?'">-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<img  :src="scope.row.image+'/96?'">-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <el-table-column align="center" prop="username" label="用户名" width="200"></el-table-column>
@@ -31,7 +34,7 @@
 
         <el-table-column align="center" prop="sex" label="性别" width="100">
           <template scope="scope">
-            <span>{{scope.row.sex==1?'男':'女'}}</span>
+            <span>{{scope.row.sex == 1 ? '男' : '女'}}</span>
           </template>
         </el-table-column>
 
@@ -72,7 +75,7 @@
 </template>
 
 <script>
-  import {getList} from '@/api/player'
+  import {getList, fetchList} from '@/api/player'
   import {charge} from '@/api/player'
   import waves from '@/directive/waves.js'// 水波纹指令
 
@@ -82,16 +85,33 @@
     },
     methods: {
 
+      handleFilter(){
+        this.listQuery.page = 1
+        console.log(this.listQuery)
+        this.getFilterList()
+      },
+
+      getFilterList() {
+        this.listLoading = true
+        fetchList(this.listQuery).then(response => {
+          this.list = response.data.items
+          this.total = response.data.total
+          this.listLoading = false
+          this.tableData = response.data.tableData
+          this.totalPage = response.data.totalPage
+          this.listLoading = false
+        })
+      },
       handleClick() {
         this.dialogFormVisible = true;
       },
-      handleChargeClick(scope){
+      handleChargeClick(scope) {
         this.chargeDialogFormVisible = true;
         this.chargeForm.id = scope.row.id;
         this.chargeForm.username = scope.row.id;
         this.chargeForm.num = 0;
       },
-      doCharge(){
+      doCharge() {
         charge(this.chargeForm).then(response => {
           this.tableData.forEach(td => {
             if (td.id == this.chargeForm.id) {
@@ -150,6 +170,14 @@
           id: '',
           username: '',
           num: 0
+        },
+        listQuery: {
+          page: 1,
+          limit: 20,
+          importance: undefined,
+          title: undefined,
+          type: undefined,
+          sort: '+id'
         },
         formLabelWidth: '120px',
 

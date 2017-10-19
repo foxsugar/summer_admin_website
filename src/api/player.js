@@ -24,3 +24,11 @@ export function charge(chargeForm) {
   })
 }
 
+export function fetchList(query) {
+  return fetch({
+    url: '/player/fetchplayers',
+    method: 'get',
+    params: query
+  })
+}
+
