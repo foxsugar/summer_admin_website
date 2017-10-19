@@ -13,3 +13,21 @@ export function getList(page, size) {
     }
   })
 }
+
+export function getSearchList(name) {
+  return fetch({
+    url: 'player/searchlist',
+    method: 'get',
+    params: {
+      name
+    }
+  })
+}
+
+export function fetchList(query) {
+  return fetch({
+    url: '/player/fetchlist',
+    method: 'get',
+    params: query
+  })
+}

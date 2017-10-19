@@ -13,3 +13,11 @@ export function getList(page, size) {
     }
   })
 }
+
+export function fetchList(query) {
+  return fetch({
+    url: '/agent/fetchlist',
+    method: 'get',
+    params: query
+  })
+}

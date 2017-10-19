@@ -3,10 +3,15 @@
 
     <!--搜索框 + 表格-->
     <br/>
-    <div class="filter-container">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<el-input @keyup.enter.native="handleClick" style="width: 150px;" class="filter-item" placeholder="用户名"></el-input>
-      &nbsp;<el-button class="filter-item" type="primary" v-waves icon="search" @click="handleClick">搜索</el-button>
-    </div>
+    <!--<div class="filter-container">-->
+      <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<el-input @keyup.enter.native="handleClick" style="width: 150px;" class="filter-item" placeholder="用户名" v-model="listQuery.title></el-input>-->
+      <!--&nbsp;<el-button class="filter-item" type="primary" v-waves icon="search" @click="handleClick">搜索</el-button>-->
+    <!--</div>-->
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="用户名" v-model="listQuery.title">
+    </el-input>
+    <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
+
 
     <div class="app-container calendar-list-container">
 
@@ -16,9 +21,9 @@
 
         <el-table-column align="center"  prop="order_id" label="订单id" width="120"></el-table-column>
 
-        <el-table-column align="center" prop="username" label="用户名" width="200"></el-table-column>
+        <el-table-column align="center" prop="username" label="用户名" width="150"></el-table-column>
 
-        <el-table-column align="center" prop="createtime" label="创建时间" width="350"></el-table-column>
+        <el-table-column align="center" prop="createtime" label="创建时间" width="250"></el-table-column>
 
         <el-table-column align="center" prop="money" label="充值金额" width="100"></el-table-column>
 
@@ -51,7 +56,7 @@
 </template>
 
 <script>
-  import {getList} from '@/api/charge'
+  import {getList, getSearchList, fetchList} from '@/api/charge'
   import {charge} from '@/api/player'
   import waves from '@/directive/waves.js'// 水波纹指令
 
@@ -61,20 +66,38 @@
     },
     methods: {
 
+      handleFilter(){
+        this.listQuery.page = 1
+        this.getFilterList()
+      },
+
+      getFilterList() {
+        this.listLoading = true
+        fetchList(this.listQuery).then(response => {
+          this.list = response.data.items
+          this.total = response.data.total
+          this.listLoading = false
+          this.tableData = response.data.tableData
+          this.totalPage = response.data.totalPage
+          this.listLoading = false
+        })
+      },
+
       handleClick() {
-        this.dialogFormVisible = true;
+//        console.log(query)
+        this.dialogFormVisible = true
       },
       handleChargeClick(scope){
-        this.chargeDialogFormVisible = true;
-        this.chargeForm.id = scope.row.id;
-        this.chargeForm.username = scope.row.id;
-        this.chargeForm.num = 0;
+        this.chargeDialogFormVisible = true
+        this.chargeForm.id = scope.row.id
+        this.chargeForm.username = scope.row.id
+        this.chargeForm.num = 0
       },
       doCharge(){
         charge(this.chargeForm).then(response => {
           this.tableData.forEach(td => {
             if (td.id == this.chargeForm.id) {
-              td.money = response.data;
+              td.money = response.data
             }
             this.$message({
               message: '充值成功',
@@ -107,6 +130,18 @@
 
       },
 
+//      根据用户名查找数据
+
+      fetchSearchData(name){
+        this.listLoading = true;
+        getSearchList(name).then(response => {
+
+          this.tableData = response.data.tableData;
+          this.totalPage = response.data.totalPage;
+          alert(this.tab)
+          this.listLoading = false;
+        });
+      }
 
     },
 
@@ -130,6 +165,17 @@
           username: '',
           num: 0
         },
+
+        listQuery: {
+          page: 1,
+          limit: 20,
+          importance: undefined,
+          title: undefined,
+          type: undefined,
+          sort: '+id'
+        },
+
+
         formLabelWidth: '120px',
 
 
