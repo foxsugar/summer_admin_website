@@ -86,7 +86,7 @@ export const asyncRouterMap = [
     icon: 'yonghuming',
     noDropdown: true,
     children: [
-      { path: 'index', name: '玩家管理', component: _import('player/index'), meta: { role: ['admin'] }}
+      { path: 'index', name: '玩家管理', component: _import('player/index'), meta: { role: ['delegate'] }}
     ]
   },
   {
@@ -96,7 +96,7 @@ export const asyncRouterMap = [
     icon: 'tubiao',
     noDropdown: true,
     children: [
-      { path: 'index', name: '充值管理', component: _import('charge/index'), meta: { role: ['admin'] }}
+      { path: 'index', name: '充值管理', component: _import('charge/index'), meta: { role: ['delegate'] }}
     ]
   },
 
@@ -107,7 +107,7 @@ export const asyncRouterMap = [
     icon: 'tubiao',
     noDropdown: true,
     children: [
-      { path: 'index', name: '充值记录', component: _import('playercharge/index'), meta: { role: ['admin'] }}
+      { path: 'index', name: '充值记录', component: _import('playercharge/index'), meta: { role: ['delegate'] }}
     ]
   },
 
@@ -118,7 +118,7 @@ export const asyncRouterMap = [
     icon: 'tubiao',
     noDropdown: true,
     children: [
-      { path: 'index', name: '代理充值', component: _import('agentcharge/index'), meta: { role: ['admin'] }}
+      { path: 'index', name: '代理充值', component: _import('agentcharge/index'), meta: { role: ['delegate'] }}
     ]
   },
 
