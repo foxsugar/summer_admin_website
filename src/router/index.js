@@ -122,6 +122,17 @@ export const asyncRouterMap = [
     ]
   },
 
+  {
+    path: '/person',
+    component: Layout,
+    redirect: '/person/index',
+    icon: 'yonghuming',
+    noDropdown: true,
+    children: [
+      { path: 'index', name: '个人信息', component: _import('person/index'), meta: { role: ['delegate'] }}
+    ]
+  },
+
   // {
   //   path: '/test',
   //   component: Layout,
