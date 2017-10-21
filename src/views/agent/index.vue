@@ -25,9 +25,9 @@
           <el-input v-model="agentForm.level"></el-input>
         </el-form-item>
 
-        <el-form-item label="上级代理" :label-width="formLabelWidth" prop="parentId">
-          <el-input v-model="agentForm.parentId"></el-input>
-        </el-form-item>
+        <!--<el-form-item label="上级代理" :label-width="formLabelWidth" prop="parentId">-->
+          <!--<el-input v-model="agentForm.parentId"></el-input>-->
+        <!--</el-form-item>-->
 
         <el-form-item label="真实姓名" :label-width="formLabelWidth" prop="realName">
           <el-input v-model="agentForm.realName"></el-input>
@@ -135,53 +135,53 @@
       <el-table :data="tableData" v-loading.body="listLoading" element-loading-text="给我一点时间" stripe border fit
                 highlight-current-row style="width: 100%">
 
-        <el-table-column align="center" fixed prop="id" label="id" width="50"></el-table-column>
+        <el-table-column align="center" fixed prop="id" label="id" width="120"></el-table-column>
 
-        <el-table-column align="center" fixed prop="username" label="用户名" width="100"></el-table-column>
+        <el-table-column align="center" fixed prop="username" label="用户名" width="120"></el-table-column>
 
-        <el-table-column align="center" label="密码" width="100">
+        <el-table-column align="center" label="密码" width="120">
           <template scope="scope">
             <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.password"></el-input>
             <span v-show="!scope.row.edit">{{ scope.row.password }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column align="center" label="真实姓名" width="100">
+        <el-table-column align="center" label="真实姓名" width="120">
           <template scope="scope">
             <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.realName"></el-input>
             <span v-show="!scope.row.edit">{{ scope.row.realName }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column align="center" label="邀请码" width="100">
+        <el-table-column align="center" label="邀请码" width="120">
           <template scope="scope">
             <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.invite_code"></el-input>
             <span v-show="!scope.row.edit">{{ scope.row.invite_code }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column align="center" prop="level" label="代理级别" min-width="70">
+        <el-table-column align="center" prop="level" label="代理级别" min-width="120">
           <template scope="scope">
             <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.level"></el-input>
             <span v-show="!scope.row.edit">{{ scope.row.level }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column align="center" prop="parentId" label="上级代理" width="100">
+        <el-table-column align="center" prop="parentId" label="上级代理" width="120">
           <template scope="scope">
             <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.parentId"></el-input>
             <span v-show="!scope.row.edit">{{ scope.row.parentId }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column align="center" prop="money" label="点卡" width="100">
+        <el-table-column align="center" prop="money" label="点卡" width="120">
           <template scope="scope">
             <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.money"></el-input>
             <span v-show="!scope.row.edit">{{ scope.row.money }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column align="center" prop="gold" label="点券" width="70">
+        <el-table-column align="center" prop="gold" label="点券" width="120">
           <template scope="scope">
             <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.gold"></el-input>
             <span v-show="!scope.row.edit">{{ scope.row.gold }}</span>
@@ -209,21 +209,21 @@
           </template>
         </el-table-column>
 
-        <el-table-column align="center" label="支付提成" width="70">
+        <el-table-column align="center" label="支付提成" width="120">
           <template scope="scope">
             <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.payDeduct"></el-input>
             <span v-show="!scope.row.edit">{{ scope.row.payDeduct }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column align="center" label="分享提成" width="70">
+        <el-table-column align="center" label="分享提成" width="120">
           <template scope="scope">
             <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.shareDeduct"></el-input>
             <span v-show="!scope.row.edit">{{ scope.row.shareDeduct }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column align="center" label="上级支付提成" width="70">
+        <el-table-column align="center" label="上级支付提成" width="120">
           <template scope="scope">
             <el-input type="textarea" v-show="scope.row.edit" size="small"
                       v-model="scope.row.parentPayDeduct"></el-input>
@@ -477,7 +477,7 @@
         rules: {
           username: [
             {required: true, message: '请输入活动名称', trigger: 'blur'},
-            {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+            {min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur'}
           ],
 
           password: [
