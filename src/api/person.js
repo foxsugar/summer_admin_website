@@ -11,3 +11,15 @@ export function getList(page, size) {
     }
   })
 }
+
+export function changePwd(pwd) {
+  return fetch({
+    url: 'user/changepwd',
+    method: 'get',
+    params: {
+      pwd
+    }
+  })
+}
+
+

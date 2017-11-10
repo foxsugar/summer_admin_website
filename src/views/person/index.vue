@@ -6,31 +6,19 @@
     <el-dialog class="app-edit" title="充值" :visible.sync="chargeDialogFormVisible" size="small">
 
       <el-form :model="chargeForm">
-        <el-form-item label="id" :label-width="formLabelWidth">
-          <el-input :disabled="true" v-model="chargeForm.id"></el-input>
+        <el-form-item label="输入密码" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="chargeForm.pwd1"></el-input>
         </el-form-item>
 
-        <el-form-item label="用户名" :label-width="formLabelWidth">
-          <el-input :disabled="true" v-model="chargeForm.username"></el-input>
+        <el-form-item label="确认密码" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="chargeForm.pwd2"></el-input>
         </el-form-item>
 
-
-        <el-form-item label="充值金额" :label-width="formLabelWidth">
-          <div class="block">
-            <el-slider
-              v-model="chargeForm.num"
-              show-input
-              :min=1
-              :max=2000
-              :step="1">
-            </el-slider>
-          </div>
-        </el-form-item>
       </el-form>
 
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="doCharge">充 值</el-button>
+        <el-button type="primary" @click="doCharge">修 改</el-button>
       </div>
 
     </el-dialog>
@@ -160,6 +148,17 @@
           </template>
         </el-table-column>
 
+        <el-table-column align="center" fixed="right" label="操作" min-width="220">
+          <template scope="scope">
+            <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"-->
+            <!--icon="edit">{{scope.row.edit ? '完成' : '编辑'}}-->
+            <!--</el-button>-->
+            <!--<el-button @click="handleClick" type="primary" size="small">编辑</el-button>-->
+            <el-button @click="handleChargeClick(scope)" type="primary" size="small">修改密码</el-button>
+            <!--<el-button @click="handleClick" type="danger" size="small">删除</el-button>-->
+          </template>
+        </el-table-column>
+
       </el-table>
     </div>
 
@@ -183,7 +182,7 @@
 
 <script>
   import { fetchList} from '@/api/agent'
-  import { getList} from '@/api/person'
+  import { getList, changePwd} from '@/api/person'
   import {charge} from '@/api/agent'
   import {agent} from '@/api/agent'
   import waves from '@/directive/waves.js'// 水波纹指令
@@ -225,20 +224,24 @@
       },
       handleChargeClick(scope){
         this.chargeDialogFormVisible = true;
-        this.chargeForm.id = scope.row.id;
-        this.chargeForm.username = scope.row.id;
-        this.chargeForm.num = 0;
+//        this.chargeForm.id = scope.row.id;
+//        this.chargeForm.username = scope.row.id;
       },
       doCharge(){
-        charge(this.chargeForm).then(response => {
-          this.tableData.forEach(td => {
-            if (td.id == this.chargeForm.id) {
-              td.money = response.data;
-            }
-            this.$message({
-              message: '充值成功',
-              type: 'success'
-            });
+        if (this.chargeForm.pwd1 != this.chargeForm.pwd2){
+            alert("两次输入密码不一致")
+            return
+        }
+        if (this.chargeForm.pwd1.length < 6 || this.chargeForm.pwd1.length > 18){
+            alert("请输入6到18位密码")
+            return
+        }
+        changePwd(this.chargeForm.pwd1).then(response => {
+          this.chargeForm.pwd1 = null
+          this.chargeForm.pwd2 = null
+          this.$message({
+            message: '修改成功',
+            type: 'success'
           })
         })
         this.chargeDialogFormVisible = false
@@ -358,9 +361,8 @@
           parentShareDeduct: '',
         },
         chargeForm: {
-          id: '',
-          username: '',
-          num: 0
+          pwd1: '',
+          pwd2: '',
         },
 
         listQuery: {
