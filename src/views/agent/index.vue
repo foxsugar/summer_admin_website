@@ -110,6 +110,21 @@
 
     </el-dialog>
 
+
+
+
+    <!--删除-->
+    <el-dialog class="app-edit" title="删除代理" :visible.sync="deleteFormVisible" size="small">
+
+      <br>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="deleteFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="confirmDelete">确 定</el-button>
+      </div>
+
+    </el-dialog>
+
+
     <!--搜索框 + 表格-->
     <div class="app-container calendar-list-container">
 
@@ -260,7 +275,7 @@
             <!--</el-button>-->
             <!--<el-button @click="handleClick" type="primary" size="small">编辑</el-button>-->
             <el-button @click="handleChargeClick(scope)" type="primary" size="small">充值</el-button>
-            <!--<el-button @click="handleClick" type="danger" size="small">删除</el-button>-->
+            <el-button @click="handleDelete(scope)" type="danger" size="small">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -285,10 +300,11 @@
 </template>
 
 <script>
-  import {getList, fetchList} from '@/api/agent'
+  import {getList, fetchList,deleteAgent} from '@/api/agent'
   import {charge} from '@/api/agent'
   import {agent} from '@/api/agent'
   import waves from '@/directive/waves.js'// 水波纹指令
+
 
   export default {
     directives: {
@@ -324,6 +340,20 @@
       },
       handleClick() {
         this.dialogFormVisible = true;
+      },
+      handleDelete(scope) {
+          this.deleteAgentId = scope.row.id;
+          this.deleteFormVisible = true;
+      },
+      confirmDelete(){
+        deleteAgent(this.deleteAgentId).then(response=>{
+          this.$message({
+            message: '删除成功',
+            type: 'success'
+          });
+          this.deleteFormVisible = false;
+          this.fetchData();
+        })
       },
       handleChargeClick(scope){
         this.chargeDialogFormVisible = true;
@@ -438,6 +468,8 @@
         dialogTableVisible: false,
         dialogFormVisible: false,
         chargeDialogFormVisible: false,
+        deleteFormVisible:false,
+        deleteAgentId:0,
         agentForm: {
           id: 0,
           username: '',

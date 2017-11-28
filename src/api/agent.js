@@ -41,3 +41,11 @@ export function fetchList(query) {
     params: query
   })
 }
+
+export function deleteAgent(id) {
+  return fetch({
+    url: '/agent/delagent',
+    method: 'get',
+    params: {'id': id}
+  })
+}

@@ -86,7 +86,7 @@ export const asyncRouterMap = [
     icon: 'yonghuming',
     noDropdown: true,
     children: [
-      { path: 'index', name: '玩家管理', component: _import('player/index'), meta: { role: ['delegate'] }}
+      { path: 'index', name: '玩家管理', component: _import('player/index'), meta: { role: ['admin'] }}
     ]
   },
   {
@@ -132,6 +132,17 @@ export const asyncRouterMap = [
       { path: 'index', name: '个人信息', component: _import('person/index'), meta: { role: ['delegate'] }}
     ]
   },
+
+  // {
+  //   path: '/wx',
+  //   component: Layout,
+  //   redirect: '/wx/index',
+  //   icon: 'yonghuming',
+  //   noDropdown: true,
+  //   children: [
+  //     { path: 'index', name: '微信', component: _import('wx/index'), meta: { role: ['admin'] }}
+  //   ]
+  // },
 
   // {
   //   path: '/test',
