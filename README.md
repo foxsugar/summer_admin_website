@@ -7,7 +7,7 @@
 git clone https://github.com/foxsugar/summer_admin_website.git
 
 # Install dependencies
-npm install
+npm install --registry=https://registry.npm.taobao.org
 
 # serve with hot reload at localhost:9528
 npm run dev
