@@ -34,40 +34,40 @@
 
         <el-table-column align="center" fixed prop="username" label="用户名" width="120"></el-table-column>
 
-        <el-table-column align="center" label="密码" width="120">
-          <template scope="scope">
-            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.password"></el-input>
-            <span v-show="!scope.row.edit">{{ scope.row.password }}</span>
-          </template>
-        </el-table-column>
+        <!--<el-table-column align="center" label="密码" width="120">-->
+          <!--<template scope="scope">-->
+            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.password"></el-input>-->
+            <!--<span v-show="!scope.row.edit">{{ scope.row.password }}</span>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
 
-        <el-table-column align="center" label="真实姓名" width="120">
-          <template scope="scope">
-            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.realName"></el-input>
-            <span v-show="!scope.row.edit">{{ scope.row.realName }}</span>
-          </template>
-        </el-table-column>
+        <!--<el-table-column align="center" label="真实姓名" width="120">-->
+          <!--<template scope="scope">-->
+            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.realName"></el-input>-->
+            <!--<span v-show="!scope.row.edit">{{ scope.row.realName }}</span>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
 
-        <el-table-column align="center" label="邀请码" width="120">
-          <template scope="scope">
-            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.invite_code"></el-input>
-            <span v-show="!scope.row.edit">{{ scope.row.invite_code }}</span>
-          </template>
-        </el-table-column>
+        <!--<el-table-column align="center" label="邀请码" width="120">-->
+          <!--<template scope="scope">-->
+            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.invite_code"></el-input>-->
+            <!--<span v-show="!scope.row.edit">{{ scope.row.invite_code }}</span>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
 
-        <el-table-column align="center" prop="level" label="代理级别" min-width="120">
-          <template scope="scope">
-            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.level"></el-input>
-            <span v-show="!scope.row.edit">{{ scope.row.level }}</span>
-          </template>
-        </el-table-column>
+        <!--<el-table-column align="center" prop="level" label="代理级别" min-width="120">-->
+          <!--<template scope="scope">-->
+            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.level"></el-input>-->
+            <!--<span v-show="!scope.row.edit">{{ scope.row.level }}</span>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
 
-        <el-table-column align="center" prop="parentId" label="上级代理" width="120">
-          <template scope="scope">
-            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.parentId"></el-input>
-            <span v-show="!scope.row.edit">{{ scope.row.parentId }}</span>
-          </template>
-        </el-table-column>
+        <!--<el-table-column align="center" prop="parentId" label="上级代理" width="120">-->
+          <!--<template scope="scope">-->
+            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.parentId"></el-input>-->
+            <!--<span v-show="!scope.row.edit">{{ scope.row.parentId }}</span>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
 
         <el-table-column align="center" prop="money" label="点卡" width="120">
           <template scope="scope">
@@ -76,77 +76,77 @@
           </template>
         </el-table-column>
 
-        <el-table-column align="center" prop="gold" label="点券" width="120">
-          <template scope="scope">
-            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.gold"></el-input>
-            <span v-show="!scope.row.edit">{{ scope.row.gold }}</span>
-          </template>
-        </el-table-column>
+        <!--<el-table-column align="center" prop="gold" label="点券" width="120">-->
+          <!--<template scope="scope">-->
+            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.gold"></el-input>-->
+            <!--<span v-show="!scope.row.edit">{{ scope.row.gold }}</span>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
 
-        <el-table-column align="center" prop="cell" label="电话" width="145">
-          <template scope="scope">
-            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.cell"></el-input>
-            <span v-show="!scope.row.edit">{{ scope.row.cell }}</span>
-          </template>
-        </el-table-column>
+        <!--<el-table-column align="center" prop="cell" label="电话" width="145">-->
+          <!--<template scope="scope">-->
+            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.cell"></el-input>-->
+            <!--<span v-show="!scope.row.edit">{{ scope.row.cell }}</span>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
 
-        <el-table-column align="center" label="邮箱" width="200">
-          <template scope="scope">
-            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.email"></el-input>
-            <span v-show="!scope.row.edit">{{ scope.row.email }}</span>
-          </template>
-        </el-table-column>
+        <!--<el-table-column align="center" label="邮箱" width="200">-->
+          <!--<template scope="scope">-->
+            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.email"></el-input>-->
+            <!--<span v-show="!scope.row.edit">{{ scope.row.email }}</span>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
 
-        <el-table-column align="center" label="身份证" width="205">
-          <template scope="scope">
-            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.idCard"></el-input>
-            <span v-show="!scope.row.edit">{{ scope.row.idCard }}</span>
-          </template>
-        </el-table-column>
+        <!--<el-table-column align="center" label="身份证" width="205">-->
+          <!--<template scope="scope">-->
+            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.idCard"></el-input>-->
+            <!--<span v-show="!scope.row.edit">{{ scope.row.idCard }}</span>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
 
-        <el-table-column align="center" label="支付提成" width="120">
-          <template scope="scope">
-            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.payDeduct"></el-input>
-            <span v-show="!scope.row.edit">{{ scope.row.payDeduct }}</span>
-          </template>
-        </el-table-column>
+        <!--<el-table-column align="center" label="支付提成" width="120">-->
+          <!--<template scope="scope">-->
+            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.payDeduct"></el-input>-->
+            <!--<span v-show="!scope.row.edit">{{ scope.row.payDeduct }}</span>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
 
-        <el-table-column align="center" label="分享提成" width="120">
-          <template scope="scope">
-            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.shareDeduct"></el-input>
-            <span v-show="!scope.row.edit">{{ scope.row.shareDeduct }}</span>
-          </template>
-        </el-table-column>
+        <!--<el-table-column align="center" label="分享提成" width="120">-->
+          <!--<template scope="scope">-->
+            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.shareDeduct"></el-input>-->
+            <!--<span v-show="!scope.row.edit">{{ scope.row.shareDeduct }}</span>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
 
-        <el-table-column align="center" label="上级支付提成" width="120">
-          <template scope="scope">
-            <el-input type="textarea" v-show="scope.row.edit" size="small"
-                      v-model="scope.row.parentPayDeduct"></el-input>
-            <span v-show="!scope.row.edit">{{ scope.row.parentPayDeduct }}</span>
-          </template>
-        </el-table-column>
+        <!--<el-table-column align="center" label="上级支付提成" width="120">-->
+          <!--<template scope="scope">-->
+            <!--<el-input type="textarea" v-show="scope.row.edit" size="small"-->
+                      <!--v-model="scope.row.parentPayDeduct"></el-input>-->
+            <!--<span v-show="!scope.row.edit">{{ scope.row.parentPayDeduct }}</span>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
 
-        <el-table-column align="center" label="上级分享提成" width="70">
-          <template scope="scope">
-            <el-input type="textarea" v-show="scope.row.edit" size="small"
-                      v-model="scope.row.parentShareDeduct"></el-input>
-            <span v-show="!scope.row.edit">{{ scope.row.parentShareDeduct }}</span>
-          </template>
-        </el-table-column>
+        <!--<el-table-column align="center" label="上级分享提成" width="70">-->
+          <!--<template scope="scope">-->
+            <!--<el-input type="textarea" v-show="scope.row.edit" size="small"-->
+                      <!--v-model="scope.row.parentShareDeduct"></el-input>-->
+            <!--<span v-show="!scope.row.edit">{{ scope.row.parentShareDeduct }}</span>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
 
-        <el-table-column align="center" label="所属区域" width="150">
-          <template scope="scope">
-            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.area"></el-input>
-            <span v-show="!scope.row.edit">{{ scope.row.area }}</span>
-          </template>
-        </el-table-column>
+        <!--<el-table-column align="center" label="所属区域" width="150">-->
+          <!--<template scope="scope">-->
+            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.area"></el-input>-->
+            <!--<span v-show="!scope.row.edit">{{ scope.row.area }}</span>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
 
-        <el-table-column align="center" prop="address" label="地址" width="150">
-          <template scope="scope">
-            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.address"></el-input>
-            <span v-show="!scope.row.edit">{{ scope.row.address }}</span>
-          </template>
-        </el-table-column>
+        <!--<el-table-column align="center" prop="address" label="地址" width="150">-->
+          <!--<template scope="scope">-->
+            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.address"></el-input>-->
+            <!--<span v-show="!scope.row.edit">{{ scope.row.address }}</span>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
 
         <el-table-column align="center" fixed="right" label="操作" min-width="220">
           <template scope="scope">
