@@ -8,6 +8,10 @@
         <el-input v-model="chargeForm.userId" placeholder="玩家id"></el-input>
       </el-form-item>
       <br>
+      <el-form-item>
+        <el-button type="primary" @click="onSearch">查看玩家信息</el-button>
+      </el-form-item>
+      <br>
       <el-form-item label="充值金额">
         <el-input v-model="chargeForm.num" placeholder=""></el-input>
       </el-form-item>
@@ -44,7 +48,13 @@
           });
         });
         console.log('submit!');
+      },
+
+      onSearch(){
+        alert("hello world!");
       }
     }
+
+
   }
 </script>
