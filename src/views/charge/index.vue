@@ -43,6 +43,19 @@
 
       </div>
 
+      <div class="block">
+        <span class="demonstration"></span>
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage"
+          :page-sizes="page_sizes"
+          :page-size="page_size"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="totalPage">
+        </el-pagination>
+      </div>
+
       <el-form-item label="充值金额">
         <el-input v-model="chargeForm.num" placeholder=""></el-input>
       </el-form-item>
@@ -52,6 +65,9 @@
       </el-form-item>
     </el-form>
   </div>
+
+
+
 </template>
 
 
