@@ -135,11 +135,7 @@
           dialogTableVisible: false,
           dialogFormVisible: false,
           chargeDialogFormVisible: false,
-          chargeForm: {
-            id: '',
-            username: '',
-            num: 0
-          },
+
           listQuery: {
             page: 1,
             limit: 20,
@@ -147,6 +143,12 @@
             title: undefined,
             type: undefined,
             sort: '+id'
+          },
+
+          chargeForm: {
+            id: '',
+            username: '',
+            num: 0
           },
           formLabelWidth: '120px',
 
