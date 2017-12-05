@@ -21,7 +21,7 @@
 
         <el-table-column align="center" prop="charge_src_agent" label="充值来源" width="160"></el-table-column>
 
-        <el-table-column align="center" prop="charge_type" label="充值类型" width="160"></el-table-column>
+        <!--<el-table-column align="center" prop="charge_type" label="充值类型" width="160"></el-table-column>-->
 
         <el-table-column align="center" prop="charge_num" label="充值金额" width="160"></el-table-column>
 
