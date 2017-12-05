@@ -88,7 +88,7 @@
 
       handleFilter(){
         this.listQuery.page = 1
-        console.log(this.listQuery)
+//        console.log(this.listQuery)
         this.getFilterList()
       },
 
