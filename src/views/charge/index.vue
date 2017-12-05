@@ -12,6 +12,23 @@
         <el-button type="primary" @click="onSearch">查看玩家信息</el-button>
       </el-form-item>
       <br>
+
+      <div class="app-container calendar-list-container">
+
+        <el-table :data="tableData" v-loading.body="listLoading" element-loading-text="给我一点时间" stripe border fit
+                  highlight-current-row style="width: 100%">
+
+          <el-table-column align="center" prop="id" label="id" width="120"></el-table-column>
+
+          <el-table-column align="center" prop="username" label="用户名" width="200"></el-table-column>
+
+          <el-table-column align="center" prop="account" label="账号" width="350"></el-table-column>
+
+          <el-table-column align="center" prop="money" label="房卡" width="150"></el-table-column>
+
+        </el-table>
+      </div>
+
       <el-form-item label="充值金额">
         <el-input v-model="chargeForm.num" placeholder=""></el-input>
       </el-form-item>
@@ -25,7 +42,8 @@
 
 
 <script>
-  import {charge} from '@/api/player'
+  import {charge, getList, fetchList} from '@/api/player'
+
   export default {
     data() {
       return {
@@ -51,8 +69,57 @@
       },
 
       onSearch(){
-        alert("hello world!");
+        this.handleFilter()
+      },
+
+      handleFilter(){
+        this.listQuery.page = 1
+        console.log(this.listQuery)
+        this.getFilterList()
+      },
+
+      getFilterList() {
+        this.listLoading = true
+        fetchList(this.listQuery).then(response => {
+          this.list = response.data.items
+          this.total = response.data.total
+          this.listLoading = false
+          this.tableData = response.data.tableData
+          this.totalPage = response.data.totalPage
+          this.listLoading = false
+        })
+      },
+
+      data() {
+        return {
+          listLoading: true,
+          tableData: [],
+          totalPage: 0,
+          currentPage: 1,
+          page_size: 20,
+          page_sizes: [20, 50, 100, 200],
+
+          dialogTableVisible: false,
+          dialogFormVisible: false,
+          chargeDialogFormVisible: false,
+          chargeForm: {
+            id: '',
+            username: '',
+            num: 0
+          },
+          listQuery: {
+            page: 1,
+            limit: 20,
+            importance: undefined,
+            title: undefined,
+            type: undefined,
+            sort: '+id'
+          },
+          formLabelWidth: '120px',
+
+        }
       }
+
     }
 
 
