@@ -1,34 +1,34 @@
 <template>
 
-  <div>
-    <!--搜索框 + 表格-->
-    <div class="app-container calendar-list-container">
+  <!--<div>-->
+    <!--&lt;!&ndash;搜索框 + 表格&ndash;&gt;-->
+    <!--<div class="app-container calendar-list-container">-->
 
-      <!--<div class="filter-container">-->
-      <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-      <!--&lt;!&ndash;<el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="用户名"&ndash;&gt;-->
-      <!--&lt;!&ndash;v-model="listQuery.title">&ndash;&gt;-->
-      <!--&lt;!&ndash;</el-input>&ndash;&gt;-->
-      <!--&lt;!&ndash;<el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>&ndash;&gt;-->
-      <!--</div>-->
-      <br/>
+      <!--&lt;!&ndash;<div class="filter-container">&ndash;&gt;-->
+      <!--&lt;!&ndash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+      <!--&lt;!&ndash;&lt;!&ndash;<el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="用户名"&ndash;&gt;&ndash;&gt;-->
+      <!--&lt;!&ndash;&lt;!&ndash;v-model="listQuery.title">&ndash;&gt;&ndash;&gt;-->
+      <!--&lt;!&ndash;&lt;!&ndash;</el-input>&ndash;&gt;&ndash;&gt;-->
+      <!--&lt;!&ndash;&lt;!&ndash;<el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>&ndash;&gt;&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--<br/>-->
 
-      <!--表格-->
-      <el-table :data="tableData" v-loading.body="listLoading" element-loading-text="给我一点时间" stripe border fit
-                highlight-current-row style="width: 100%">
+      <!--&lt;!&ndash;表格&ndash;&gt;-->
+      <!--<el-table :data="tableData" v-loading.body="listLoading" element-loading-text="给我一点时间" stripe border fit-->
+                <!--highlight-current-row style="width: 100%">-->
 
-        <el-table-column align="center" prop="username" label="用户名" width="200"></el-table-column>
+        <!--<el-table-column align="center" prop="username" label="用户名" width="200"></el-table-column>-->
 
-        <el-table-column align="center" prop="account" label="账号" width="350"></el-table-column>
+        <!--<el-table-column align="center" prop="account" label="账号" width="350"></el-table-column>-->
 
-        <el-table-column align="center" prop="money" label="房卡" width="150"></el-table-column>
+        <!--<el-table-column align="center" prop="money" label="房卡" width="150"></el-table-column>-->
 
 
-      </el-table>
-    </div>
-    <br>
+      <!--</el-table>-->
+    <!--</div>-->
+    <!--<br>-->
 
-  </div>
+  <!--</div>-->
 
   <div class="app-container calendar-list-container">
 
