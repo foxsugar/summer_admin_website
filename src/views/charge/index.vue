@@ -107,6 +107,7 @@
 //        alert("1111")
 //        this.listQuery.page = 1
 //        console.log(this.listQuery)
+        alert(this.listQuery)
         this.getFilterList()
       },
 
