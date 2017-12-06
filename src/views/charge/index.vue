@@ -16,8 +16,7 @@
       </el-form-item>
     </el-form>
 
-    <el-table :data="tableData" v-loading.body="listLoading" element-loading-text="给我一点时间" stripe border fit
-              highlight-current-row style="width: 100%">
+    <el-table :data="tableData" >
 
       <el-table-column align="center" fixed prop="id" label="id" width="120"></el-table-column>
 
