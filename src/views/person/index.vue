@@ -69,7 +69,7 @@
           <!--</template>-->
         <!--</el-table-column>-->
 
-        <el-table-column align="center" prop="money" label="点卡" width="120">
+        <el-table-column align="center" prop="money" label="房卡" width="120">
           <template scope="scope">
             <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.money"></el-input>
             <span v-show="!scope.row.edit">{{ scope.row.money }}</span>
