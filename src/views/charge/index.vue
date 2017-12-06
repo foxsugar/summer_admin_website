@@ -21,11 +21,20 @@
 
     <el-table :data="tableData" width="500">
 
-      <el-table-column align="center" fixed prop="id" label="id" width="120"></el-table-column>
+      <el-table-column align="center" prop="id" label="id" width="120"></el-table-column>
 
-      <el-table-column align="center" fixed prop="username" label="用户名" width="120"></el-table-column>
+      <!--<el-table-column align="center" fixed prop="image" label="image" width="500">-->
+      <!--<template scope="scope">-->
+      <!--<img  :src="scope.row.image+'/96?'">-->
+      <!--</template>-->
+      <!--</el-table-column>-->
 
-      <el-table-column align="center" prop="money" label="点卡" width="120"></el-table-column>
+      <el-table-column align="center" prop="username" label="用户名" width="200"></el-table-column>
+
+      <el-table-column align="center" prop="account" label="账号" width="350"></el-table-column>
+
+      <el-table-column align="center" prop="money" label="房卡" width="150"></el-table-column>
+
 
     </el-table>
 
