@@ -14,13 +14,23 @@ export function getList(page, size) {
   })
 }
 
-export function charge(chargeForm) {
+export function charge(username, id) {
   return fetch({
     url: '/player/charge',
     method: 'get',
     params: {
-      chargeForm
+      // chargeForm
+      username,
+      id
     }
+  })
+}
+
+export function fetchPlayer(id) {
+  return fetch({
+    url: '/player/fetchplayer',
+    method: 'get',
+    params: id
   })
 }
 
