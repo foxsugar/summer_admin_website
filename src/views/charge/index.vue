@@ -92,7 +92,7 @@
       },
 
       onSearch(){
-        alert("1")
+//        alert("1")
         this.listQuery.page = 1
         this.listQuery.id = this.chargeForm.userId
         this.getFilterList()
