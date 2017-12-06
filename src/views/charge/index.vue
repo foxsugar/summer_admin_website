@@ -92,16 +92,11 @@
       },
 
       onSearch(){
-        this.handleFilter()
-      },
-
-      handleFilter(){
-
+        alert("1")
         this.listQuery.page = 1
         this.listQuery.id = this.chargeForm.id
         this.getFilterList()
       },
-
       getFilterList() {
         this.listLoading = true
         fetchPlayer(this.listQuery.id).then(response => {
