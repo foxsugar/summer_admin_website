@@ -51,7 +51,7 @@
         dialogFormVisible: false,
         chargeDialogFormVisible: false,
         chargeForm: {
-          id: '',
+          userId: '',
           username: '',
           num: 0
         },
@@ -94,7 +94,7 @@
       onSearch(){
         alert("1")
         this.listQuery.page = 1
-        this.listQuery.id = this.chargeForm.id
+        this.listQuery.id = this.chargeForm.userId
         this.getFilterList()
       },
       getFilterList() {
