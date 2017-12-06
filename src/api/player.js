@@ -29,7 +29,9 @@ export function fetchPlayer(id) {
   return fetch({
     url: '/player/fetchplayer',
     method: 'get',
-    params: id
+    params: {
+      id
+    }
   })
 }
 
