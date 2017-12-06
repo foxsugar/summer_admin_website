@@ -77,7 +77,7 @@
       onSubmit() {
 
 //        alert(JSON.stringify(this.chargeForm))
-        charge(this.chargeForm.username, this.chargeForm.id).then(response => {
+        charge(this.chargeForm).then(response => {
 
           console.log(response)
           this.$message({
