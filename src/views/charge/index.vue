@@ -2,20 +2,7 @@
 
   <div class="app-container calendar-list-container">
 
-    <!--表格-->
-    <el-table :data="tableData" v-loading.body="listLoading" element-loading-text="给我一点时间" stripe border fit
-              highlight-current-row style="width: 100%">
 
-      <el-table-column align="center" fixed prop="id" label="id" width="120"></el-table-column>
-
-      <el-table-column align="center" fixed prop="username" label="用户名" width="120"></el-table-column>
-
-      <el-table-column align="center" prop="money" label="点卡" width="120"></el-table-column>
-
-    </el-table>
-  </div>
-
-  <div class="app-container calendar-list-container">
 
     <el-form :inline="true" :model="chargeForm" class="demo-form-inline">
       <el-form-item label="玩家id">
@@ -30,6 +17,18 @@
         <el-button type="primary" @click="onSubmit">充值</el-button>
       </el-form-item>
     </el-form>
+
+    <!--表格-->
+    <el-table :data="tableData" v-loading.body="listLoading" element-loading-text="给我一点时间" stripe border fit
+              highlight-current-row style="width: 100%">
+
+      <el-table-column align="center" fixed prop="id" label="id" width="120"></el-table-column>
+
+      <el-table-column align="center" fixed prop="username" label="用户名" width="120"></el-table-column>
+
+      <el-table-column align="center" prop="money" label="点卡" width="120"></el-table-column>
+
+    </el-table>
 
   </div>
 
