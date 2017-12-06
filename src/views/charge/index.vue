@@ -2,8 +2,6 @@
 
   <div class="app-container calendar-list-container">
 
-
-
     <el-form :inline="true" :model="chargeForm" class="demo-form-inline">
       <el-form-item label="玩家id">
         <el-input v-model="chargeForm.userId" placeholder="玩家id"></el-input>
@@ -18,7 +16,6 @@
       </el-form-item>
     </el-form>
 
-    <!--表格-->
     <el-table :data="tableData" v-loading.body="listLoading" element-loading-text="给我一点时间" stripe border fit
               highlight-current-row style="width: 100%">
 
@@ -75,6 +72,7 @@
 
       created() {
         this.listLoading = false
+
       },
 
       onSubmit() {
