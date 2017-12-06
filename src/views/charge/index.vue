@@ -3,14 +3,14 @@
   <div class="app-container calendar-list-container">
 
     <el-form :inline="true" :model="chargeForm" class="demo-form-inline">
-      <el-form-item label="玩家id     ">
+      <el-form-item label="玩家id" width="120">
         <el-input v-model="chargeForm.userId" placeholder="玩家id"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSearch">玩家</el-button>
       </el-form-item>
       <br>
-      <el-form-item label="充值金额">
+      <el-form-item label="充值金额" width="120">
         <el-input v-model="chargeForm.num" placeholder=""></el-input>
       </el-form-item>
       <!--<br>-->
