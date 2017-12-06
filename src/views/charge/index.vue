@@ -3,20 +3,23 @@
   <div class="app-container calendar-list-container">
 
     <el-form :inline="true" :model="chargeForm" class="demo-form-inline">
-      <el-form-item label="玩家id">
+      <el-form-item label="玩家id  ">
         <el-input v-model="chargeForm.userId" placeholder="玩家id"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="onSearch">充值</el-button>
       </el-form-item>
       <br>
       <el-form-item label="充值金额">
         <el-input v-model="chargeForm.num" placeholder=""></el-input>
       </el-form-item>
-      <br>
+      <!--<br>-->
       <el-form-item>
         <el-button type="primary" @click="onSubmit">充值</el-button>
       </el-form-item>
     </el-form>
 
-    <el-table :data="tableData" >
+    <el-table :data="tableData" width="500">
 
       <el-table-column align="center" fixed prop="id" label="id" width="120"></el-table-column>
 
