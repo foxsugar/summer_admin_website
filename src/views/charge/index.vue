@@ -72,6 +72,11 @@
     },
 
     methods: {
+
+      created() {
+        this.listLoading = false
+      },
+
       onSubmit() {
 
 //        alert(JSON.stringify(this.chargeForm))
