@@ -96,7 +96,7 @@
               v-model="chargeForm.num"
               show-input
               :min=1
-              :max=2000
+              :max=20000
               :step="1">
             </el-slider>
           </div>
