@@ -14,12 +14,43 @@ export function getList(page, size) {
   })
 }
 
+export function getListVip(page, size) {
+  return fetch({
+    url: '/player/listvip',
+    method: 'get',
+    params: {
+      page,
+      size
+    }
+  })
+}
+
 export function charge(chargeForm) {
   return fetch({
     url: '/player/charge',
     method: 'get',
     params: {
       // chargeForm
+      chargeForm
+    }
+  })
+}
+
+export function upGoals(chargeForm) {
+  return fetch({
+    url: '/agent/upGoal',
+    method: 'get',
+    params: {
+      chargeForm
+    }
+  })
+}
+
+export function downGoals(chargeForm) {
+  return fetch({
+    url: '/agent/downGoal',
+    method: 'get',
+    params: {
       chargeForm
     }
   })
@@ -42,4 +73,14 @@ export function fetchList(query) {
     params: query
   })
 }
+
+export function fetchListVip(query) {
+  return fetch({
+    url: '/player/fetchplayersvip',
+    method: 'get',
+    params: query
+  })
+}
+
+
 

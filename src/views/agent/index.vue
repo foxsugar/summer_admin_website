@@ -26,7 +26,7 @@
         </el-form-item>
 
         <!--<el-form-item label="上级代理" :label-width="formLabelWidth" prop="parentId">-->
-          <!--<el-input v-model="agentForm.parentId"></el-input>-->
+        <!--<el-input v-model="agentForm.parentId"></el-input>-->
         <!--</el-form-item>-->
 
         <el-form-item label="真实姓名" :label-width="formLabelWidth" prop="realName">
@@ -130,7 +130,7 @@
 
       <div class="filter-container">
         <!--<el-input @keyup.enter.native="handleClick" style="width: 150px;" class="filter-item"-->
-                  <!--placeholder="用户名"></el-input>-->
+        <!--placeholder="用户名"></el-input>-->
 
         <!--<el-button class="filter-item" type="primary" v-waves icon="search" @click="handleClick">搜索</el-button>-->
 
@@ -162,31 +162,31 @@
         </el-table-column>
 
         <!--<el-table-column align="center" label="真实姓名" width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.realName"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.realName }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.realName"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.realName }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="邀请码" width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.invite_code"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.invite_code }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.invite_code"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.invite_code }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" prop="level" label="代理级别" min-width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.level"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.level }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.level"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.level }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" prop="parentId" label="上级代理" width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.parentId"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.parentId }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.parentId"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.parentId }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <el-table-column align="center" prop="money" label="房卡" width="120">
@@ -197,81 +197,81 @@
         </el-table-column>
 
         <!--<el-table-column align="center" prop="gold" label="点券" width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.gold"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.gold }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.gold"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.gold }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" prop="cell" label="电话" width="145">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.cell"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.cell }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.cell"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.cell }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="邮箱" width="200">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.email"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.email }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.email"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.email }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="身份证" width="205">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.idCard"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.idCard }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.idCard"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.idCard }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="支付提成" width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.payDeduct"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.payDeduct }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.payDeduct"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.payDeduct }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="分享提成" width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.shareDeduct"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.shareDeduct }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.shareDeduct"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.shareDeduct }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="上级支付提成" width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small"-->
-                      <!--v-model="scope.row.parentPayDeduct"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.parentPayDeduct }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small"-->
+        <!--v-model="scope.row.parentPayDeduct"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.parentPayDeduct }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="上级分享提成" width="70">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small"-->
-                      <!--v-model="scope.row.parentShareDeduct"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.parentShareDeduct }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small"-->
+        <!--v-model="scope.row.parentShareDeduct"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.parentShareDeduct }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="所属区域" width="150">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.area"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.area }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.area"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.area }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" prop="address" label="地址" width="150">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.address"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.address }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.address"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.address }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <el-table-column align="center" fixed="right" label="操作" min-width="220">
           <template scope="scope">
             <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"-->
-                       <!--icon="edit">{{scope.row.edit ? '完成' : '编辑'}}-->
+            <!--icon="edit">{{scope.row.edit ? '完成' : '编辑'}}-->
             <!--</el-button>-->
             <!--<el-button @click="handleClick" type="primary" size="small">编辑</el-button>-->
             <el-button @click="handleChargeClick(scope)" type="primary" size="small">充值</el-button>
@@ -342,8 +342,8 @@
         this.dialogFormVisible = true;
       },
       handleDelete(scope) {
-          this.deleteAgentId = scope.row.id;
-          this.deleteFormVisible = true;
+        this.deleteAgentId = scope.row.id;
+        this.deleteFormVisible = true;
       },
       confirmDelete(){
         deleteAgent(this.deleteAgentId).then(response=>{
@@ -376,24 +376,24 @@
         this.chargeDialogFormVisible = false
       },
       doAddAgent(formName){
-          console.log(this.$refs)
-          this.$refs[formName].validate((valid) => {
-              //本地验证
-            if (valid) {
-              agent(this.agentForm, 'POST').then(response => {
-                this.$message({
-                  message: '添加成功',
-                  type: 'success'
-                });
-                this.dialogFormVisible = false;
-                //重新获取数据
-                this.fetchData()
-              })
-            } else {
-              console.log('提交失败');
-              return false;
-            }
-          });
+        console.log(this.$refs)
+        this.$refs[formName].validate((valid) => {
+          //本地验证
+          if (valid) {
+            agent(this.agentForm, 'POST').then(response => {
+              this.$message({
+                message: '添加成功',
+                type: 'success'
+              });
+              this.dialogFormVisible = false;
+              //重新获取数据
+              this.fetchData()
+            })
+          } else {
+            console.log('提交失败');
+            return false;
+          }
+        });
 
       },
       doDeleteAgent(){

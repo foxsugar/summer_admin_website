@@ -3,7 +3,7 @@
 
 
     <!--充值-->
-    <el-dialog class="app-edit" title="充值" :visible.sync="chargeDialogFormVisible" size="small">
+    <el-dialog class="app-edit" title="修改密码" :visible.sync="chargeDialogFormVisible" size="small">
 
       <el-form :model="chargeForm">
         <el-form-item label="输入密码" :label-width="formLabelWidth">
