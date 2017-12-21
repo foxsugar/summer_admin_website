@@ -56,17 +56,6 @@ export const asyncRouterMap = [
       { path: 'index', name: '服务器参数', component: _import('constant/index'), meta: { role: ['admin'] }}
     ]
   },
-  // 给代理上下分
-  {
-    path: '/playeragent',
-    component: Layout,
-    redirect: '/playeragent/index',
-    icon: 'yonghuming',
-    noDropdown: true,
-    children: [
-      { path: 'index', name: '代理上下分', component: _import('playeragent/index'), meta: { role: ['admin'] }}
-    ]
-  },
 
   {
     path: '/agent',
