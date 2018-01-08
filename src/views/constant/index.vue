@@ -29,6 +29,10 @@
         <el-input  v-model="constantForm.download" placeholder=""></el-input>
       </el-form-item>
 
+      <!--<el-form-item label="AccessCode">-->
+        <!--<el-input  v-model="constantForm.access_code" placeholder=""></el-input>-->
+      <!--</el-form-item>-->
+
       <el-form-item>
         <el-button type="primary" @click="onSubmit">修改</el-button>
       </el-form-item>
@@ -53,7 +57,8 @@
           marquee1: '',
           marquee2: '',
           download: '',
-          download2: ''
+          download2: '',
+          access_code: ''
 
         }
       }
