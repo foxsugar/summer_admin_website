@@ -17,13 +17,13 @@
         </el-form-item>
 
         <!--数字类型加上number修饰符-->
-        <el-form-item label="邀请码" :label-width="formLabelWidth" prop="invite_code">
-          <el-input v-model.number="agentForm.invite_code"></el-input>
-        </el-form-item>
+        <!--<el-form-item label="邀请码" :label-width="formLabelWidth" prop="invite_code">-->
+          <!--<el-input v-model.number="agentForm.invite_code"></el-input>-->
+        <!--</el-form-item>-->
 
-        <el-form-item label="代理级别" :label-width="formLabelWidth" prop="level">
-          <el-input v-model="agentForm.level"></el-input>
-        </el-form-item>
+        <!--<el-form-item label="代理级别" :label-width="formLabelWidth" prop="level">-->
+          <!--<el-input v-model="agentForm.level"></el-input>-->
+        <!--</el-form-item>-->
 
         <!--<el-form-item label="上级代理" :label-width="formLabelWidth" prop="parentId">-->
         <!--<el-input v-model="agentForm.parentId"></el-input>-->
@@ -37,37 +37,37 @@
           <el-input v-model="agentForm.email"></el-input>
         </el-form-item>
 
-        <el-form-item label="身份证" :label-width="formLabelWidth" prop="idCard">
-          <el-input v-model="agentForm.idCard"></el-input>
-        </el-form-item>
+        <!--<el-form-item label="身份证" :label-width="formLabelWidth" prop="idCard">-->
+          <!--<el-input v-model="agentForm.idCard"></el-input>-->
+        <!--</el-form-item>-->
 
         <el-form-item label="电话" :label-width="formLabelWidth" prop="cell">
           <el-input v-model="agentForm.cell"></el-input>
         </el-form-item>
 
-        <el-form-item label="区域" :label-width="formLabelWidth">
-          <el-input v-model="agentForm.area"></el-input>
-        </el-form-item>
+        <!--<el-form-item label="区域" :label-width="formLabelWidth">-->
+          <!--<el-input v-model="agentForm.area"></el-input>-->
+        <!--</el-form-item>-->
 
-        <el-form-item label="地址" :label-width="formLabelWidth">
-          <el-input v-model="agentForm.address"></el-input>
-        </el-form-item>
+        <!--<el-form-item label="地址" :label-width="formLabelWidth">-->
+          <!--<el-input v-model="agentForm.address"></el-input>-->
+        <!--</el-form-item>-->
 
-        <el-form-item label="支付提成" :label-width="formLabelWidth" prop="payDeduct">
-          <el-input v-model="agentForm.payDeduct"></el-input>
-        </el-form-item>
+        <!--<el-form-item label="支付提成" :label-width="formLabelWidth" prop="payDeduct">-->
+          <!--<el-input v-model="agentForm.payDeduct"></el-input>-->
+        <!--</el-form-item>-->
 
-        <el-form-item label="分享提成" :label-width="formLabelWidth" prop="shareDeduct">
-          <el-input v-model="agentForm.shareDeduct"></el-input>
-        </el-form-item>
+        <!--<el-form-item label="分享提成" :label-width="formLabelWidth" prop="shareDeduct">-->
+          <!--<el-input v-model="agentForm.shareDeduct"></el-input>-->
+        <!--</el-form-item>-->
 
-        <el-form-item label="上级支付提成" :label-width="formLabelWidth" prop="parentPayDeduct">
-          <el-input v-model="agentForm.parentPayDeduct"></el-input>
-        </el-form-item>
+        <!--<el-form-item label="上级支付提成" :label-width="formLabelWidth" prop="parentPayDeduct">-->
+          <!--<el-input v-model="agentForm.parentPayDeduct"></el-input>-->
+        <!--</el-form-item>-->
 
-        <el-form-item label="上级分享提成" :label-width="formLabelWidth" prop="parentShareDeduct">
-          <el-input v-model="agentForm.parentShareDeduct"></el-input>
-        </el-form-item>
+        <!--<el-form-item label="上级分享提成" :label-width="formLabelWidth" prop="parentShareDeduct">-->
+          <!--<el-input v-model="agentForm.parentShareDeduct"></el-input>-->
+        <!--</el-form-item>-->
       </el-form>
 
       <div slot="footer" class="dialog-footer">
