@@ -24,6 +24,16 @@ export function charge(chargeForm) {
   })
 }
 
+export function chargeGold(chargeForm) {
+  return fetch({
+    url: '/agent/chargeGold',
+    method: 'get',
+    params: {
+      chargeForm
+    }
+  })
+}
+
 export function agent(agentForm, method) {
   return fetch({
     url: '/agent',

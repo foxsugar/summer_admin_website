@@ -17,6 +17,14 @@
       <el-form-item>
         <el-button type="primary" @click="onSubmit">充值</el-button>
       </el-form-item>
+      <br>
+      <el-form-item label="充值金币" width="120">
+        <el-input v-model="chargeForm.gold_num" placeholder=""></el-input>
+      </el-form-item>
+      <!--<br>-->
+      <el-form-item>
+        <el-button type="primary" @click="onGoldSubmit">充值</el-button>
+      </el-form-item>
     </el-form>
 
     <el-table :data="tableData" width="500">
@@ -35,6 +43,9 @@
 
       <el-table-column align="center" prop="money" label="房卡" width="150"></el-table-column>
 
+      <el-table-column align="center" prop="gold" label="金币" width="150"></el-table-column>
+
+      <!--<el-table-column align="center" prop="money" label="邀请码" width="150"></el-table-column>-->
 
     </el-table>
 
@@ -44,7 +55,7 @@
 
 
 <script>
-  import {charge, getList, fetchPlayer} from '@/api/player'
+  import {charge, getList, fetchPlayer, chargeGold} from '@/api/player'
 
   export default {
     data() {
@@ -53,6 +64,7 @@
         tableData: [],
         totalPage: 0,
         currentPage: 1,
+        gold: 0,
         page_size: 20,
         page_sizes: [20, 50, 100, 200],
 
@@ -62,7 +74,8 @@
         chargeForm: {
           userId: '',
           username: '',
-          num: 0
+          num: 0,
+          gold_num: 0
         },
         listQuery: {
           page: 1,
@@ -90,6 +103,18 @@
 
 //        alert(JSON.stringify(this.chargeForm))
         charge(this.chargeForm).then(response => {
+
+          console.log(response)
+          this.$message({
+            message: '充值成功',
+            type: 'success'
+          });
+        });
+        console.log('submit!');
+      },
+
+      onGoldSubmit(){
+        chargeGold(this.chargeForm).then(response => {
 
           console.log(response)
           this.$message({

@@ -17,9 +17,9 @@
         </el-form-item>
 
         <!--数字类型加上number修饰符-->
-        <!--<el-form-item label="邀请码" :label-width="formLabelWidth" prop="invite_code">-->
-          <!--<el-input v-model.number="agentForm.invite_code"></el-input>-->
-        <!--</el-form-item>-->
+        <el-form-item label="邀请码" :label-width="formLabelWidth" prop="invite_code">
+          <el-input v-model.number="agentForm.invite_code"></el-input>
+        </el-form-item>
 
         <!--<el-form-item label="代理级别" :label-width="formLabelWidth" prop="level">-->
           <!--<el-input v-model="agentForm.level"></el-input>-->
@@ -78,7 +78,7 @@
     </el-dialog>
 
     <!--充值-->
-    <el-dialog class="app-edit" title="充值" :visible.sync="chargeDialogFormVisible" size="small">
+    <el-dialog class="app-edit" title="充值房卡" :visible.sync="chargeDialogFormVisible" size="small">
 
       <el-form :model="chargeForm">
         <el-form-item label="id" :label-width="formLabelWidth">
@@ -104,14 +104,45 @@
       </el-form>
 
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button @click="chargeDialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="doCharge">充 值</el-button>
       </div>
 
     </el-dialog>
 
 
+    <!--充值金币-->
+    <el-dialog class="app-edit" title="充值金币" :visible.sync="chargeGoldDialogFormVisible" size="small">
 
+      <el-form :model="chargeForm">
+        <el-form-item label="id" :label-width="formLabelWidth">
+          <el-input :disabled="true" v-model="chargeForm.id"></el-input>
+        </el-form-item>
+
+        <el-form-item label="用户名" :label-width="formLabelWidth">
+          <el-input :disabled="true" v-model="chargeForm.username"></el-input>
+        </el-form-item>
+
+
+        <el-form-item label="充值金币" :label-width="formLabelWidth">
+          <div class="block">
+            <el-slider
+              v-model="chargeForm.gold_num"
+              show-input
+              :min=1
+              :max=20000
+              :step="1">
+            </el-slider>
+          </div>
+        </el-form-item>
+      </el-form>
+
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="chargeGoldDialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="doGoldCharge">充 值</el-button>
+      </div>
+
+    </el-dialog>
 
     <!--删除-->
     <el-dialog class="app-edit" title="删除代理" :visible.sync="deleteFormVisible" size="small">
@@ -168,12 +199,12 @@
         <!--</template>-->
         <!--</el-table-column>-->
 
-        <!--<el-table-column align="center" label="邀请码" width="120">-->
-        <!--<template scope="scope">-->
-        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.invite_code"></el-input>-->
-        <!--<span v-show="!scope.row.edit">{{ scope.row.invite_code }}</span>-->
-        <!--</template>-->
-        <!--</el-table-column>-->
+        <el-table-column align="center" label="邀请码" width="120">
+        <template scope="scope">
+        <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.invite_code"></el-input>
+        <span v-show="!scope.row.edit">{{ scope.row.invite_code }}</span>
+        </template>
+        </el-table-column>
 
         <!--<el-table-column align="center" prop="level" label="代理级别" min-width="120">-->
         <!--<template scope="scope">-->
@@ -189,6 +220,13 @@
         <!--</template>-->
         <!--</el-table-column>-->
 
+        <el-table-column align="center" prop="gold" label="金币" width="120">
+          <template scope="scope">
+            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.gold"></el-input>
+            <span v-show="!scope.row.edit">{{ scope.row.gold }}</span>
+          </template>
+        </el-table-column>
+
         <el-table-column align="center" prop="money" label="房卡" width="120">
           <template scope="scope">
             <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.money"></el-input>
@@ -196,12 +234,6 @@
           </template>
         </el-table-column>
 
-        <!--<el-table-column align="center" prop="gold" label="点券" width="120">-->
-        <!--<template scope="scope">-->
-        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.gold"></el-input>-->
-        <!--<span v-show="!scope.row.edit">{{ scope.row.gold }}</span>-->
-        <!--</template>-->
-        <!--</el-table-column>-->
 
         <!--<el-table-column align="center" prop="cell" label="电话" width="145">-->
         <!--<template scope="scope">-->
@@ -268,13 +300,15 @@
         <!--</template>-->
         <!--</el-table-column>-->
 
-        <el-table-column align="center" fixed="right" label="操作" min-width="220">
+        <el-table-column align="center" fixed="right" label="操作" min-width="250">
           <template scope="scope">
             <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"-->
             <!--icon="edit">{{scope.row.edit ? '完成' : '编辑'}}-->
             <!--</el-button>-->
             <!--<el-button @click="handleClick" type="primary" size="small">编辑</el-button>-->
-            <el-button @click="handleChargeClick(scope)" type="primary" size="small">充值</el-button>
+            <el-button @click="handleChargeClick(scope)" type="primary" size="small">房卡</el-button>
+            <el-button @click="handleGoldChargeClick(scope)" type="primary" size="small">金币</el-button>
+            <!--<el-button @click="handleInvitationCode(scope)" type="primary" size="small">邀请码</el-button>-->
             <el-button @click="handleDelete(scope)" type="danger" size="small">删除</el-button>
           </template>
         </el-table-column>
@@ -301,7 +335,7 @@
 
 <script>
   import {getList, fetchList,deleteAgent} from '@/api/agent'
-  import {charge} from '@/api/agent'
+  import {charge, chargeGold } from '@/api/agent'
   import {agent} from '@/api/agent'
   import waves from '@/directive/waves.js'// 水波纹指令
 
@@ -361,6 +395,13 @@
         this.chargeForm.username = scope.row.id;
         this.chargeForm.num = 0;
       },
+      handleGoldChargeClick(scope){
+        this.chargeGoldDialogFormVisible = true;
+        this.chargeForm.id = scope.row.id;
+        this.chargeForm.username = scope.row.id;
+        this.chargeForm.num = 0;
+        this.chargeForm.gold_num = 0;
+      },
       doCharge(){
         charge(this.chargeForm).then(response => {
           this.tableData.forEach(td => {
@@ -374,6 +415,20 @@
           })
         })
         this.chargeDialogFormVisible = false
+      },
+      doGoldCharge(){
+        chargeGold(this.chargeForm).then(response => {
+          this.tableData.forEach(td => {
+            if (td.id == this.chargeForm.id) {
+              td.gold = response.data;
+            }
+            this.$message({
+              message: '充值成功',
+              type: 'success'
+            });
+          })
+        })
+        this.chargeGoldDialogFormVisible = false
       },
       doAddAgent(formName){
         console.log(this.$refs)
@@ -468,6 +523,7 @@
         dialogTableVisible: false,
         dialogFormVisible: false,
         chargeDialogFormVisible: false,
+        chargeGoldDialogFormVisible: false,
         deleteFormVisible:false,
         deleteAgentId:0,
         agentForm: {

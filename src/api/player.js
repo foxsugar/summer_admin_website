@@ -36,6 +36,28 @@ export function charge(chargeForm) {
   })
 }
 
+export function chargeGold(chargeForm) {
+  return fetch({
+    url: '/player/chargeGold',
+    method: 'get',
+    params: {
+      // chargeForm
+      chargeForm
+    }
+  })
+}
+
+export function changeUserDelegate(chargeForm) {
+  return fetch({
+    url: '/player/changeUserDelegate',
+    method: 'get',
+    params: {
+      // chargeForm
+      chargeForm
+    }
+  })
+}
+
 export function upGoals(chargeForm) {
   return fetch({
     url: '/agent/upGoal',

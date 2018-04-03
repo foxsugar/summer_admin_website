@@ -1,6 +1,22 @@
 <template>
   <div>
 
+    <!--充值-->
+    <el-dialog class="app-edit" title="修改绑定代理ID" :visible.sync="chargeDialogFormVisible" size="small">
+
+      <el-form :model="chargeForm">
+        <el-form-item label="输入代理ID" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="chargeForm.agent_id"></el-input>
+        </el-form-item>
+
+      </el-form>
+
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="doCharge">修 改</el-button>
+      </div>
+
+    </el-dialog>
 
     <!--搜索框 + 表格-->
     <div class="app-container calendar-list-container">
@@ -40,9 +56,9 @@
 
         <el-table-column align="center" prop="money" label="房卡" width="150"></el-table-column>
 
-        <el-table-column align="center" prop="gold" label="积分" width="150"></el-table-column>
+        <el-table-column align="center" prop="gold" label="金币" width="150"></el-table-column>
 
-        <!--<el-table-column align="center" prop="referee" label="代理" width="150"></el-table-column>-->
+        <el-table-column align="center" prop="referee" label="代理" width="150"></el-table-column>
 
         <!--<el-table-column align="center" prop="email" label="邮箱" width="150"></el-table-column>-->
 
@@ -52,15 +68,15 @@
           <!--</template>-->
         <!--</el-table-column>-->
 
-        <!--<el-table-column align="center" fixed="right" label="操作" min-width="220">-->
-          <!--<template scope="scope">-->
-            <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"-->
-                       <!--icon="edit">{{scope.row.edit ? '完成' : '编辑'}}-->
-            <!--</el-button>-->
-            <!--&lt;!&ndash;<el-button @click="handleClick" type="primary" size="small">编辑</el-button>&ndash;&gt;-->
+        <el-table-column align="center" fixed="right" label="操作" min-width="120">
+          <template scope="scope">
+            <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"
+                       icon="edit">{{scope.row.edit ? '完成' : '代理ID'}}
+            </el-button>
+            <!--<el-button @click="handleClick" type="primary" size="small">编辑</el-button>-->
             <!--<el-button @click="handleClick" type="danger" size="small">删除</el-button>-->
-          <!--</template>-->
-        <!--</el-table-column>-->
+          </template>
+        </el-table-column>
 
       </el-table>
     </div>
@@ -86,7 +102,7 @@
 
 <script>
   import {getList, fetchList} from '@/api/player'
-  import {charge} from '@/api/player'
+  import {charge, changeUserDelegate} from '@/api/player'
   import waves from '@/directive/waves.js'// 水波纹指令
 
   export default {
@@ -122,21 +138,19 @@
         this.chargeForm.num = 0;
       },
       doCharge() {
-        charge(this.chargeForm).then(response => {
+        changeUserDelegate(this.chargeForm).then(response => {
           this.tableData.forEach(td => {
             if (td.id == this.chargeForm.id) {
-              td.money = response.data;
+              td.referee = response.data;
             }
             this.$message({
-              message: '充值成功',
+              message: '修改绑定代理成功',
               type: 'success'
             });
           })
         })
         this.chargeDialogFormVisible = false
       },
-
-
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`)
         this.page_size = val;
@@ -147,6 +161,10 @@
         this.currentPage = val;
         this.fetchData()
 
+      },
+      handleEditClick(val) {
+        this.chargeDialogFormVisible = true
+        this.chargeForm.id = val.row.id;
       },
       fetchData() {
         this.listLoading = true;
@@ -179,7 +197,8 @@
         chargeForm: {
           id: '',
           username: '',
-          num: 0
+          num: 0,
+          agent_id: 0
         },
         listQuery: {
           page: 1,

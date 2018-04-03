@@ -112,6 +112,17 @@ export const asyncRouterMap = [
   },
 
   {
+    path: '/goldcashrecord',
+    component: Layout,
+    redirect: '/goldcashrecord/index',
+    icon: 'tubiao',
+    noDropdown: true,
+    children: [
+      { path: 'index', name: '提现记录', component: _import('goldcashrecord/index'), meta: { role: ['delegate'] }}
+    ]
+  },
+
+  {
     path: '/person',
     component: Layout,
     redirect: '/person/index',

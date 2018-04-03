@@ -22,4 +22,14 @@ export function changePwd(pwd) {
   })
 }
 
+export function cashGold(model) {
+  return fetch({
+    url: 'user/cashGold',
+    method: 'get',
+    params: {
+      model
+    }
+  })
+}
+
 

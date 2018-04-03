@@ -14,6 +14,25 @@ export function getList(page, size) {
   })
 }
 
+export function goldCashList(page, size) {
+  return fetch({
+    url: 'agent/goldCashList',
+    method: 'get',
+    params: {
+      page,
+      size
+    }
+  })
+}
+
+export function changeState(query) {
+  return fetch({
+    url: '/agent/changeState',
+    method: 'get',
+    params: query
+  })
+}
+
 export function fetchList(query) {
   return fetch({
     url: '/agent/fetchlist',

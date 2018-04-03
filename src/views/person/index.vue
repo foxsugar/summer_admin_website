@@ -17,8 +17,24 @@
       </el-form>
 
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button @click="chargeDialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="doCharge">修 改</el-button>
+      </div>
+
+    </el-dialog>
+
+    <!--充值-->
+    <el-dialog class="app-editd" title="提现金币" :visible.sync="goldDialogFormVisible" size="small">
+      <el-form :model="chargeForm">
+        <el-form-item label="提现金币数" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="chargeForm.godNum"></el-input>
+        </el-form-item>
+
+      </el-form>
+
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="goldDialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="doGoldCash">修 改</el-button>
       </div>
 
     </el-dialog>
@@ -76,12 +92,12 @@
           </template>
         </el-table-column>
 
-        <!--<el-table-column align="center" prop="gold" label="点券" width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.gold"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.gold }}</span>-->
-          <!--</template>-->
-        <!--</el-table-column>-->
+        <el-table-column align="center" prop="gold" label="金币" width="120">
+          <template scope="scope">
+            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.gold"></el-input>
+            <span v-show="!scope.row.edit">{{ scope.row.gold }}</span>
+          </template>
+        </el-table-column>
 
         <!--<el-table-column align="center" prop="cell" label="电话" width="145">-->
           <!--<template scope="scope">-->
@@ -150,15 +166,10 @@
 
         <el-table-column align="center" fixed="right" label="操作" min-width="220">
           <template scope="scope">
-            <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"-->
-            <!--icon="edit">{{scope.row.edit ? '完成' : '编辑'}}-->
-            <!--</el-button>-->
-            <!--<el-button @click="handleClick" type="primary" size="small">编辑</el-button>-->
             <el-button @click="handleChargeClick(scope)" type="primary" size="small">修改密码</el-button>
-            <!--<el-button @click="handleClick" type="danger" size="small">删除</el-button>-->
+            <el-button @click="handleChargeClick2(scope)" type="primary" size="small">金币提现</el-button>
           </template>
         </el-table-column>
-
       </el-table>
     </div>
 
@@ -182,7 +193,7 @@
 
 <script>
   import { fetchList} from '@/api/agent'
-  import { getList, changePwd} from '@/api/person'
+  import { getList, changePwd, cashGold} from '@/api/person'
   import {charge} from '@/api/agent'
   import {agent} from '@/api/agent'
   import waves from '@/directive/waves.js'// 水波纹指令
@@ -220,10 +231,16 @@
         }
       },
       handleClick() {
-        this.dialogFormVisible = true;
+        this.dialogFormVisible = true
       },
-      handleChargeClick(scope){
-        this.chargeDialogFormVisible = true;
+      handleChargeClick(scope) {
+        this.chargeDialogFormVisible = true
+//        this.chargeForm.id = scope.row.id;
+//        this.chargeForm.username = scope.row.id;
+      },
+      handleChargeClick2(scope) {
+        this.goldDialogFormVisible = true
+        this.agentForm.gold = scope.row.gold
 //        this.chargeForm.id = scope.row.id;
 //        this.chargeForm.username = scope.row.id;
       },
@@ -245,6 +262,26 @@
           })
         })
         this.chargeDialogFormVisible = false
+      },
+      doGoldCash(){
+        alert(this.chargeForm.godNum)
+        alert(this.agentForm.gold)
+        if (this.chargeForm.godNum > this.agentForm.gold){
+          this.goldDialogFormVisible = false
+          alert("超出最大提现额度")
+
+          return
+        }
+        cashGold(this.chargeForm).then(response => {
+          this.tableData.forEach(td => {
+            td.gold = response.data;
+            this.$message({
+              message: '提现请求已经提交，请等待打款',
+              type: 'success'
+            })
+          })
+        })
+        this.goldDialogFormVisible = false;
       },
       doAddAgent(formName){
         console.log(this.$refs)
@@ -339,6 +376,7 @@
         dialogTableVisible: false,
         dialogFormVisible: false,
         chargeDialogFormVisible: false,
+        goldDialogFormVisible: false,
         agentForm: {
           id: 0,
           username: '',
@@ -363,6 +401,7 @@
         chargeForm: {
           pwd1: '',
           pwd2: '',
+          godNum: 0,
         },
 
         listQuery: {
