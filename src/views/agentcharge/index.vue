@@ -98,7 +98,7 @@
         this.chargeForm.username = scope.row.id;
         this.chargeForm.num = 0;
       },
-      doCharge(){
+      doCharge() {
         charge(this.chargeForm).then(response => {
           this.tableData.forEach(td => {
             if (td.id == this.chargeForm.id) {
