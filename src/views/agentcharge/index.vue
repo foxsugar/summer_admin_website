@@ -74,7 +74,7 @@
         this.dialogFormVisible = true;
       },
 
-      handleFilter(){
+      handleFilter() {
         this.listQuery.page = 1
         console.log(this.listQuery)
         this.getFilterList()
