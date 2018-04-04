@@ -40,3 +40,11 @@ export function fetchList(query) {
     params: query
   })
 }
+
+export function fetchGoldList(query) {
+  return fetch({
+    url: '/agent/fetchgoldlist',
+    method: 'get',
+    params: query
+  })
+}
