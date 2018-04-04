@@ -1,12 +1,13 @@
 <template>
   <div>
     <br/>
-    <!--<div class="filter-container">-->
-      <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-      <!--<el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="代理id" v-model="listQuery.title">-->
-      <!--</el-input>-->
-      <!--<el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>-->
-    <!--</div>-->
+    <div class="filter-container">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="代理id" v-model="listQuery.title">
+      </el-input>
+      <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
+    </div>
+
 
     <!--搜索框 + 表格-->
     <div class="app-container calendar-list-container">
@@ -58,7 +59,7 @@
 </template>
 
 <script>
-  import {getList, fetchList, goldCashList, changeState} from '@/api/agentcharge'
+  import {getList, fetchGoldList, goldCashList, changeState} from '@/api/agentcharge'
   import {charge} from '@/api/player'
   import waves from '@/directive/waves.js'// 水波纹指令
 
@@ -93,7 +94,7 @@
       },
       getFilterList() {
         this.listLoading = true
-        fetchList(this.listQuery).then(response => {
+        fetchGoldList(this.listQuery).then(response => {
           this.list = response.data.items
           this.total = response.data.total
           this.listLoading = false

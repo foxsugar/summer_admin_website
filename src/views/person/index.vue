@@ -264,8 +264,6 @@
         this.chargeDialogFormVisible = false
       },
       doGoldCash(){
-        alert(this.chargeForm.godNum)
-        alert(this.agentForm.gold)
         if (this.chargeForm.godNum > this.agentForm.gold){
           this.goldDialogFormVisible = false
           alert("超出最大提现额度")
