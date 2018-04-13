@@ -26,11 +26,15 @@
 
         <el-table-column align="center" prop="charge_time" label="兑换时间" width="160"></el-table-column>
 
-        <el-table-column align="center" fixed="right" label="操作" min-width="120">
+        <el-table-column align="center" fixed="right" label="操作" min-width="220">
           <template scope="scope">
             <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"
                        icon="edit">{{scope.row.edit ? '完成' : '打款状态'}}
+
             </el-button>
+            <el-button @click="handleEditClick1(scope)" type="primary" size="small">二维码</el-button>
+
+
             <!--<el-button @click="handleClick" type="primary" size="small">编辑</el-button>-->
             <!--<el-button @click="handleClick" type="danger" size="small">删除</el-button>-->
           </template>
@@ -77,6 +81,9 @@
         this.listQuery.page = 1
         console.log(this.listQuery)
         this.getFilterList()
+      },
+      handleEditClick1(val) {
+        window.open('http://47.92.130.164:8000/user/showimg?uid=' + val.row.agent_id)
       },
       handleEditClick(val) {
         this.chargeForm.id = val.row.id

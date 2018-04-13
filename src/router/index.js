@@ -107,7 +107,7 @@ export const asyncRouterMap = [
     icon: 'tubiao',
     noDropdown: true,
     children: [
-      { path: 'index', name: '代理充值', component: _import('agentcharge/index'), meta: { role: ['delegate'] }}
+      { path: 'index', name: '代理充值', component: _import('agentcharge/index'), meta: { role: ['admin'] }}
     ]
   },
 

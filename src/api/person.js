@@ -1,3 +1,5 @@
+
+import request from '@/utils/request'
 import fetch from '@/utils/fetch'
 
 
@@ -32,4 +34,46 @@ export function cashGold(model) {
   })
 }
 
+export function gotoUpload(id) {
+  return fetch({
+    url: 'user/upload',
+    method: 'get',
+    params: {
+      id
+    }
+  })
+}
+
+export function uploadImg() {
+  // return fetch({
+  //   url: 'upload',
+  //   method: 'post',
+  //   FILES: {
+  //     'img': img
+  //   }
+  // })
+  var username = 'a'
+  var password = 'b'
+  const data = {
+    username,
+    password
+  }
+  return request({
+    url: 'upload',
+    method: 'get',
+    data
+  })
+}
+
+export function loginByUsername(username, password) {
+  const data = {
+    username,
+    password
+  }
+  return request({
+    url: '/login/login',
+    method: 'post',
+    data
+  })
+}
 

@@ -51,38 +51,38 @@
         <el-table-column align="center" fixed prop="username" label="用户名" width="120"></el-table-column>
 
         <!--<el-table-column align="center" label="密码" width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.password"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.password }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.password"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.password }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="真实姓名" width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.realName"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.realName }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.realName"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.realName }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="邀请码" width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.invite_code"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.invite_code }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.invite_code"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.invite_code }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" prop="level" label="代理级别" min-width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.level"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.level }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.level"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.level }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" prop="parentId" label="上级代理" width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.parentId"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.parentId }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.parentId"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.parentId }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <el-table-column align="center" prop="money" label="房卡" width="120">
@@ -99,91 +99,100 @@
           </template>
         </el-table-column>
 
+        <el-table-column align="center" prop="invite_code" label="邀请码" width="120">
+          <template scope="scope">
+            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.invite_code"></el-input>
+            <span v-show="!scope.row.edit">{{ scope.row.invite_code }}</span>
+          </template>
+        </el-table-column>
+
         <!--<el-table-column align="center" prop="cell" label="电话" width="145">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.cell"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.cell }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.cell"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.cell }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="邮箱" width="200">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.email"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.email }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.email"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.email }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="身份证" width="205">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.idCard"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.idCard }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.idCard"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.idCard }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="支付提成" width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.payDeduct"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.payDeduct }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.payDeduct"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.payDeduct }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="分享提成" width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.shareDeduct"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.shareDeduct }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.shareDeduct"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.shareDeduct }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="上级支付提成" width="120">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small"-->
-                      <!--v-model="scope.row.parentPayDeduct"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.parentPayDeduct }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small"-->
+        <!--v-model="scope.row.parentPayDeduct"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.parentPayDeduct }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="上级分享提成" width="70">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small"-->
-                      <!--v-model="scope.row.parentShareDeduct"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.parentShareDeduct }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small"-->
+        <!--v-model="scope.row.parentShareDeduct"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.parentShareDeduct }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" label="所属区域" width="150">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.area"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.area }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.area"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.area }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
         <!--<el-table-column align="center" prop="address" label="地址" width="150">-->
-          <!--<template scope="scope">-->
-            <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.address"></el-input>-->
-            <!--<span v-show="!scope.row.edit">{{ scope.row.address }}</span>-->
-          <!--</template>-->
+        <!--<template scope="scope">-->
+        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.address"></el-input>-->
+        <!--<span v-show="!scope.row.edit">{{ scope.row.address }}</span>-->
+        <!--</template>-->
         <!--</el-table-column>-->
 
-        <el-table-column align="center" fixed="right" label="操作" min-width="220">
+        <el-table-column align="center" fixed="right" label="操作" min-width="400">
           <template scope="scope">
             <el-button @click="handleChargeClick(scope)" type="primary" size="small">修改密码</el-button>
             <el-button @click="handleChargeClick2(scope)" type="primary" size="small">金币提现</el-button>
+            <el-button @click="handleChargeClick3(scope)" type="primary" size="small">上传图片</el-button>
+            <el-button @click="handleChargeClick4(scope)" type="primary" size="small">查看图片</el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
 
     <!--<div class="block">-->
-      <!--<span class="demonstration"></span>-->
-      <!--<el-pagination-->
-        <!--@size-change="handleSizeChange"-->
-        <!--@current-change="handleCurrentChange"-->
-        <!--:current-page="currentPage"-->
-        <!--:page-sizes="page_sizes"-->
-        <!--:page-size="page_size"-->
-        <!--layout="total, sizes, prev, pager, next, jumper"-->
-        <!--:total="totalPage">-->
-      <!--</el-pagination>-->
+    <!--<span class="demonstration"></span>-->
+    <!--<el-pagination-->
+    <!--@size-change="handleSizeChange"-->
+    <!--@current-change="handleCurrentChange"-->
+    <!--:current-page="currentPage"-->
+    <!--:page-sizes="page_sizes"-->
+    <!--:page-size="page_size"-->
+    <!--layout="total, sizes, prev, pager, next, jumper"-->
+    <!--:total="totalPage">-->
+    <!--</el-pagination>-->
     <!--</div>-->
 
     <br>
@@ -244,14 +253,26 @@
 //        this.chargeForm.id = scope.row.id;
 //        this.chargeForm.username = scope.row.id;
       },
+      handleChargeClick3(scope) {
+//        this.chargeForm.id = scope.row.id;
+//        this.chargeForm.username = scope.row.id;
+//         gotoUpload(this.chargeForm.id).then(response => {
+//           window.location.href = "http://www.baidu.com/";
+//         })
+//         alert(this.chargeForm.userId)
+        window.open('http://47.92.130.164:8000/user/upload?uid=' + this.chargeForm.uid)
+      },
+      handleChargeClick4(scope) {
+        window.open('http://47.92.130.164:8000/user/showimg?uid=' + this.chargeForm.uid)
+      },
       doCharge(){
         if (this.chargeForm.pwd1 != this.chargeForm.pwd2){
-            alert("两次输入密码不一致")
-            return
+          alert("两次输入密码不一致")
+          return
         }
         if (this.chargeForm.pwd1.length < 6 || this.chargeForm.pwd1.length > 18){
-            alert("请输入6到18位密码")
-            return
+          alert("请输入6到18位密码")
+          return
         }
         changePwd(this.chargeForm.pwd1).then(response => {
           this.chargeForm.pwd1 = null
@@ -329,6 +350,7 @@
           this.totalPage = response.data.totalPage;
           this.tableData = response.data.tableData.map(v => {
             this.$set(v, 'edit', false)
+            this.chargeForm.uid = v.id
             return v
           })
           this.listLoading = false;
@@ -399,6 +421,7 @@
         chargeForm: {
           pwd1: '',
           pwd2: '',
+          uid: '',
           godNum: 0,
         },
 

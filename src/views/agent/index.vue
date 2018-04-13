@@ -106,6 +106,7 @@
       <div slot="footer" class="dialog-footer">
         <el-button @click="chargeDialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="doCharge">充 值</el-button>
+        <el-button type="primary" @click="doCharge1">减 值</el-button>
       </div>
 
     </el-dialog>
@@ -140,6 +141,7 @@
       <div slot="footer" class="dialog-footer">
         <el-button @click="chargeGoldDialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="doGoldCharge">充 值</el-button>
+        <el-button type="primary" @click="doGoldCharge1">减 值</el-button>
       </div>
 
     </el-dialog>
@@ -300,7 +302,7 @@
         <!--</template>-->
         <!--</el-table-column>-->
 
-        <el-table-column align="center" fixed="right" label="操作" min-width="250">
+        <el-table-column align="center" fixed="right" label="操作" min-width="350">
           <template scope="scope">
             <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"-->
             <!--icon="edit">{{scope.row.edit ? '完成' : '编辑'}}-->
@@ -309,6 +311,7 @@
             <el-button @click="handleChargeClick(scope)" type="primary" size="small">房卡</el-button>
             <el-button @click="handleGoldChargeClick(scope)" type="primary" size="small">金币</el-button>
             <!--<el-button @click="handleInvitationCode(scope)" type="primary" size="small">邀请码</el-button>-->
+            <el-button @click="handleEditClick2(scope)" type="primary" size="small">二维码</el-button>
             <el-button @click="handleDelete(scope)" type="danger" size="small">删除</el-button>
           </template>
         </el-table-column>
@@ -351,7 +354,9 @@
         console.log(this.listQuery)
         this.getFilterList()
       },
-
+      handleEditClick2(val) {
+        window.open('http://47.92.130.164:8000/user/showimg?uid=' + val.row.id)
+      },
       getFilterList() {
         this.listLoading = true
         fetchList(this.listQuery).then(response => {
@@ -402,7 +407,23 @@
         this.chargeForm.num = 0;
         this.chargeForm.gold_num = 0;
       },
-      doCharge(){
+      doCharge() {
+        this.chargeForm.isadd = 1
+        charge(this.chargeForm).then(response => {
+          this.tableData.forEach(td => {
+            if (td.id == this.chargeForm.id) {
+              td.money = response.data;
+            }
+            this.$message({
+              message: '充值成功',
+              type: 'success'
+            });
+          })
+        })
+        this.chargeDialogFormVisible = false
+      },
+      doCharge1() {
+        this.chargeForm.isadd = 0
         charge(this.chargeForm).then(response => {
           this.tableData.forEach(td => {
             if (td.id == this.chargeForm.id) {
@@ -417,6 +438,22 @@
         this.chargeDialogFormVisible = false
       },
       doGoldCharge(){
+        this.chargeForm.isadd = 1
+        chargeGold(this.chargeForm).then(response => {
+          this.tableData.forEach(td => {
+            if (td.id == this.chargeForm.id) {
+              td.gold = response.data;
+            }
+            this.$message({
+              message: '充值成功',
+              type: 'success'
+            });
+          })
+        })
+        this.chargeGoldDialogFormVisible = false
+      },
+      doGoldCharge1(){
+        this.chargeForm.isadd = 0
         chargeGold(this.chargeForm).then(response => {
           this.tableData.forEach(td => {
             if (td.id == this.chargeForm.id) {
@@ -550,7 +587,8 @@
         chargeForm: {
           id: '',
           username: '',
-          num: 0
+          num: 0,
+          isadd: 0
         },
 
         listQuery: {
