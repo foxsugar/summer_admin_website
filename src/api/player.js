@@ -14,6 +14,17 @@ export function getList(page, size) {
   })
 }
 
+export function getMemberList(page, size) {
+  return fetch({
+    url: '/player/memberlist',
+    method: 'get',
+    params: {
+      page,
+      size
+    }
+  })
+}
+
 export function getListVip(page, size) {
   return fetch({
     url: '/player/listvip',
