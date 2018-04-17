@@ -10,14 +10,13 @@
         <el-button type="primary" @click="onSearch">查询</el-button>
       </el-form-item>
       <br>
-      <!--<el-form-item label="充值金额" width="120">-->
-        <!--<el-input v-model="chargeForm.num" placeholder=""></el-input>-->
-      <!--</el-form-item>-->
-      <!--<br>-->
-      <!--<el-form-item>-->
-        <!--<el-button type="primary" @click="onSubmit">充值</el-button>-->
-      <!--</el-form-item>-->
-      <!--<br>-->
+      <el-form-item label="充值金额" width="120">
+        <el-input v-model="chargeForm.num" placeholder=""></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit">充值</el-button>
+      </el-form-item>
+      <br>
       <el-form-item label="充值金币" width="120">
         <el-input v-model="chargeForm.gold_num" placeholder=""></el-input>
       </el-form-item>
