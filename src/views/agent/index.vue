@@ -17,6 +17,9 @@
         </el-form-item>
 
         <!--数字类型加上number修饰符-->
+
+
+
         <<el-form-item label="邀请码" :label-width="formLabelWidth" prop="invite_code">
           <el-input v-model.number="agentForm.invite_code"></el-input>
         </el-form-item>
