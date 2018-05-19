@@ -148,6 +148,13 @@
           <!--</template>-->
         <!--</el-table-column>-->
 
+        <el-table-column align="center" prop="invite_code" label="邀请码" width="120">
+          <template scope="scope">
+            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.invite_code"></el-input>
+            <span v-show="!scope.row.edit">{{ scope.row.invite_code }}</span>
+          </template>
+        </el-table-column>
+
         <el-table-column align="center" fixed="right" label="操作" min-width="220">
           <template scope="scope">
             <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"-->
