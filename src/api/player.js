@@ -14,6 +14,17 @@ export function getList(page, size) {
   })
 }
 
+export function getMemberList(page, size) {
+  return fetch({
+    url: '/player/memberlist',
+    method: 'get',
+    params: {
+      page,
+      size
+    }
+  })
+}
+
 export function getListVip(page, size) {
   return fetch({
     url: '/player/listvip',
@@ -28,6 +39,28 @@ export function getListVip(page, size) {
 export function charge(chargeForm) {
   return fetch({
     url: '/player/charge',
+    method: 'get',
+    params: {
+      // chargeForm
+      chargeForm
+    }
+  })
+}
+
+export function chargeGold(chargeForm) {
+  return fetch({
+    url: '/player/chargeGold',
+    method: 'get',
+    params: {
+      // chargeForm
+      chargeForm
+    }
+  })
+}
+
+export function changeUserDelegate(chargeForm) {
+  return fetch({
+    url: '/player/changeUserDelegate',
     method: 'get',
     params: {
       // chargeForm
