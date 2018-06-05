@@ -68,14 +68,18 @@
         <!--</template>-->
         <!--</el-table-column>-->
 
-        <el-table-column align="center" fixed="right" label="操作" min-width="150">
-          <template scope="scope">
-            <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"
-                       icon="edit">{{scope.row.edit ? '完成' : '代理ID'}}
-            </el-button>
 
-          </template>
-        </el-table-column>
+
+       <div v-if="ifShow">
+         <el-table-column align="center" fixed="right" label="操作" min-width="150">
+           <template scope="scope">
+             <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"
+                        icon="edit">{{scope.row.edit ? '完成' : '代理ID'}}
+             </el-button>
+
+           </template>
+         </el-table-column>
+       </div>
 
       </el-table>
     </div>
@@ -175,6 +179,7 @@
         getList(this.currentPage, this.page_size).then(response => {
           this.tableData = response.data.tableData;
           this.totalPage = response.data.totalPage;
+          this.ifShow = response.data.show
           this.listLoading = false;
         });
 
@@ -189,6 +194,7 @@
     data() {
       return {
         listLoading: true,
+        ifShow: false,
         tableData: [],
         totalPage: 0,
         currentPage: 1,
