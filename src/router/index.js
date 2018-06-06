@@ -75,7 +75,7 @@ export const asyncRouterMap = [
     icon: 'yonghuming',
     noDropdown: true,
     children: [
-      { path: 'index', name: '玩家管理', component: _import('player/index'), meta: { role: ['delegate'] }}
+      { path: 'index', name: '玩家管理', component: _import('player/index'), meta: { role: ['admin'] }}
     ]
   },
   {
