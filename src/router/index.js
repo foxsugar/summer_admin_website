@@ -67,7 +67,6 @@ export const asyncRouterMap = [
       { path: 'index', name: '代理管理', component: _import('agent/index'), meta: { role: ['delegate'] }}
     ]
   },
-
   {
     path: '/player',
     component: Layout,
