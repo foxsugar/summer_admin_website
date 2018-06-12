@@ -95,19 +95,20 @@
 
         <el-form-item label="充值金额" :label-width="formLabelWidth">
           <div class="block">
-            <el-slider
-              v-model="chargeForm.num"
-              show-input
-              :min=1
-              :max=20000
-              :step="1">
-            </el-slider>
+            <!--<el-slider-->
+              <!--v-model="chargeForm.num"-->
+              <!--show-input-->
+              <!--:min=1-->
+              <!--:max=20000-->
+              <!--:step="1">-->
+            <!--</el-slider>-->
+            <el-input v-model="chargeForm.num" placeholder="充值金额"></el-input>
           </div>
         </el-form-item>
       </el-form>
 
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button @click="cancel">取 消</el-button>
         <el-button type="primary" @click="doCharge">充 值</el-button>
       </div>
 
@@ -364,6 +365,11 @@
         this.chargeForm.username = scope.row.id;
         this.chargeForm.num = 0;
       },
+
+      cancel() {
+        this.chargeDialogFormVisible = false
+      },
+
       doCharge(){
         charge(this.chargeForm).then(response => {
           this.tableData.forEach(td => {

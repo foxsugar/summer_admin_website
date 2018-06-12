@@ -377,6 +377,7 @@
           limit: 20,
           importance: undefined,
           title: undefined,
+          referee: undefined,
           type: undefined,
           sort: '+id'
         },

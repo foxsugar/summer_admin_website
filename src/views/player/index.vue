@@ -26,7 +26,22 @@
         <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="用户名"
                   v-model="listQuery.title">
         </el-input>
+
         <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
+
+        <br>
+        <br>
+
+
+        <div v-if="ifShow">
+          &nbsp;   &nbsp;    &nbsp;
+          <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="邀请码"
+                    v-model="listQuery.referee">
+          </el-input>
+
+          <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter2">搜索</el-button>
+        </div>
+
       </div>
       <br/>
 
@@ -104,7 +119,7 @@
 </template>
 
 <script>
-  import {getList, fetchList} from '@/api/player'
+  import {getList, fetchList, fetchListWithReferee} from '@/api/player'
   import {charge, changeUserDelegate} from '@/api/player'
   import waves from '@/directive/waves.js'// 水波纹指令
 
@@ -120,6 +135,12 @@
         this.getFilterList()
       },
 
+      handleFilter2(){
+        this.listQuery.page = 1
+        console.log(this.listQuery)
+        this.getFilterList2()
+      },
+
       getFilterList() {
         this.listLoading = true
         fetchList(this.listQuery).then(response => {
@@ -131,6 +152,19 @@
           this.listLoading = false
         })
       },
+
+      getFilterList2() {
+        this.listLoading = true
+        fetchListWithReferee(this.listQuery).then(response => {
+          this.list = response.data.items
+          this.total = response.data.total
+          this.listLoading = false
+          this.tableData = response.data.tableData
+          this.totalPage = response.data.totalPage
+          this.listLoading = false
+        })
+      },
+
       handleClick() {
         this.dialogFormVisible = true;
       },
