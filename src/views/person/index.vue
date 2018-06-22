@@ -13,12 +13,7 @@
         <el-form-item label="确认密码" :label-width="formLabelWidth">
           <el-input :disabled="false" v-model="chargeForm.pwd2"></el-input>
         </el-form-item>
-
-
-
-        
       </el-form>
-
       <div slot="footer" class="dialog-footer">
         <el-button @click="chargeDialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="doCharge">修 改</el-button>
