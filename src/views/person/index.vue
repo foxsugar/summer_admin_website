@@ -14,6 +14,9 @@
           <el-input :disabled="false" v-model="chargeForm.pwd2"></el-input>
         </el-form-item>
 
+
+
+        
       </el-form>
 
       <div slot="footer" class="dialog-footer">
