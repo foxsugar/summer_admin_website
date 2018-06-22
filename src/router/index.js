@@ -57,91 +57,91 @@ export const asyncRouterMap = [
     ]
   },
 
-  {
-    path: '/agent',
-    component: Layout,
-    redirect: '/agent/index',
-    icon: 'yonghuming',
-    noDropdown: true,
-    children: [
-      { path: 'index', name: '代理管理', component: _import('agent/index'), meta: { role: ['delegate'] }}
-    ]
-  },
+  // {
+  //   path: '/agent',
+  //   component: Layout,
+  //   redirect: '/agent/index',
+  //   icon: 'yonghuming',
+  //   noDropdown: true,
+  //   children: [
+  //     { path: 'index', name: '代理管理', component: _import('agent/index'), meta: { role: ['delegate'] }}
+  //   ]
+  // },
 
-  {
-    path: '/player',
-    component: Layout,
-    redirect: '/player/index',
-    icon: 'yonghuming',
-    noDropdown: true,
-    children: [
-      { path: 'index', name: '玩家管理', component: _import('player/index'), meta: { role: ['admin'] }}
-    ]
-  },
-  {
-    path: '/delegateplayer',
-    component: Layout,
-    redirect: '/delegateplayer/index',
-    icon: 'yonghuming',
-    noDropdown: true,
-    children: [
-      { path: 'index', name: '会员列表', component: _import('delegateplayer/index'), meta: { role: ['delegate'] }}
-    ]
-  },
-  {
-    path: '/charge',
-    component: Layout,
-    redirect: '/charge/index',
-    icon: 'tubiao',
-    noDropdown: true,
-    children: [
-      { path: 'index', name: '充值管理', component: _import('charge/index'), meta: { role: ['delegate'] }}
-    ]
-  },
+  // {
+  //   path: '/player',
+  //   component: Layout,
+  //   redirect: '/player/index',
+  //   icon: 'yonghuming',
+  //   noDropdown: true,
+  //   children: [
+  //     { path: 'index', name: '玩家管理', component: _import('player/index'), meta: { role: ['admin'] }}
+  //   ]
+  // },
+  // {
+  //   path: '/delegateplayer',
+  //   component: Layout,
+  //   redirect: '/delegateplayer/index',
+  //   icon: 'yonghuming',
+  //   noDropdown: true,
+  //   children: [
+  //     { path: 'index', name: '会员列表', component: _import('delegateplayer/index'), meta: { role: ['delegate'] }}
+  //   ]
+  // },
+  // {
+  //   path: '/charge',
+  //   component: Layout,
+  //   redirect: '/charge/index',
+  //   icon: 'tubiao',
+  //   noDropdown: true,
+  //   children: [
+  //     { path: 'index', name: '充值管理', component: _import('charge/index'), meta: { role: ['delegate'] }}
+  //   ]
+  // },
 
-  {
-    path: '/playercharge',
-    component: Layout,
-    redirect: '/playercharge/index',
-    icon: 'tubiao',
-    noDropdown: true,
-    children: [
-      { path: 'index', name: '充值记录', component: _import('playercharge/index'), meta: { role: ['admin'] }}
-    ]
-  },
+  // {
+  //   path: '/playercharge',
+  //   component: Layout,
+  //   redirect: '/playercharge/index',
+  //   icon: 'tubiao',
+  //   noDropdown: true,
+  //   children: [
+  //     { path: 'index', name: '充值记录', component: _import('playercharge/index'), meta: { role: ['admin'] }}
+  //   ]
+  // },
 
-  {
-    path: '/agentcharge',
-    component: Layout,
-    redirect: '/agentcharge/index',
-    icon: 'tubiao',
-    noDropdown: true,
-    children: [
-      { path: 'index', name: '代理充值', component: _import('agentcharge/index'), meta: { role: ['admin'] }}
-    ]
-  },
+  // {
+  //   path: '/agentcharge',
+  //   component: Layout,
+  //   redirect: '/agentcharge/index',
+  //   icon: 'tubiao',
+  //   noDropdown: true,
+  //   children: [
+  //     { path: 'index', name: '代理充值', component: _import('agentcharge/index'), meta: { role: ['admin'] }}
+  //   ]
+  // },
 
-  {
-    path: '/goldcashrecord',
-    component: Layout,
-    redirect: '/goldcashrecord/index',
-    icon: 'tubiao',
-    noDropdown: true,
-    children: [
-      { path: 'index', name: '提现记录', component: _import('goldcashrecord/index'), meta: { role: ['delegate'] }}
-    ]
-  },
-
-  {
-    path: '/person',
-    component: Layout,
-    redirect: '/person/index',
-    icon: 'yonghuming',
-    noDropdown: true,
-    children: [
-      { path: 'index', name: '个人信息', component: _import('person/index'), meta: { role: ['delegate'] }}
-    ]
-  },
+  // {
+  //   path: '/goldcashrecord',
+  //   component: Layout,
+  //   redirect: '/goldcashrecord/index',
+  //   icon: 'tubiao',
+  //   noDropdown: true,
+  //   children: [
+  //     { path: 'index', name: '提现记录', component: _import('goldcashrecord/index'), meta: { role: ['delegate'] }}
+  //   ]
+  // },
+  //
+  // {
+  //   path: '/person',
+  //   component: Layout,
+  //   redirect: '/person/index',
+  //   icon: 'yonghuming',
+  //   noDropdown: true,
+  //   children: [
+  //     { path: 'index', name: '个人信息', component: _import('person/index'), meta: { role: ['delegate'] }}
+  //   ]
+  // },
 
   // {
   //   path: '/wx',
