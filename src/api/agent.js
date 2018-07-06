@@ -24,6 +24,18 @@ export function charge(chargeForm) {
   })
 }
 
+//  代理金币充值
+export function chargeGold(chargeForm) {
+  return fetch({
+    url: '/agent/chargeGold',
+    method: 'get',
+    params: {
+      chargeForm
+    }
+  })
+}
+
+
 export function agent(agentForm, method) {
   return fetch({
     url: '/agent',

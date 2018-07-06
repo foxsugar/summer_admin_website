@@ -13,10 +13,19 @@
       <el-form-item label="充值金额" width="120">
         <el-input v-model="chargeForm.num" placeholder=""></el-input>
       </el-form-item>
-      <!--<br>-->
+
       <el-form-item>
         <el-button type="primary" @click="onSubmit">充值</el-button>
       </el-form-item>
+      <br>
+      <el-form-item label="充值金币" width="120">
+        <el-input v-model="chargeForm.goal" placeholder=""></el-input>
+      </el-form-item>
+
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit2">充币</el-button>
+      </el-form-item>
+
     </el-form>
 
     <el-table :data="tableData" width="500">
@@ -44,7 +53,7 @@
 
 
 <script>
-  import {charge, getList, fetchPlayer} from '@/api/player'
+  import {charge, getList, fetchPlayer,upGoals, downGoals} from '@/api/player'
 
   export default {
     data() {
@@ -62,6 +71,7 @@
         chargeForm: {
           userId: '',
           username: '',
+          goal: 0,
           num: 0
         },
         listQuery: {
@@ -87,8 +97,6 @@
       },
 
       onSubmit() {
-
-//        alert(JSON.stringify(this.chargeForm))
         charge(this.chargeForm).then(response => {
 
           console.log(response)
@@ -97,11 +105,39 @@
             type: 'success'
           });
         });
-        console.log('submit!');
+      },
+      onSubmit2() {
+        upGoals(this.chargeForm).then(response => {
+
+          console.log(response)
+          this.$message({
+            message: '充值成功',
+            type: 'success'
+          });
+        });
+        // alert(this.chargeForm.goal)
+        // if (this.chargeForm.goal > 0){
+        //   upGoals(this.chargeForm).then(response => {
+        //
+        //     console.log(response)
+        //     this.$message({
+        //       message: '充值成功',
+        //       type: 'success'
+        //     });
+        //   });
+        // }else {
+        //   downGoals(this.chargeForm).then(response => {
+        //
+        //     console.log(response)
+        //     this.$message({
+        //       message: '充值成功',
+        //       type: 'success'
+        //     });
+        //   });
+        // }
       },
 
       onSearch(){
-//        alert("1")
         this.listQuery.page = 1
         this.listQuery.id = this.chargeForm.userId
         this.getFilterList()

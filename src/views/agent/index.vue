@@ -18,8 +18,6 @@
 
         <!--数字类型加上number修饰符-->
 
-
-
         <<el-form-item label="邀请码" :label-width="formLabelWidth" prop="invite_code">
           <el-input v-model.number="agentForm.invite_code"></el-input>
         </el-form-item>
@@ -81,8 +79,16 @@
     </el-dialog>
 
     <!--充值-->
-    <el-dialog class="app-edit" title="充值" :visible.sync="chargeDialogFormVisible" size="small">
+    <el-dialog class="app-edit" title="充值" :visible.sync="chargeDialogFormVisible" size="small" align="center">
 
+      <template>
+        <el-radio v-model="radio" label="1">房卡充值</el-radio>
+        <el-radio v-model="radio" label="2">金币充值</el-radio>
+      </template>
+
+      <br>
+      <br>
+      <br>
       <el-form :model="chargeForm">
         <el-form-item label="id" :label-width="formLabelWidth">
           <el-input :disabled="true" v-model="chargeForm.id"></el-input>
@@ -200,12 +206,12 @@
           </template>
         </el-table-column>
 
-        <!--<el-table-column align="center" prop="gold" label="点券" width="120">-->
-        <!--<template scope="scope">-->
-        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.gold"></el-input>-->
-        <!--<span v-show="!scope.row.edit">{{ scope.row.gold }}</span>-->
-        <!--</template>-->
-        <!--</el-table-column>-->
+        <el-table-column align="center" prop="gold" label="金币" width="120">
+        <template scope="scope">
+        <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.gold"></el-input>
+        <span v-show="!scope.row.edit">{{ scope.row.gold }}</span>
+        </template>
+        </el-table-column>
 
         <!--<el-table-column align="center" prop="cell" label="电话" width="145">-->
         <!--<template scope="scope">-->
@@ -305,7 +311,7 @@
 
 <script>
   import {getList, fetchList,deleteAgent} from '@/api/agent'
-  import {charge} from '@/api/agent'
+  import {charge, chargeGold} from '@/api/agent'
   import {agent} from '@/api/agent'
   import waves from '@/directive/waves.js'// 水波纹指令
 
@@ -371,17 +377,33 @@
       },
 
       doCharge(){
-        charge(this.chargeForm).then(response => {
-          this.tableData.forEach(td => {
-            if (td.id == this.chargeForm.id) {
-              td.money = response.data;
-            }
-            this.$message({
-              message: '充值成功',
-              type: 'success'
-            });
+        if (this.radio == '1'){
+          charge(this.chargeForm).then(response => {
+            this.tableData.forEach(td => {
+              if (td.id == this.chargeForm.id) {
+                td.money = response.data;
+              }
+              this.$message({
+                message: '充值成功',
+                type: 'success'
+              })
+            })
           })
-        })
+        }else {
+          this.chargeForm.gold_num = this.chargeForm.num;
+          // alert(this.chargeForm.gold_num)
+          chargeGold(this.chargeForm).then(response => {
+            this.tableData.forEach(td => {
+              if (td.id == this.chargeForm.id) {
+                td.gold = response.data;
+              }
+              this.$message({
+                message: '充值成功',
+                type: 'success'
+              })
+            })
+          })
+        }
         this.chargeDialogFormVisible = false
       },
       doAddAgent(formName){
@@ -468,6 +490,7 @@
     data() {
       return {
         listLoading: true,
+        radio:'1',
         tableData: [],
         totalPage: 0,
         currentPage: 1,
@@ -503,6 +526,7 @@
         chargeForm: {
           id: '',
           username: '',
+          gold_num: 0,
           num: 0
         },
 
