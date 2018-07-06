@@ -44,6 +44,8 @@
 
       <el-table-column align="center" prop="money" label="房卡" width="150"></el-table-column>
 
+      <el-table-column align="center" prop="gold" label="金币" width="150"></el-table-column>
+
 
     </el-table>
 
