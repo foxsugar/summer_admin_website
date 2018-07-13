@@ -33,7 +33,7 @@
         <el-table-column align="center" fixed prop="id" label="id" width="120"></el-table-column>
 
         <el-table-column align="center" fixed prop="username" label="用户名" width="120"></el-table-column>
-
+        <el-table-column align="center" fixed prop="gold" label="金币" width="120"></el-table-column>
         <!--<el-table-column align="center" label="密码" width="120">-->
           <!--<template scope="scope">-->
             <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.password"></el-input>-->
@@ -68,8 +68,10 @@
             <!--<span v-show="!scope.row.edit">{{ scope.row.parentId }}</span>-->
           <!--</template>-->
         <!--</el-table-column>-->
-
+        <!--<el-table-column align="center" prop="gold" label="金币" width="120">-->
         <el-table-column align="center" prop="money" label="房卡" width="120">
+
+
           <template scope="scope">
             <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.money"></el-input>
             <span v-show="!scope.row.edit">{{ scope.row.money }}</span>

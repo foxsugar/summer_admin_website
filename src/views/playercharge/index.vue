@@ -31,6 +31,8 @@
 
         <el-table-column align="center" prop="recharge_source" label="充值来源" width="150"></el-table-column>
 
+        <el-table-column align="center" prop="charge_type" label="充值类型" width="150"></el-table-column>
+
         <el-table-column align="center" prop="userid" label="用户id" width="150"></el-table-column>
 
         <!--<el-table-column align="center" fixed="right" label="操作" min-width="220">-->
@@ -75,8 +77,15 @@
       waves
     },
     methods: {
-
-      handleFilter(){
+      stateFormat(row, column) {
+        if (row.charge_type === 0) {
+          return '房卡充值'
+        } else if (row.charge_type === 1) {
+          return '金币充值'
+        }
+        return ''
+      },
+      handleFilter() {
         this.listQuery.page = 1
         this.getFilterList()
       },
