@@ -18,9 +18,9 @@
 
         <!--数字类型加上number修饰符-->
 
-        <<el-form-item label="邀请码" :label-width="formLabelWidth" prop="invite_code">
-          <el-input v-model.number="agentForm.invite_code"></el-input>
-        </el-form-item>
+        <!--<<el-form-item label="邀请码" :label-width="formLabelWidth" prop="invite_code">-->
+          <!--<el-input v-model.number="agentForm.invite_code"></el-input>-->
+        <!--</el-form-item>-->
 
         <!--<el-form-item label="代理级别" :label-width="formLabelWidth" prop="level">-->
           <!--<el-input v-model="agentForm.level"></el-input>-->
@@ -34,17 +34,17 @@
           <el-input v-model="agentForm.realName"></el-input>
         </el-form-item>
 
-        <el-form-item label="邮箱" :label-width="formLabelWidth" prop="email">
-          <el-input v-model="agentForm.email"></el-input>
-        </el-form-item>
+        <!--<el-form-item label="邮箱" :label-width="formLabelWidth" prop="email">-->
+          <!--<el-input v-model="agentForm.email"></el-input>-->
+        <!--</el-form-item>-->
 
         <!--<el-form-item label="身份证" :label-width="formLabelWidth" prop="idCard">-->
           <!--<el-input v-model="agentForm.idCard"></el-input>-->
         <!--</el-form-item>-->
 
-        <el-form-item label="电话" :label-width="formLabelWidth" prop="cell">
-          <el-input v-model="agentForm.cell"></el-input>
-        </el-form-item>
+        <!--<el-form-item label="电话" :label-width="formLabelWidth" prop="cell">-->
+          <!--<el-input v-model="agentForm.cell"></el-input>-->
+        <!--</el-form-item>-->
 
         <!--<el-form-item label="区域" :label-width="formLabelWidth">-->
           <!--<el-input v-model="agentForm.area"></el-input>-->
