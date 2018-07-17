@@ -99,7 +99,7 @@
         </el-form-item>
 
 
-        <el-form-item label="充值金额" :label-width="formLabelWidth">
+        <el-form-item label="房卡充值" :label-width="formLabelWidth">
           <div class="block">
             <!--<el-slider-->
               <!--v-model="chargeForm.num"-->
@@ -108,7 +108,7 @@
               <!--:max=20000-->
               <!--:step="1">-->
             <!--</el-slider>-->
-            <el-input v-model="chargeForm.num" placeholder="充值金额"></el-input>
+            <el-input v-model="chargeForm.num" placeholder="房卡充值"></el-input>
           </div>
         </el-form-item>
       </el-form>
