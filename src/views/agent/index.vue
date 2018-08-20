@@ -213,6 +213,18 @@
         </template>
         </el-table-column>
 
+        <el-table-column align="center" prop="total2" label="累计收入" width="120">
+        </el-table-column>
+
+        <el-table-column align="center" prop="total1" label="当前总收入" width="120">
+        </el-table-column>
+
+        <el-table-column align="center" prop="firstLevel1" label="玩家收入" width="120">
+        </el-table-column>
+        <el-table-column align="center" prop="secondLevel1" label="代理收入" width="120">
+        </el-table-column>
+
+
         <!--<el-table-column align="center" prop="cell" label="电话" width="145">-->
         <!--<template scope="scope">-->
         <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.cell"></el-input>-->
@@ -285,6 +297,7 @@
             <!--</el-button>-->
             <!--<el-button @click="handleClick" type="primary" size="small">编辑</el-button>-->
             <el-button @click="handleChargeClick(scope)" type="primary" size="small">充值</el-button>
+            <el-button @click="handleChargeClick2(scope)" type="primary" size="small">结算</el-button>
             <el-button @click="handleDelete(scope)" type="danger" size="small">删除</el-button>
           </template>
         </el-table-column>
@@ -370,6 +383,12 @@
         this.chargeForm.id = scope.row.id;
         this.chargeForm.username = scope.row.id;
         this.chargeForm.num = 0;
+      },
+      handleChargeClick2(scope){
+        // this.chargeDialogFormVisible = true;
+        // this.chargeForm.id = scope.row.id;
+        // this.chargeForm.username = scope.row.id;
+        // this.chargeForm.num = 0;
       },
 
       cancel() {

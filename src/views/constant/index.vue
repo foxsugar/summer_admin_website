@@ -29,13 +29,57 @@
         <el-input  v-model="constantForm.download" placeholder=""></el-input>
       </el-form-item>
 
+      <!--<el-form-item label="一级代理提成">-->
+        <!--<el-input  v-model="constantForm.income1" placeholder=""></el-input>-->
+      <!--</el-form-item>-->
+
+      <!--<el-form-item label="二级代理提成">-->
+        <!--<el-input  v-model="constantForm.income2" placeholder=""></el-input>-->
+      <!--</el-form-item>-->
+
       <!--<el-form-item label="AccessCode">-->
         <!--<el-input  v-model="constantForm.access_code" placeholder=""></el-input>-->
       <!--</el-form-item>-->
+      <!--<el-form label="一级代理提成">-->
+        <!--&lt;!&ndash;<el-slider&ndash;&gt;-->
+          <!--&lt;!&ndash;v-model="income1"&ndash;&gt;-->
+          <!--&lt;!&ndash;show-input>&ndash;&gt;-->
+        <!--&lt;!&ndash;</el-slider>&ndash;&gt;-->
+        <!--<el-input  v-model="constantForm.access_code" placeholder=""></el-input>-->
+      <!--</el-form>-->
+
+      <!--<el-form label="二级代理提成">-->
+        <!--<el-slider-->
+          <!--v-model="income2"-->
+          <!--show-input>-->
+        <!--</el-slider>-->
+      <!--</el-form>-->
+
+      <el-form-item label="一级提成(%)">
+        <!--<el-input  v-model="constantForm.download" placeholder=""></el-input>-->
+          <div class="block">
+            <el-slider
+              v-model="constantForm.income1"
+              show-input>
+            </el-slider>
+          </div>
+      </el-form-item>
+
+      <el-form-item label="二级提成(%)" max="60">
+        <div class="block">
+          <el-slider
+            v-model="constantForm.income2"
+            show-input>
+          </el-slider>
+        </div>
+      </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">修改</el-button>
+        <div class="block">
+          <el-button type="primary" @click="onSubmit">修改</el-button>
+        </div>
       </el-form-item>
+
     </el-form>
   </div>
 </template>
@@ -58,7 +102,9 @@
           marquee2: '',
           download: '',
           download2: '',
-          access_code: ''
+          access_code: '',
+          income1: 20,
+          income2: 40
 
         }
       }
@@ -70,7 +116,9 @@
 
       get(){
         constant('GET',this.constantForm).then(response => {
-          this.constantForm = response.data;
+          this.constantForm = response.data
+          // this.constantForm.income1 = 20
+          // this.constantForm.income2 = 40
         });
       },
       onSubmit() {
