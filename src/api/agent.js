@@ -35,6 +35,15 @@ export function chargeGold(chargeForm) {
   })
 }
 
+export function clearRebate(chargeForm) {
+  return fetch({
+    url: '/agent/clearRebate',
+    method: 'get',
+    params: {
+      chargeForm
+    }
+  })
+}
 
 export function agent(agentForm, method) {
   return fetch({

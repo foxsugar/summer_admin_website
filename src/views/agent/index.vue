@@ -98,17 +98,9 @@
           <el-input :disabled="true" v-model="chargeForm.username"></el-input>
         </el-form-item>
 
-
-        <el-form-item label="房卡充值" :label-width="formLabelWidth">
+        <el-form-item label="充值" :label-width="formLabelWidth">
           <div class="block">
-            <!--<el-slider-->
-              <!--v-model="chargeForm.num"-->
-              <!--show-input-->
-              <!--:min=1-->
-              <!--:max=20000-->
-              <!--:step="1">-->
-            <!--</el-slider>-->
-            <el-input v-model="chargeForm.num" placeholder="房卡充值"></el-input>
+            <el-input v-model="chargeForm.num" placeholder="充值"></el-input>
           </div>
         </el-form-item>
       </el-form>
@@ -116,6 +108,32 @@
       <div slot="footer" class="dialog-footer">
         <el-button @click="cancel">取 消</el-button>
         <el-button type="primary" @click="doCharge">充 值</el-button>
+      </div>
+
+    </el-dialog>
+
+    <!-- 打款-->
+    <el-dialog class="app-edit" title="确认打款?" :visible.sync="chargeDialogFormVisible2" size="small" align="center">
+
+      <el-form :model="chargeForm">
+        <el-form-item label="id" :label-width="formLabelWidth">
+          <el-input :disabled="true" v-model="chargeForm.id"></el-input>
+        </el-form-item>
+
+        <el-form-item label="用户名" :label-width="formLabelWidth">
+          <el-input :disabled="true" v-model="chargeForm.username"></el-input>
+        </el-form-item>
+
+        <el-form-item label="金额" :label-width="formLabelWidth">
+          <div class="block">
+            <el-input :disabled="true" v-model="chargeForm.earnings" placeholder="金额"></el-input>
+          </div>
+        </el-form-item>
+      </el-form>
+
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="cancel2">取 消</el-button>
+        <el-button type="primary" @click="doCharge2">打 款</el-button>
       </div>
 
     </el-dialog>
@@ -171,33 +189,12 @@
           </template>
         </el-table-column>
 
-        <!--<el-table-column align="center" label="真实姓名" width="120">-->
-        <!--<template scope="scope">-->
-        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.realName"></el-input>-->
-        <!--<span v-show="!scope.row.edit">{{ scope.row.realName }}</span>-->
-        <!--</template>-->
-        <!--</el-table-column>-->
-
         <el-table-column align="center" label="邀请码" width="120">
         <template scope="scope">
         <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.invite_code"></el-input>
         <span v-show="!scope.row.edit">{{ scope.row.invite_code }}</span>
         </template>
         </el-table-column>
-
-        <!--<el-table-column align="center" prop="level" label="代理级别" min-width="120">-->
-        <!--<template scope="scope">-->
-        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.level"></el-input>-->
-        <!--<span v-show="!scope.row.edit">{{ scope.row.level }}</span>-->
-        <!--</template>-->
-        <!--</el-table-column>-->
-
-        <!--<el-table-column align="center" prop="parentId" label="上级代理" width="120">-->
-        <!--<template scope="scope">-->
-        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.parentId"></el-input>-->
-        <!--<span v-show="!scope.row.edit">{{ scope.row.parentId }}</span>-->
-        <!--</template>-->
-        <!--</el-table-column>-->
 
         <el-table-column align="center" prop="money" label="房卡" width="120">
           <template scope="scope">
@@ -224,80 +221,10 @@
         <el-table-column align="center" prop="secondLevel1" label="代理收入" width="120">
         </el-table-column>
 
-
-        <!--<el-table-column align="center" prop="cell" label="电话" width="145">-->
-        <!--<template scope="scope">-->
-        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.cell"></el-input>-->
-        <!--<span v-show="!scope.row.edit">{{ scope.row.cell }}</span>-->
-        <!--</template>-->
-        <!--</el-table-column>-->
-
-        <!--<el-table-column align="center" label="邮箱" width="200">-->
-        <!--<template scope="scope">-->
-        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.email"></el-input>-->
-        <!--<span v-show="!scope.row.edit">{{ scope.row.email }}</span>-->
-        <!--</template>-->
-        <!--</el-table-column>-->
-
-        <!--<el-table-column align="center" label="身份证" width="205">-->
-        <!--<template scope="scope">-->
-        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.idCard"></el-input>-->
-        <!--<span v-show="!scope.row.edit">{{ scope.row.idCard }}</span>-->
-        <!--</template>-->
-        <!--</el-table-column>-->
-
-        <!--<el-table-column align="center" label="支付提成" width="120">-->
-        <!--<template scope="scope">-->
-        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.payDeduct"></el-input>-->
-        <!--<span v-show="!scope.row.edit">{{ scope.row.payDeduct }}</span>-->
-        <!--</template>-->
-        <!--</el-table-column>-->
-
-        <!--<el-table-column align="center" label="分享提成" width="120">-->
-        <!--<template scope="scope">-->
-        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.shareDeduct"></el-input>-->
-        <!--<span v-show="!scope.row.edit">{{ scope.row.shareDeduct }}</span>-->
-        <!--</template>-->
-        <!--</el-table-column>-->
-
-        <!--<el-table-column align="center" label="上级支付提成" width="120">-->
-        <!--<template scope="scope">-->
-        <!--<el-input type="textarea" v-show="scope.row.edit" size="small"-->
-        <!--v-model="scope.row.parentPayDeduct"></el-input>-->
-        <!--<span v-show="!scope.row.edit">{{ scope.row.parentPayDeduct }}</span>-->
-        <!--</template>-->
-        <!--</el-table-column>-->
-
-        <!--<el-table-column align="center" label="上级分享提成" width="70">-->
-        <!--<template scope="scope">-->
-        <!--<el-input type="textarea" v-show="scope.row.edit" size="small"-->
-        <!--v-model="scope.row.parentShareDeduct"></el-input>-->
-        <!--<span v-show="!scope.row.edit">{{ scope.row.parentShareDeduct }}</span>-->
-        <!--</template>-->
-        <!--</el-table-column>-->
-
-        <!--<el-table-column align="center" label="所属区域" width="150">-->
-        <!--<template scope="scope">-->
-        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.area"></el-input>-->
-        <!--<span v-show="!scope.row.edit">{{ scope.row.area }}</span>-->
-        <!--</template>-->
-        <!--</el-table-column>-->
-
-        <!--<el-table-column align="center" prop="address" label="地址" width="150">-->
-        <!--<template scope="scope">-->
-        <!--<el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.address"></el-input>-->
-        <!--<span v-show="!scope.row.edit">{{ scope.row.address }}</span>-->
-        <!--</template>-->
-        <!--</el-table-column>-->
-
         <el-table-column align="center" fixed="right" label="操作" min-width="220">
           <template scope="scope">
-            <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"-->
-            <!--icon="edit">{{scope.row.edit ? '完成' : '编辑'}}-->
-            <!--</el-button>-->
-            <!--<el-button @click="handleClick" type="primary" size="small">编辑</el-button>-->
             <el-button @click="handleChargeClick(scope)" type="primary" size="small">充值</el-button>
-            <el-button @click="handleChargeClick2(scope)" type="primary" size="small">结算</el-button>
+            <el-button @click="handleChargeClick2(scope)" type="primary" v-if="ifShow" size="small">结算</el-button>
             <el-button @click="handleDelete(scope)" type="danger" size="small">删除</el-button>
           </template>
         </el-table-column>
@@ -324,7 +251,7 @@
 
 <script>
   import {getList, fetchList,deleteAgent} from '@/api/agent'
-  import {charge, chargeGold} from '@/api/agent'
+  import {charge, chargeGold, clearRebate} from '@/api/agent'
   import {agent} from '@/api/agent'
   import waves from '@/directive/waves.js'// 水波纹指令
 
@@ -348,6 +275,7 @@
           this.total = response.data.total
           this.listLoading = false
           this.tableData = response.data.tableData
+          this.ifShow = response.data.ifShow
           this.totalPage = response.data.totalPage
           this.listLoading = false
         })
@@ -381,18 +309,22 @@
       handleChargeClick(scope){
         this.chargeDialogFormVisible = true;
         this.chargeForm.id = scope.row.id;
-        this.chargeForm.username = scope.row.id;
+        this.chargeForm.username = scope.row.username;
         this.chargeForm.num = 0;
       },
       handleChargeClick2(scope){
-        // this.chargeDialogFormVisible = true;
-        // this.chargeForm.id = scope.row.id;
-        // this.chargeForm.username = scope.row.id;
+        this.chargeDialogFormVisible2 = true;
+        this.chargeForm.id = scope.row.id;
+        this.chargeForm.username = scope.row.username;
         // this.chargeForm.num = 0;
+        this.chargeForm.earnings = scope.row.total1
       },
 
       cancel() {
         this.chargeDialogFormVisible = false
+      },
+      cancel2() {
+        this.chargeDialogFormVisible2 = false
       },
 
       doCharge(){
@@ -424,6 +356,19 @@
           })
         }
         this.chargeDialogFormVisible = false
+      },
+
+      doCharge2(){
+        clearRebate(this.chargeForm).then(response => {
+          this.tableData.forEach(td => {
+            this.fetchData()
+            this.$message({
+              message: '打款成功',
+              type: 'success'
+            })
+          })
+        })
+        this.chargeDialogFormVisible2 = false
       },
       doAddAgent(formName){
         console.log(this.$refs)
@@ -470,6 +415,7 @@
         this.listLoading = true;
         getList(this.currentPage, this.page_size).then(response => {
           this.tableData = response.data.tableData;
+          this.ifShow = response.data.ifShow
           this.totalPage = response.data.totalPage;
           this.tableData = response.data.tableData.map(v => {
             this.$set(v, 'edit', false)
@@ -509,6 +455,7 @@
     data() {
       return {
         listLoading: true,
+        ifShow: false,
         radio:'1',
         tableData: [],
         totalPage: 0,
@@ -519,9 +466,12 @@
         dialogTableVisible: false,
         dialogFormVisible: false,
         chargeDialogFormVisible: false,
+        chargeDialogFormVisible2: false,
         deleteFormVisible:false,
         deleteAgentId:0,
+
         agentForm: {
+          earnings: '',
           id: 0,
           username: '',
           password: '',
