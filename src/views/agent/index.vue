@@ -221,10 +221,19 @@
         <el-table-column align="center" prop="secondLevel1" label="代理收入" width="120">
         </el-table-column>
 
-        <el-table-column align="center" fixed="right" label="操作" min-width="220">
+        <el-table-column align="center" fixed="right" label="操作" min-width="320">
           <template scope="scope">
-            <el-button @click="handleChargeClick(scope)" type="primary" size="small">充值</el-button>
             <el-button @click="handleChargeClick2(scope)" type="primary" v-if="ifShow" size="small">结算</el-button>
+            <el-button @click="handleChargeClick(scope)" type="primary" size="small">充值</el-button>
+            &nbsp;
+
+            <!--<router-link :to="'/agent/record'+scope.row.id">-->
+            <!--<router-link :to="'/agent/record'">-->
+              <!--<el-button type="primary" size="small">结算记录</el-button>-->
+            <!--</router-link>-->
+            <el-button type="primary" size="small" @click="goToNext3Level(scope)">结算记录</el-button>
+
+            &nbsp;
             <el-button @click="handleDelete(scope)" type="danger" size="small">删除</el-button>
           </template>
         </el-table-column>
@@ -266,6 +275,17 @@
         this.listQuery.page = 1
         console.log(this.listQuery)
         this.getFilterList()
+      },
+      goToNext3Level(scope) {
+        console.log(scope.row.id)
+        // this.$router.push({
+        //   path: '/agent/record',
+        //   params: {
+        //     list: 1
+        //   }
+        // })
+
+        this.$router.push({ path: '/agent/record', name: 'record', params: { userId: scope.row.id }})
       },
 
       getFilterList() {

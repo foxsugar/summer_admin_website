@@ -21,3 +21,11 @@ export function fetchList(query) {
     params: query
   })
 }
+
+export function fetchRecordList(query) {
+  return fetch({
+    url: 'agent/rebateDetail',
+    method: 'get',
+    params: query
+  })
+}

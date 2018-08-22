@@ -64,7 +64,11 @@ export const asyncRouterMap = [
     icon: 'yonghuming',
     noDropdown: true,
     children: [
-      { path: 'index', name: '代理管理', component: _import('agent/index'), meta: { role: ['delegate'] }}
+      { path: 'index', name: '代理管理', component: _import('agent/index'), meta: { role: ['delegate'] }},
+      // { path: 'record/:id(\\d+)', name: 'test', component: _import('agent/record'), meta: { role: ['delegate'] }}
+      // { path: 'record/:id(\\d+)',  name: ' 记录', component: _import('agent/record'), meta: { role: ['delegate'] }},
+      { path: 'record', name: 'record', component: _import('agent/record'), meta: { role: ['delegate'] }}
+      // { path: 'record', component: () => import('/views/agent/record'), name: 'record' }
     ]
   },
   {
