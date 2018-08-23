@@ -9,13 +9,13 @@
       <el-table :data="tableData" v-loading.body="listLoading" element-loading-text="给我一点时间" stripe border fit
                 highlight-current-row style="width: 100%">
 
-        <el-table-column align="center"  prop="date" label="结算时间" width="160"></el-table-column>
+        <el-table-column align="center"  prop="date" label="清返利时间" width="160"></el-table-column>
 
         <el-table-column align="center" prop="first" label="一级" width="160"></el-table-column>
 
         <el-table-column align="center" prop="second" label="二级" width="160"></el-table-column>
 
-        <el-table-column align="center" prop="total" label="总金额" width="160"></el-table-column>
+        <el-table-column align="center" prop="total" label="返利总金额" width="160"></el-table-column>
 
       </el-table>
     </div>
