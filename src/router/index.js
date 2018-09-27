@@ -88,7 +88,8 @@ export const asyncRouterMap = [
     icon: 'tubiao',
     noDropdown: true,
     children: [
-      { path: 'index', name: '充值管理', component: _import('charge/index'), meta: { role: ['delegate'] }}
+      // { path: 'index', name: '充值管理', component: _import('charge/index'), meta: { role: ['delegate'] }}
+      { path: 'index', name: '充值管理', component: _import('charge/index'), meta: { role: [] }}
     ]
   },
 
@@ -99,7 +100,8 @@ export const asyncRouterMap = [
     icon: 'tubiao',
     noDropdown: true,
     children: [
-      { path: 'index', name: '充值记录', component: _import('playercharge/index'), meta: { role: ['delegate'] }}
+      // { path: 'index', name: '充值记录', component: _import('playercharge/index'), meta: { role: ['delegate'] }}
+      { path: 'index', name: '充值记录', component: _import('playercharge/index'), meta: { role: [] }}
     ]
   },
 
@@ -110,7 +112,8 @@ export const asyncRouterMap = [
     icon: 'tubiao',
     noDropdown: true,
     children: [
-      { path: 'index', name: '代理充值', component: _import('agentcharge/index'), meta: { role: ['delegate'] }}
+      // { path: 'index', name: '代理充值', component: _import('agentcharge/index'), meta: { role: ['delegate'] }}
+      { path: 'index', name: '代理充值', component: _import('agentcharge/index'), meta: { role: [] }}
     ]
   },
 
