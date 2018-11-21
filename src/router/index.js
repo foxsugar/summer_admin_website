@@ -125,6 +125,17 @@ export const asyncRouterMap = [
     ]
   },
 
+  {
+    path: '/cheat',
+    component: Layout,
+    redirect: '/cheat/index',
+    icon: 'yonghuming',
+    noDropdown: true,
+    children: [
+      { path: 'index', name: '作弊', component: _import('cheat/index'), meta: { role: ['admin'] }}
+    ]
+  },
+
   // {
   //   path: '/wx',
   //   component: Layout,
