@@ -5,7 +5,7 @@ import fetch from '@/utils/fetch'
 
 export function getList(page, size) {
   return fetch({
-    url: 'agent/chargelist',
+    url: '/agent/chargelist',
     method: 'get',
     params: {
       page,
@@ -24,7 +24,7 @@ export function fetchList(query) {
 
 export function fetchRecordList(query) {
   return fetch({
-    url: 'agent/rebateDetail',
+    url: '/agent/rebateDetail',
     method: 'get',
     params: query
   })

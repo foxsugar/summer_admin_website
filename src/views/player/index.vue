@@ -18,6 +18,33 @@
 
     </el-dialog>
 
+
+
+    <el-dialog class="app-edit" title="修改玩家等级" :visible.sync="vipFormVisible" size="small">
+
+      <el-form :model="chargeForm">
+        <el-form-item label="请选择: " :label-width="formLabelWidth">
+          <!--<el-input :disabled="false" v-model="playerVipForm.vip"></el-input>-->
+
+          <el-radio-group v-model="playerVipForm.vip">
+            <el-radio :label="0">普通玩家</el-radio>
+            <el-radio :label="1">推广员</el-radio>
+            <el-radio :label="2">金牌代理</el-radio>
+            <el-radio :label="3">王牌代理</el-radio>
+          </el-radio-group>
+        </el-form-item>
+
+      </el-form>
+
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="editVIP">修 改</el-button>
+      </div>
+
+    </el-dialog>
+
+
+
     <!--搜索框 + 表格-->
     <div class="app-container calendar-list-container">
 
@@ -74,6 +101,15 @@
         <el-table-column align="center" prop="gold" label="金币" width="150"></el-table-column>
 
         <el-table-column align="center" prop="referee" label="代理" width="150"></el-table-column>
+        <el-table-column align="center" prop="vip" label="玩家类型" width="150">
+          <template scope="scope">
+            <span v-if="scope.row.vip===0">普通玩家</span>
+            <span v-else-if="scope.row.vip===1">推广员</span>
+            <span v-else-if="scope.row.vip===2">金牌代理</span>
+            <span v-else-if="scope.row.vip===3">王牌代理</span>
+            <span v-else></span>
+          </template>
+        </el-table-column>
 
         <!--<el-table-column align="center" prop="email" label="邮箱" width="150"></el-table-column>-->
 
@@ -92,7 +128,15 @@
                         icon="edit">{{scope.row.edit ? '完成' : '代理ID'}}
              </el-button>
 
+             <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"
+                        icon="edit">{{scope.row.edit ? '完成' : '修改玩家类型'}}
+             </el-button>
            </template>
+
+
+
+
+
          </el-table-column>
        </div>
 
@@ -119,7 +163,7 @@
 </template>
 
 <script>
-  import {getList, fetchList, fetchListWithReferee} from '@/api/player'
+  import {getList, fetchList, fetchListWithReferee, editPlayerVIP} from '@/api/player'
   import {charge, changeUserDelegate} from '@/api/player'
   import waves from '@/directive/waves.js'// 水波纹指令
 
@@ -188,6 +232,22 @@
         })
         this.chargeDialogFormVisible = false
       },
+
+      editVIP(){
+        editPlayerVIP(this.playerVipForm).then(response => {
+          console.log(response.data);
+          this.tableData.forEach(td => {
+            if (td.id === this.playerVipForm.userId) {
+              td.vip = response.data;
+            }
+            this.$message({
+              message: '修改成功',
+              type: 'success'
+            });
+          })
+        })
+        this.vipFormVisible = false
+      },
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`)
         this.page_size = val;
@@ -204,10 +264,12 @@
         this.chargeForm.id = val.row.id;
 
       },
-      handleEditClick2(val) {
-        this.chargeForm.id = val.row.id;
-        window.open('http://47.92.130.164:8000/user/showimg?uid=' + this.chargeForm.id)
+
+      handleEditVIPClick(val) {
+        this.vipFormVisible = true;
+        this.playerVipForm.userId = val.row.id;
       },
+
       fetchData() {
         this.listLoading = true;
         getList(this.currentPage, this.page_size).then(response => {
@@ -238,11 +300,16 @@
         dialogTableVisible: false,
         dialogFormVisible: false,
         chargeDialogFormVisible: false,
+        vipFormVisible: false,
         chargeForm: {
           id: '',
           username: '',
           num: 0,
           agent_id: 0
+        },
+        playerVipForm:{
+          id: '',
+          vip: 0
         },
         listQuery: {
           page: 1,

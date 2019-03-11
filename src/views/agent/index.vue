@@ -19,11 +19,11 @@
         <!--数字类型加上number修饰符-->
 
         <!--<<el-form-item label="邀请码" :label-width="formLabelWidth" prop="invite_code">-->
-          <!--<el-input v-model.number="agentForm.invite_code"></el-input>-->
+        <!--<el-input v-model.number="agentForm.invite_code"></el-input>-->
         <!--</el-form-item>-->
 
         <!--<el-form-item label="代理级别" :label-width="formLabelWidth" prop="level">-->
-          <!--<el-input v-model="agentForm.level"></el-input>-->
+        <!--<el-input v-model="agentForm.level"></el-input>-->
         <!--</el-form-item>-->
 
         <!--<el-form-item label="上级代理" :label-width="formLabelWidth" prop="parentId">-->
@@ -35,39 +35,51 @@
         </el-form-item>
 
         <!--<el-form-item label="邮箱" :label-width="formLabelWidth" prop="email">-->
-          <!--<el-input v-model="agentForm.email"></el-input>-->
+        <!--<el-input v-model="agentForm.email"></el-input>-->
         <!--</el-form-item>-->
 
         <!--<el-form-item label="身份证" :label-width="formLabelWidth" prop="idCard">-->
-          <!--<el-input v-model="agentForm.idCard"></el-input>-->
+        <!--<el-input v-model="agentForm.idCard"></el-input>-->
         <!--</el-form-item>-->
 
         <!--<el-form-item label="电话" :label-width="formLabelWidth" prop="cell">-->
-          <!--<el-input v-model="agentForm.cell"></el-input>-->
+        <!--<el-input v-model="agentForm.cell"></el-input>-->
         <!--</el-form-item>-->
 
-        <!--<el-form-item label="区域" :label-width="formLabelWidth">-->
-          <!--<el-input v-model="agentForm.area"></el-input>-->
-        <!--</el-form-item>-->
+        <el-form-item label="区域" :label-width="formLabelWidth" prop="area">
+          <el-input v-model="agentForm.area"></el-input>
+        </el-form-item>
+
+        <el-form-item label="代理类型" :label-width="formLabelWidth" prop="agent_type">
+          <el-select v-model="agentForm.agent_type" placeholder="请选择">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+
 
         <!--<el-form-item label="地址" :label-width="formLabelWidth">-->
-          <!--<el-input v-model="agentForm.address"></el-input>-->
+        <!--<el-input v-model="agentForm.address"></el-input>-->
         <!--</el-form-item>-->
 
         <!--<el-form-item label="支付提成" :label-width="formLabelWidth" prop="payDeduct">-->
-          <!--<el-input v-model="agentForm.payDeduct"></el-input>-->
+        <!--<el-input v-model="agentForm.payDeduct"></el-input>-->
         <!--</el-form-item>-->
 
         <!--<el-form-item label="分享提成" :label-width="formLabelWidth" prop="shareDeduct">-->
-          <!--<el-input v-model="agentForm.shareDeduct"></el-input>-->
+        <!--<el-input v-model="agentForm.shareDeduct"></el-input>-->
         <!--</el-form-item>-->
 
         <!--<el-form-item label="上级支付提成" :label-width="formLabelWidth" prop="parentPayDeduct">-->
-          <!--<el-input v-model="agentForm.parentPayDeduct"></el-input>-->
+        <!--<el-input v-model="agentForm.parentPayDeduct"></el-input>-->
         <!--</el-form-item>-->
 
         <!--<el-form-item label="上级分享提成" :label-width="formLabelWidth" prop="parentShareDeduct">-->
-          <!--<el-input v-model="agentForm.parentShareDeduct"></el-input>-->
+        <!--<el-input v-model="agentForm.parentShareDeduct"></el-input>-->
         <!--</el-form-item>-->
       </el-form>
 
@@ -139,8 +151,6 @@
     </el-dialog>
 
 
-
-
     <!--删除-->
     <el-dialog class="app-edit" title="删除代理" :visible.sync="deleteFormVisible" size="small">
 
@@ -163,10 +173,21 @@
         <!--<el-button class="filter-item" type="primary" v-waves icon="search" @click="handleClick">搜索</el-button>-->
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="代理用户名" v-model="listQuery.title">
+        <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="代理用户名"
+                  v-model="listQuery.title">
         </el-input>
+        <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="代理区域"
+                  v-model="listQuery.area">
+        </el-input>
+        <el-select v-model="listQuery.agent_type" placeholder="请选择">
+          <el-option
+            v-for="item in options2"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
         <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
-
         <el-button class="filter-item" style="margin-left: 10px;" @click="handleClick" type="primary" icon="plus">添加代理
         </el-button>
 
@@ -188,12 +209,12 @@
             <span v-show="!scope.row.edit">{{ scope.row.password }}</span>
           </template>
         </el-table-column>
-
+        <el-table-column align="center" prop="area" label="区域" width="120"></el-table-column>
         <el-table-column align="center" label="邀请码" width="120">
-        <template scope="scope">
-        <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.invite_code"></el-input>
-        <span v-show="!scope.row.edit">{{ scope.row.invite_code }}</span>
-        </template>
+          <template scope="scope">
+            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.invite_code"></el-input>
+            <span v-show="!scope.row.edit">{{ scope.row.invite_code }}</span>
+          </template>
         </el-table-column>
 
         <el-table-column align="center" prop="money" label="房卡" width="120">
@@ -204,10 +225,10 @@
         </el-table-column>
 
         <el-table-column align="center" prop="gold" label="金币" width="120">
-        <template scope="scope">
-        <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.gold"></el-input>
-        <span v-show="!scope.row.edit">{{ scope.row.gold }}</span>
-        </template>
+          <template scope="scope">
+            <el-input type="textarea" v-show="scope.row.edit" size="small" v-model="scope.row.gold"></el-input>
+            <span v-show="!scope.row.edit">{{ scope.row.gold }}</span>
+          </template>
         </el-table-column>
 
         <el-table-column align="center" prop="total2" label="累计收入" width="120">
@@ -220,7 +241,15 @@
         </el-table-column>
         <el-table-column align="center" prop="secondLevel1" label="代理收入" width="120">
         </el-table-column>
-
+        <el-table-column align="center" prop="agent_type" label="代理类型" width="120">
+          <template scope="scope">
+            <span v-if="scope.row.agent_type===0">普通代理</span>
+            <span v-else-if="scope.row.agent_type===1">推广员</span>
+            <span v-else-if="scope.row.agent_type===2">金牌代理</span>
+            <span v-else-if="scope.row.agent_type===3">王牌代理</span>
+            <span v-else></span>
+          </template>
+        </el-table-column>
         <el-table-column align="center" fixed="right" label="操作" min-width="320">
           <template scope="scope">
             <el-button @click="handleChargeClick2(scope)" type="primary" v-if="ifShow" size="small">清返利</el-button>
@@ -229,9 +258,11 @@
 
             <!--<router-link :to="'/agent/record'+scope.row.id">-->
             <!--<router-link :to="'/agent/record'">-->
-              <!--<el-button type="primary" size="small">结算记录</el-button>-->
+            <!--<el-button type="primary" size="small">结算记录</el-button>-->
             <!--</router-link>-->
             <el-button type="primary" size="small" @click="goToNext3Level(scope)">返利记录</el-button>
+
+            <el-button type="primary" size="small" @click="handleChangeAgentType(scope)">修改代理类型</el-button>
 
             &nbsp;
             <el-button @click="handleDelete(scope)" type="danger" size="small">删除</el-button>
@@ -259,7 +290,7 @@
 </template>
 
 <script>
-  import {getList, fetchList,deleteAgent} from '@/api/agent'
+  import {getList, fetchList, deleteAgent} from '@/api/agent'
   import {charge, chargeGold, clearRebate} from '@/api/agent'
   import {agent} from '@/api/agent'
   import waves from '@/directive/waves.js'// 水波纹指令
@@ -270,7 +301,6 @@
       waves
     },
     methods: {
-
       handleFilter(){
         this.listQuery.page = 1
         console.log(this.listQuery)
@@ -285,7 +315,11 @@
         //   }
         // })
 
-        this.$router.push({ path: '/agent/record', name: 'record', params: { userId: scope.row.id }})
+        this.$router.push({path: '/agent/record', name: 'record', params: {userId: scope.row.id}})
+      },
+
+      changeAgentType(scope){
+
       },
 
       getFilterList() {
@@ -317,7 +351,7 @@
         this.deleteFormVisible = true;
       },
       confirmDelete(){
-        deleteAgent(this.deleteAgentId).then(response=>{
+        deleteAgent(this.deleteAgentId).then(response => {
           this.$message({
             message: '删除成功',
             type: 'success'
@@ -340,6 +374,11 @@
         this.chargeForm.earnings = scope.row.total1
       },
 
+      handleChangeAgentType(scopep){
+        this.changeAgentTypeVisible = true;
+        this.changeForm.id = scope.row.id;
+        this.changeForm.type = scope.row.agent_type;
+      },
       cancel() {
         this.chargeDialogFormVisible = false
       },
@@ -348,10 +387,10 @@
       },
 
       doCharge(){
-        if (this.radio == '1'){
+        if (this.radio === '1') {
           charge(this.chargeForm).then(response => {
             this.tableData.forEach(td => {
-              if (td.id == this.chargeForm.id) {
+              if (td.id === this.chargeForm.id) {
                 td.money = response.data;
               }
               this.$message({
@@ -360,7 +399,7 @@
               })
             })
           })
-        }else {
+        } else {
           this.chargeForm.gold_num = this.chargeForm.num;
           // alert(this.chargeForm.gold_num)
           chargeGold(this.chargeForm).then(response => {
@@ -392,6 +431,7 @@
       },
       doAddAgent(formName){
         console.log(this.$refs)
+        console.log(this.agentForm);
         this.$refs[formName].validate((valid) => {
           //本地验证
           if (valid) {
@@ -471,12 +511,13 @@
 
     created() {
       this.fetchData()
+      console.log(this.agentForm);
     },
     data() {
       return {
         listLoading: true,
         ifShow: false,
-        radio:'1',
+        radio: '1',
         tableData: [],
         totalPage: 0,
         currentPage: 1,
@@ -487,9 +528,10 @@
         dialogFormVisible: false,
         chargeDialogFormVisible: false,
         chargeDialogFormVisible2: false,
-        deleteFormVisible:false,
-        deleteAgentId:0,
-
+        changeAgentTypeVisible: false,
+        deleteFormVisible: false,
+        deleteAgentId: 0,
+        selectType: '',
         agentForm: {
           earnings: '',
           id: 0,
@@ -504,6 +546,7 @@
           idCard: '',
           cell: '',
           area: '',
+          agent_type: '',
           address: '',
           money: 0,
           gold: 0,
@@ -518,14 +561,61 @@
           gold_num: 0,
           num: 0
         },
-
+        changeForm: {
+          id: '',
+          type: 0
+        },
+        options: [
+          {
+            value: '',
+            label: '全部'
+          }, {
+            value: '0',
+            label: '普通代理'
+          },
+          {
+            value: '1',
+            label: '推广员'
+          },
+          {
+            value: '2',
+            label: '金牌代理'
+          },
+          {
+            value: '3',
+            label: '王牌代理'
+          }
+        ],
+        options2: [
+          {
+            value: '',
+            label: '全部'
+          }, {
+            value: '0',
+            label: '普通代理'
+          },
+          {
+            value: '1',
+            label: '推广员'
+          },
+          {
+            value: '2',
+            label: '金牌代理'
+          },
+          {
+            value: '3',
+            label: '王牌代理'
+          }
+        ],
         listQuery: {
           page: 1,
           limit: 20,
           importance: undefined,
           title: undefined,
           type: undefined,
-          sort: '+id'
+          sort: '+id',
+          agent_type: '',
+          area: ''
         },
         formLabelWidth: '120px',
         rules: {
@@ -566,7 +656,12 @@
             {type: 'email', message: '请输入正确的邮箱地址'}
 
           ],
-
+          area: [
+            {required: true, message: '区域不能为空', trigger: 'blur'},
+          ],
+          agent_type: [
+            {required: true, message: '代理类型不能为空', trigger: 'blur'},
+          ],
           parentId: [
             {required: true, message: '上级代理不能为空'},
 //            {type: 'number', message: '代理等级必须为数字值'}

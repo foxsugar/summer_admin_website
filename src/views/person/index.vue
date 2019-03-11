@@ -22,7 +22,34 @@
       </div>
 
     </el-dialog>
-
+    <!--提现 弹框-->
+    <el-dialog class="app-edit" title="提现" :visible.sync="dialogFormVisibleMoney" :before-close="handleClose">
+      <el-form :model="formMoney" :rules="rulesMoney" ref="formMoney">
+        <el-form-item label="支付方式" :label-width="formLabelWidth" prop="region">
+          <el-select v-model="formMoney.type" placeholder="请选择支付方式">
+            <el-option label="银行账号" value="0"></el-option>
+            <el-option label="支付宝账号" value="1"></el-option>
+            <el-option label="微信号" value="2"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="开户银行" :label-width="formLabelWidth" prop="content" v-show="this.formMoney.type==='0'">
+          <el-input type="input" v-model="formMoney.name"></el-input>
+        </el-form-item>
+        <el-form-item label="对应的账号" :label-width="formLabelWidth" prop="content">
+          <el-input type="input" v-model="formMoney.number"></el-input>
+        </el-form-item>
+        <el-form-item label="电话号码" :label-width="formLabelWidth" prop="content">
+          <el-input type="input" v-model="formMoney.phone"></el-input>
+        </el-form-item>
+        <el-form-item label="提现金额" :label-width="formLabelWidth" prop="content">
+          <el-input type="input" v-model="formMoney.money"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisibleMoney = false">取 消</el-button>
+        <el-button type="primary" @click="doMoney('formMoney')">确 定</el-button>
+      </div>
+    </el-dialog>
     <!--搜索框 + 表格-->
     <div class="app-container calendar-list-container">
 
@@ -164,6 +191,7 @@
             <!--</el-button>-->
             <!--<el-button @click="handleClick" type="primary" size="small">编辑</el-button>-->
             <el-button @click="handleChargeClick(scope)" type="primary" size="small">修改密码</el-button>
+            <el-button @click="handleIn(scope)" type="danger" size="small" v-for='role in roles' v-if="role==='delegate'" :key="role">提现</el-button>
             <!--<el-button @click="handleClick" type="danger" size="small">删除</el-button>-->
           </template>
         </el-table-column>
@@ -191,38 +219,48 @@
 
 <script>
   import { fetchList} from '@/api/agent'
-  import { getList, changePwd} from '@/api/person'
+  import { getList, changePwd,getMoney} from '@/api/person'
   import {charge} from '@/api/agent'
   import {agent} from '@/api/agent'
   import waves from '@/directive/waves.js'// 水波纹指令
-
+  import { mapGetters } from 'vuex'
   export default {
     directives: {
       waves
     },
+    computed: {
+      ...mapGetters([
+        'name',
+        'roles',
+      ])
+    },
     methods: {
 
       handleFilter(){
-        this.listQuery.page = 1
-        console.log(this.listQuery)
+        this.listQuery.page = 1;
+        console.log(this.listQuery);
         this.getFilterList()
       },
 
       getFilterList() {
-        this.listLoading = true
+        this.listLoading = true;
         fetchList(this.listQuery).then(response => {
-          this.list = response.data.items
-          this.total = response.data.total
-          this.listLoading = false
-          this.tableData = response.data.tableData
-          this.totalPage = response.data.totalPage
+          this.list = response.data.items;
+          this.total = response.data.total;
+          this.listLoading = false;
+          this.tableData = response.data.tableData;
+          this.totalPage = response.data.totalPage;
           this.listLoading = false
         })
       },
-
+      handleIn(scope){
+        this.dialogFormVisibleMoney = true;
+        this.agentUserId = scope.row.id;
+        console.log(scope.row.id)
+      },
       handleEditClick(scope){
-        console.log("======000")
-        scope.row.edit = !scope.row.edit
+        console.log("======000");
+        scope.row.edit = !scope.row.edit;
         //完成后修改
         if (!scope.row.edit) {
           console.log("完成--")
@@ -237,26 +275,26 @@
 //        this.chargeForm.username = scope.row.id;
       },
       doCharge(){
-        if (this.chargeForm.pwd1 != this.chargeForm.pwd2){
-            alert("两次输入密码不一致")
+        if (this.chargeForm.pwd1 !== this.chargeForm.pwd2){
+            alert("两次输入密码不一致");
             return
         }
         if (this.chargeForm.pwd1.length < 6 || this.chargeForm.pwd1.length > 18){
-            alert("请输入6到18位密码")
+            alert("请输入6到18位密码");
             return
         }
         changePwd(this.chargeForm.pwd1).then(response => {
-          this.chargeForm.pwd1 = null
-          this.chargeForm.pwd2 = null
+          this.chargeForm.pwd1 = null;
+          this.chargeForm.pwd2 = null;
           this.$message({
             message: '修改成功',
             type: 'success'
           })
-        })
+        });
         this.chargeDialogFormVisible = false
       },
       doAddAgent(formName){
-        console.log(this.$refs)
+        console.log(this.$refs);
         this.$refs[formName].validate((valid) => {
           //本地验证
           if (valid) {
@@ -276,6 +314,34 @@
         });
 
       },
+      doMoney(formName){
+        let params={
+          "money": this.formMoney.money,
+           "name": this.formMoney.name,
+           "number": this.formMoney.number,
+           "phone": this.formMoney.phone,
+           "type": this.formMoney.type,
+           "agent_user_id": this.agentUserId
+        };
+        //console.log(this.params);
+        this.$refs[formName].validate((valid) => {
+          //本地验证
+          if (valid) {
+            getMoney(params).then(response => {
+              this.$message({
+                message: '提交成功',
+                type: 'success'
+              });
+              this.dialogFormVisibleMoney = false;
+              //重新获取数据
+              this.fetchData()
+            })
+          } else {
+            console.log('提交失败');
+            return false;
+          }
+        });
+      },
       doDeleteAgent(){
         agent(this.agentForm, 'DELETE').then(response => {
 
@@ -287,13 +353,13 @@
         })
       },
       handleSizeChange(val) {
-        console.log(`每页 ${val} 条`)
+        console.log(`每页 ${val} 条`);
         this.page_size = val;
         this.fetchData()
       },
       handleCurrentChange(val) {
-        console.log(`当前页: ${val}`)
-        this.currentPage = val
+        console.log(`当前页: ${val}`);
+        this.currentPage = val;
         this.fetchData()
       },
       fetchData() {
@@ -302,9 +368,9 @@
           this.tableData = response.data.tableData;
           this.totalPage = response.data.totalPage;
           this.tableData = response.data.tableData.map(v => {
-            this.$set(v, 'edit', false)
+            this.$set(v, 'edit', false);
             return v
-          })
+          });
           this.listLoading = false;
         });
 
@@ -325,7 +391,7 @@
         }
       },
       checkPassword(rule, value, callback){
-        if (this.agentForm.password != this.agentForm.checkPassword) {
+        if (this.agentForm.password !== this.agentForm.checkPassword) {
           callback(new Error('两次输入密码不同'));
         } else {
           callback();
@@ -451,8 +517,31 @@
             {validator: this.checkIsNumber},
           ],
 
+        },
+        dialogFormVisibleMoney:false,
+        agentUserId:'',
+        formMoney:{
+          money: 0,
+          name: "",
+          number: "",
+          phone: "",
+          type: "0"
+        },
+        rulesMoney:{
+          money: [
+            {required: true, message: '请输入金额', trigger: 'blur'},
+            {type: 'number', message: '必须为数字值'}
+          ],
+          name: [
+            {required: true, message: '请输入开户行', trigger: 'blur'},
+          ],
+          number: [
+            {required: true, message: '请输入账号', trigger: 'blur'},
+          ],
+          phone: [
+            {required: true, message: '请输入手机号', trigger: 'blur'},
+          ],
         }
-
       }
     }
   }
