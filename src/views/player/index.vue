@@ -121,24 +121,24 @@
 
 
 
-       <div v-if="ifShow">
-         <el-table-column align="center" fixed="right" label="操作" min-width="150">
-           <template scope="scope">
-             <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"
-                        icon="edit">{{scope.row.edit ? '完成' : '代理ID'}}
-             </el-button>
+        <div v-if="ifShow">
+          <el-table-column align="center" fixed="right" label="操作" min-width="150">
+            <template scope="scope">
+              <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"
+                         icon="edit">{{scope.row.edit ? '完成' : '代理ID'}}
+              </el-button>
 
-             <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"
-                        icon="edit">{{scope.row.edit ? '完成' : '修改玩家类型'}}
-             </el-button>
-           </template>
-
-
+              <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"
+                         icon="edit">{{scope.row.edit ? '完成' : '修改玩家类型'}}
+              </el-button>
+            </template>
 
 
 
-         </el-table-column>
-       </div>
+
+
+          </el-table-column>
+        </div>
 
       </el-table>
     </div>

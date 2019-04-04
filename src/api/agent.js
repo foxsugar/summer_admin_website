@@ -252,3 +252,14 @@ export function withdrawConfirm(params) {
     data:params
   })
 }
+
+
+export function editAgent(changeForm) {
+  return fetch({
+    url: '/agent/changeAgentType',
+    method: 'get',
+    params: {
+      changeForm
+    }
+  })
+}

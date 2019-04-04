@@ -210,15 +210,14 @@ export const asyncRouterMap = [
   //   ]
   // },
 
-  // {
-  //   path: '/test',
-  //   component: Layout,
-  //   redirect: '/agent/test',
-  //   icon: 'tubiao',
-  //   noDropdown: true,
-  //   children: [
-  //     { path: 'test', name: 'test', component: _import('agent/test'), meta: { role: ['admin'] }}
-  //   ]
-  // },
+  {
+    path: '/agentApply',
+    component: Layout,
+    icon: 'tubiao',
+    noDropdown: true,
+    children: [
+      { path: 'list', name: '代理申请列表', component: _import('agentApply/List'), meta: { role: ['admin'] }}
+    ]
+  },
   { path: '*', redirect: '/404', hidden: true }
 ]

@@ -90,7 +90,31 @@
 
     </el-dialog>
 
-    <!--充值-->
+    <el-dialog class="app-edit" title="修改代理类型" :visible.sync="changeAgentTypeVisible" size="small">
+
+      <el-form :model="chargeForm">
+        <el-form-item label="请选择: " :label-width="formLabelWidth">
+          <!--<el-input :disabled="false" v-model="playerVipForm.vip"></el-input>-->
+
+          <el-radio-group v-model="changeForm.type">
+            <el-radio :label="0">普通代理</el-radio>
+            <el-radio :label="1">推广员</el-radio>
+            <el-radio :label="2">金牌代理</el-radio>
+            <el-radio :label="3">王牌代理</el-radio>
+          </el-radio-group>
+        </el-form-item>
+
+      </el-form>
+
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="changeAgentTypeVisible = false">取 消</el-button>
+        <el-button type="primary" @click="editAgentType">修 改</el-button>
+      </div>
+
+    </el-dialog>
+
+
+
     <el-dialog class="app-edit" title="充值" :visible.sync="chargeDialogFormVisible" size="small" align="center">
 
       <template>
@@ -290,7 +314,7 @@
 </template>
 
 <script>
-  import {getList, fetchList, deleteAgent} from '@/api/agent'
+  import {getList, fetchList, deleteAgent,editAgent} from '@/api/agent'
   import {charge, chargeGold, clearRebate} from '@/api/agent'
   import {agent} from '@/api/agent'
   import waves from '@/directive/waves.js'// 水波纹指令
@@ -318,8 +342,43 @@
         this.$router.push({path: '/agent/record', name: 'record', params: {userId: scope.row.id}})
       },
 
-      changeAgentType(scope){
 
+      editAgentType(scope){
+        editAgent(this.changeForm).then(response => {
+          console.log(response.data);
+
+
+          this.fetchData()
+
+          this.$message({
+            message: '修改成功',
+            type: 'success'
+          });
+//          this.tableData.forEach(td => {
+//            if (td.id === this.changeForm.userId) {
+//              td.agent_type = response.data;
+//              scope.row.agent_type = response.data;
+//
+//              if(response.data === 0) {
+//                td.agent_type = '普通代理'
+//              }else if(response.data === 1) {
+//                td.agent_type = '推广员'
+//              }else if(response.data === 2) {
+//                td.agent_type = '金牌代理'
+//              }else if(response.data === 3) {
+//                td.agent_type = '王牌代理'
+//              }
+//
+//
+//
+//            }
+//            this.$message({
+//              message: '修改成功',
+//              type: 'success'
+//            });
+//          })
+        })
+        this.changeAgentTypeVisible = false
       },
 
       getFilterList() {
@@ -374,7 +433,7 @@
         this.chargeForm.earnings = scope.row.total1
       },
 
-      handleChangeAgentType(scopep){
+      handleChangeAgentType(scope){
         this.changeAgentTypeVisible = true;
         this.changeForm.id = scope.row.id;
         this.changeForm.type = scope.row.agent_type;
