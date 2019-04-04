@@ -1,14 +1,12 @@
-// import Vue from 'vue'
-// import Router from 'vue-router'
-// const Vue = require('vue')
-// const Router = require('vue-router')
+import Vue from 'vue'
+import Router from 'vue-router'
 const _import = require('./_import_' + process.env.NODE_ENV)
 // in development env not use Lazy Loading,because Lazy Loading too many pages will cause webpack hot update too slow.so only in production use Lazy Loading
 
 /* layout */
 import Layout from '../views/layout/Layout'
 
-// Vue.use(Router)
+Vue.use(Router)
 
  /**
   * icon : the icon show in the sidebar
@@ -30,7 +28,7 @@ export const constantRouterMap = [
   }
 ]
 
-export default new VueRouter({
+export default new Router({
   // mode: 'history', //后端支持可开
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
@@ -127,78 +125,17 @@ export const asyncRouterMap = [
     ]
   },
 
-  {
-    path: '/goods',
-    component: Layout,
-    redirect: '/goods/GoodList',
-    icon: 'tubiao',
-    noDropdown: true,
-    children: [
-      { path: 'GoodList', name: '商品管理', component: _import('goods/GoodList'), meta: { role: ['admin'] }}
-    ]
-  },
+  // {
+  //   path: '/cheat',
+  //   component: Layout,
+  //   redirect: '/cheat/index',
+  //   icon: 'yonghuming',
+  //   noDropdown: true,
+  //   children: [
+  //     { path: 'index', name: '作弊', component: _import('cheat/index'), meta: { role: ['admin'] }}
+  //   ]
+  // },
 
-  {
-    path: '/goods',
-    component: Layout,
-    redirect: '/goods/AddGoods',
-    icon: 'tubiao',
-    noDropdown: true,
-    hidden: true,
-    children: [
-      { path: 'AddGoods', name: '添加商品', component: _import('goods/AddGoods'), meta: { role: ['admin'] }}
-    ]
-  },
-  {
-    path: '/exchange',
-    component: Layout,
-    redirect: '/exchange/ExchangeList',
-    icon: 'tubiao',
-    noDropdown: true,
-    children: [
-      { path: 'ExchangeList', name: '兑换列表', component: _import('exchange/ExchangeList'), meta: { role: ['delegate'] }}
-    ]
-  },
-  {
-    path: '/game',
-    component: Layout,
-    redirect: '/game/gameNotice',
-    icon: 'tubiao',
-    noDropdown: true,
-    children: [
-      { path: 'GameNotice', name: '游戏公告', component: _import('game/gameNotice'), meta: { role: ['admin'] }}
-    ]
-  },
-  {
-    path: '/activity',
-    component: Layout,
-    redirect: '/activity/activityList',
-    icon: 'tubiao',
-    noDropdown: true,
-    children: [
-      { path: 'ActivityList', name: '图文管理', component: _import('activity/activityList')}
-    ]
-  },
-  {
-    path: '/share',
-    component: Layout,
-    redirect: '/share/share',
-    icon: 'tubiao',
-    noDropdown: true,
-    children: [
-      { path: 'Share', name: '分享设置', component: _import('share/share'), meta: { role: ['admin'] }}
-    ]
-  },
-  {
-    path: '/withdraw',
-    component: Layout,
-    redirect: '/withdraw/withdraw',
-    icon: 'tubiao',
-    noDropdown: true,
-    children: [
-      { path: 'Withdraw', name: '提现列表', component: _import('withdraw/withdraw'), meta: { role: ['admin'] }}
-    ]
-  },
   // {
   //   path: '/wx',
   //   component: Layout,
@@ -210,14 +147,15 @@ export const asyncRouterMap = [
   //   ]
   // },
 
-  {
-    path: '/agentApply',
-    component: Layout,
-    icon: 'tubiao',
-    noDropdown: true,
-    children: [
-      { path: 'list', name: '代理申请列表', component: _import('agentApply/List'), meta: { role: ['admin'] }}
-    ]
-  },
+  // {
+  //   path: '/test',
+  //   component: Layout,
+  //   redirect: '/agent/test',
+  //   icon: 'tubiao',
+  //   noDropdown: true,
+  //   children: [
+  //     { path: 'test', name: 'test', component: _import('agent/test'), meta: { role: ['admin'] }}
+  //   ]
+  // },
   { path: '*', redirect: '/404', hidden: true }
 ]

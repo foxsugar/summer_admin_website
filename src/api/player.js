@@ -123,5 +123,16 @@ export function fetchListVip(query) {
   })
 }
 
+export function openCheat(flag, userId) {
+  return fetch({
+    url: '/player/openCheat',
+    method: 'get',
+    params: {
+      flag,
+      userId
+    }
+  })
+}
+
 
 
