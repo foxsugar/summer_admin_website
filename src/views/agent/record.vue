@@ -37,8 +37,8 @@
 </template>
 
 <script>
-  import { getList, fetchList, fetchRecordList } from '@/api/agentcharge'
-  import { charge } from '@/api/player'
+  import {getList, fetchList, fetchRecordList} from '@/api/agentcharge'
+  import {charge} from '@/api/player'
   import waves from '@/directive/waves.js'// 水波纹指令
 
   export default {
@@ -48,10 +48,10 @@
     methods: {
 
       handleClick() {
-        this.dialogFormVisible = true
+        this.dialogFormVisible = true;
       },
 
-      handleFilter() {
+      handleFilter(){
         this.listQuery.page = 1
         console.log(this.listQuery)
         this.getFilterList()
@@ -66,17 +66,17 @@
         })
       },
 
-      handleChargeClick(scope) {
+      handleChargeClick(scope){
         this.chargeDialogFormVisible = true;
         this.chargeForm.id = scope.row.id;
         this.chargeForm.username = scope.row.id;
         this.chargeForm.num = 0;
       },
-      doCharge() {
+      doCharge(){
         charge(this.chargeForm).then(response => {
           this.tableData.forEach(td => {
-            if (td.id === this.chargeForm.id) {
-              td.money = response.data
+            if (td.id == this.chargeForm.id) {
+              td.money = response.data;
             }
             this.$message({
               message: '充值成功',

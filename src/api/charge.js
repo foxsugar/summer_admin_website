@@ -5,7 +5,7 @@ import fetch from '@/utils/fetch'
 
 export function getList(page, size) {
   return fetch({
-    url: '/player/chargelist',
+    url: 'player/chargelist',
     method: 'get',
     params: {
       page,
@@ -16,7 +16,7 @@ export function getList(page, size) {
 
 export function getSearchList(name) {
   return fetch({
-    url: '/player/searchlist',
+    url: 'player/searchlist',
     method: 'get',
     params: {
       name

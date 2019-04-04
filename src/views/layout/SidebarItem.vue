@@ -30,8 +30,6 @@ export default {
     routes: {
       type: Array
     }
-  },
-  created(){
   }
 }
 </script>

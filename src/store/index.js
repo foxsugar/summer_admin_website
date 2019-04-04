@@ -1,13 +1,11 @@
-// import Vue from 'vue'
-// import Vuex from 'vuex'
-// const Vue = require('vue')
-// const Vuex = require('vuex')
+import Vue from 'vue'
+import Vuex from 'vuex'
 import app from './modules/app'
 import user from './modules/user'
 import permission from './modules/permission'
 import getters from './getters'
 
-// Vue.use(Vuex)
+Vue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {

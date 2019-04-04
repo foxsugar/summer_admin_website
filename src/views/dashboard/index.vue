@@ -14,9 +14,6 @@ export default {
       'name',
       'roles',
     ])
-  },
-  created(){
-    //console.log(this.roles)
   }
 }
 </script>

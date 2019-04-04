@@ -50,7 +50,7 @@ export default {
     }
     return {
       loginForm: {
-        username: '',
+        username: 'admin',
         password: ''
       },
       loginRules: {
@@ -84,7 +84,7 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  @import "./../../styles/mixin.scss";
+  @import "src/styles/mixin.scss";
   $bg:#2d3a4b;
   $dark_gray:#889aa4;
   $light_gray:#eee;

@@ -19,7 +19,7 @@ export default {
   components: {
     Navbar,
     Sidebar,
-    AppMain,
+    AppMain
   },
   computed: {
     sidebar() {
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-    @import "./../../../src/styles/mixin.scss";
+    @import "src/styles/mixin.scss";
     .app-wrapper {
         @include clearfix;
         position: relative;

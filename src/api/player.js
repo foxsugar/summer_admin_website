@@ -124,15 +124,4 @@ export function fetchListVip(query) {
 }
 
 
-export function editPlayerVIP(vipForm) {
-  return fetch({
-    url: '/player/editVIP',
-    method: 'get',
-    params: {
-      vipForm
-    }
-  })
-}
-
-
 
