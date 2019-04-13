@@ -57,7 +57,7 @@
       </el-form>
 
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button @click="dialogFormVisible4CreateUsers = false">取 消</el-button>
         <el-button type="primary" @click="doCreateUser">修 改</el-button>
       </div>
 
@@ -166,18 +166,24 @@
         <!--</template>-->
         <!--</el-table-column>-->
 
-
-
         <div v-if="ifShow">
           <el-table-column align="center" fixed="right" label="操作" min-width="150">
+            <br/>
             <template scope="scope">
-              <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"
-                         icon="edit">{{scope.row.edit ? '完成' : '代理ID'}}
-              </el-button>
+              <div style="margin-top: 5px">
+                <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"
+                           icon="edit">{{scope.row.edit ? '完成' : '修改代理主键'}}
+                </el-button>
 
-              <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"
-                         icon="edit">{{scope.row.edit ? '完成' : '修改玩家类型'}}
-              </el-button>
+                <br/>
+              </div>
+              <div style="margin-top: 5px">
+                <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"
+                           icon="edit">{{scope.row.edit ? '完成' : '修改玩家类型'}}
+                </el-button>
+
+                <br/>
+              </div>
             </template>
 
 
