@@ -19,6 +19,51 @@
     </el-dialog>
 
 
+    <!--创建用户-->
+    <el-dialog class="app-edit" title="创建用户" :visible.sync="dialogFormVisible4CreateUsers" size="small">
+
+      <!--account: '',-->
+      <!--openId: '',-->
+      <!--password: '',-->
+      <!--image: '',-->
+      <!--sex: 1,-->
+      <!--username: '',-->
+      <!--vip: 0-->
+
+      <el-form :model="usersForm">
+        <el-form-item label="account" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="usersForm.account"></el-input>
+        </el-form-item>
+        <el-form-item label="openId" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="usersForm.openId"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="usersForm.password"></el-input>
+        </el-form-item>
+        <el-form-item label="头像地址" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="usersForm.image"></el-input>
+        </el-form-item>
+        <el-form-item label="性别" :label-width="formLabelWidth">
+          <!--<el-input :disabled="false" v-model="usersForm.sex"></el-input>-->
+          <el-radio class="radio" v-model="usersForm.sex" label="1">男</el-radio>
+          <el-radio class="radio" v-model="usersForm.sex" label="2">女</el-radio>
+        </el-form-item>
+        <el-form-item label="用户名" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="usersForm.username"></el-input>
+        </el-form-item>
+        <el-form-item label="vip" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="usersForm.vip"></el-input>
+        </el-form-item>
+      </el-form>
+
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="doCreateUser">修 改</el-button>
+      </div>
+
+    </el-dialog>
+
+
 
     <el-dialog class="app-edit" title="修改玩家等级" :visible.sync="vipFormVisible" size="small">
 
@@ -56,6 +101,10 @@
 
         <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
 
+
+        <el-button class="filter-item" style="margin-left: 10px;" @click="handleClick4createUsers" type="primary" icon="plus">添加用户
+        </el-button>
+
         <br>
         <br>
 
@@ -78,13 +127,11 @@
 
         <el-table-column align="center" prop="id" label="id" width="120"></el-table-column>
 
-        <!--<el-table-column align="center" fixed prop="image" label="image" width="500">-->
-        <!--<template scope="scope">-->
-        <!--<img  :src="scope.row.image+'/96?'">-->
-        <!--</template>-->
-        <!--</el-table-column>-->
-
-        <el-table-column align="center" prop="username" label="用户名" width="200"></el-table-column>
+        <el-table-column label="头像" width="100">
+                           <template scope="scope">
+                               <img :src="scope.row.image" width="60" height="60" class="head_pic"/>
+                           </template>
+        </el-table-column>
 
         <el-table-column align="center" prop="account" label="账号" width="350"></el-table-column>
 
@@ -164,7 +211,7 @@
 
 <script>
   import {getList, fetchList, fetchListWithReferee, editPlayerVIP} from '@/api/player'
-  import {charge, changeUserDelegate} from '@/api/player'
+  import {changeUserDelegate, changeCreateUsers} from '@/api/player'
   import waves from '@/directive/waves.js'// 水波纹指令
 
   export default {
@@ -197,6 +244,10 @@
         })
       },
 
+      handleClick() {
+        this.dialogFormVisible = true;
+      },
+
       getFilterList2() {
         this.listLoading = true
         fetchListWithReferee(this.listQuery).then(response => {
@@ -209,8 +260,8 @@
         })
       },
 
-      handleClick() {
-        this.dialogFormVisible = true;
+      handleClick4createUsers() {
+        this.dialogFormVisible4CreateUsers = true;
       },
       handleChargeClick(scope) {
         this.chargeDialogFormVisible = true;
@@ -231,6 +282,18 @@
           })
         })
         this.chargeDialogFormVisible = false
+      },
+
+      doCreateUser() {
+        changeCreateUsers(this.usersForm).then(response => {
+          this.tableData.forEach(td => {
+            this.$message({
+              message: '创建用户成功',
+              type: 'success'
+            });
+          })
+        })
+        this.dialogFormVisible4CreateUsers = false
       },
 
       editVIP(){
@@ -298,7 +361,7 @@
         page_sizes: [20, 50, 100, 200],
 
         dialogTableVisible: false,
-        dialogFormVisible: false,
+        dialogFormVisible4CreateUsers: false,
         chargeDialogFormVisible: false,
         vipFormVisible: false,
         chargeForm: {
@@ -306,6 +369,16 @@
           username: '',
           num: 0,
           agent_id: 0
+        },
+        usersForm: {
+          account: '',
+          openId: '',
+          password: '',
+          // 给个默认头像地址
+          image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=253777390,947512827&fm=23&gp=0.jpg',
+          sex: 1,
+          username: '',
+          vip: 0
         },
         playerVipForm:{
           id: '',
