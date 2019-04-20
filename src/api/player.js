@@ -81,6 +81,17 @@ export function changeCreateUsers(usersForm) {
   })
 }
 
+export function udpateUsers(usersForm) {
+  return fetch({
+    url: '/player/udpateUsers',
+    method: 'get',
+    params: {
+      // chargeForm
+      usersForm
+    }
+  })
+}
+
 export function upGoals(chargeForm) {
   return fetch({
     url: '/agent/upGoal',

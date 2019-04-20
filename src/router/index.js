@@ -103,16 +103,16 @@ export const asyncRouterMap = [
     ]
   },
 
-  {
-    path: '/agentcharge',
-    component: Layout,
-    redirect: '/agentcharge/index',
-    icon: 'tubiao',
-    noDropdown: true,
-    children: [
-      { path: 'index', name: '代理充值', component: _import('agentcharge/index'), meta: { role: ['delegate'] }}
-    ]
-  },
+  // {
+  //   path: '/agentcharge',
+  //   component: Layout,
+  //   redirect: '/agentcharge/index',
+  //   icon: 'tubiao',
+  //   noDropdown: true,
+  //   children: [
+  //     { path: 'index', name: '代理充值', component: _import('agentcharge/index'), meta: { role: ['delegate'] }}
+  //   ]
+  // },
 
   {
     path: '/person',

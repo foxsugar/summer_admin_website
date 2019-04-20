@@ -65,25 +65,37 @@
 
 
 
-    <el-dialog class="app-edit" title="修改玩家等级" :visible.sync="vipFormVisible" size="small">
+    <el-dialog class="app-edit" title="修改玩家信息" :visible.sync="vipFormVisible" size="small">
 
-      <el-form :model="chargeForm">
-        <el-form-item label="请选择: " :label-width="formLabelWidth">
-          <!--<el-input :disabled="false" v-model="playerVipForm.vip"></el-input>-->
-
-          <el-radio-group v-model="playerVipForm.vip">
-            <el-radio :label="0">普通玩家</el-radio>
-            <el-radio :label="1">推广员</el-radio>
-            <el-radio :label="2">金牌代理</el-radio>
-            <el-radio :label="3">王牌代理</el-radio>
-          </el-radio-group>
+      <el-form :model="usersForm">
+        <el-form-item label="account" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="usersForm.account"></el-input>
         </el-form-item>
-
+        <el-form-item label="openId" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="usersForm.openId"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="usersForm.password"></el-input>
+        </el-form-item>
+        <el-form-item label="头像地址" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="usersForm.image"></el-input>
+        </el-form-item>
+        <el-form-item label="性别" :label-width="formLabelWidth">
+          <!--<el-input :disabled="false" v-model="usersForm.sex"></el-input>-->
+          <el-radio class="radio" v-model="usersForm.sex" label="1">男</el-radio>
+          <el-radio class="radio" v-model="usersForm.sex" label="2">女</el-radio>
+        </el-form-item>
+        <el-form-item label="用户名" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="usersForm.username"></el-input>
+        </el-form-item>
+        <el-form-item label="vip" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="usersForm.vip"></el-input>
+        </el-form-item>
       </el-form>
 
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="editVIP">修 改</el-button>
+        <el-button @click="dialogFormVisible1 = false">取 消</el-button>
+        <el-button type="primary" @click="doUpdateUser">修 改</el-button>
       </div>
 
     </el-dialog>
@@ -150,7 +162,7 @@
         </el-table-column>
 
         <el-table-column align="center" prop="account" label="账号" width="350"></el-table-column>
-
+        <el-table-column align="center" prop="username" label="用户名" width="350"></el-table-column>
         <el-table-column align="center" prop="password" label="密码" width="100"></el-table-column>
 
         <el-table-column align="center" prop="sex" label="性别" width="100">
@@ -233,7 +245,7 @@
 
 <script>
   import {getList, fetchList, fetchListWithReferee, editPlayerVIP} from '@/api/player'
-  import {changeUserDelegate, changeCreateUsers} from '@/api/player'
+  import {changeUserDelegate, changeCreateUsers, udpateUsers} from '@/api/player'
   import waves from '@/directive/waves.js'// 水波纹指令
 
   export default {
@@ -325,6 +337,19 @@
       },
 
       doCreateUser() {
+        this.usersForm.openId = null
+        this.usersForm.userId = null
+
+        this.usersForm.account = null
+
+        this.usersForm.username = null
+        this.usersForm.openId = null
+
+        this.usersForm.password = null
+        this.usersForm.vip = 0
+        this.usersForm.image = 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=253777390,947512827&fm=23&gp=0.jpg'
+        this.usersForm.sex = 0
+
         changeCreateUsers(this.usersForm).then(response => {
           this.tableData.forEach(td => {
             this.$message({
@@ -336,20 +361,19 @@
         this.dialogFormVisible4CreateUsers = false
       },
 
-      editVIP(){
-        editPlayerVIP(this.playerVipForm).then(response => {
-          console.log(response.data);
+      doUpdateUser(){
+        this.vipFormVisible = false;
+        udpateUsers(this.usersForm).then(response => {
           this.tableData.forEach(td => {
-            if (td.id === this.playerVipForm.userId) {
-              td.vip = response.data;
-            }
             this.$message({
-              message: '修改成功',
+              message: '修改用户成功',
               type: 'success'
             });
           })
+
+          this.fetchData()
         })
-        this.vipFormVisible = false
+
       },
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`)
@@ -369,8 +393,22 @@
       },
 
       handleEditVIPClick(val) {
+
+        // alert(val.row.open_id)
+        this.usersForm.userId = val.row.id;
+
+        this.usersForm.account = val.row.account
+
+        this.usersForm.username = val.row.username
+        this.usersForm.openId = val.row.open_id
+
+        this.usersForm.password = val.row.password
+        this.usersForm.vip = val.row.vip
+        this.usersForm.image = val.row.image
+        this.usersForm.sex = val.row.sex
         this.vipFormVisible = true;
-        this.playerVipForm.userId = val.row.id;
+
+
       },
 
       fetchData() {
@@ -401,6 +439,7 @@
         page_sizes: [20, 50, 100, 200],
 
         dialogTableVisible: false,
+        dialogFormVisible1: false,
         dialogFormVisible4CreateUsers: false,
         chargeDialogFormVisible: false,
         vipFormVisible: false,
