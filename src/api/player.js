@@ -3,13 +3,14 @@
  */
 import fetch from '@/utils/fetch'
 
-export function getList(page, size) {
+export function getList(page, size, value) {
   return fetch({
     url: '/player/list',
     method: 'get',
     params: {
       page,
-      size
+      size,
+      value
     }
   })
 }

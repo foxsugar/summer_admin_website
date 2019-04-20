@@ -95,18 +95,32 @@
 
       <div class="filter-container">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
         <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="用户名"
                   v-model="listQuery.title">
         </el-input>
 
         <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
 
+        &nbsp;
+        <el-select v-model="value" placeholder="玩家过滤">
+          <el-option
+            v-for="item in options"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
 
         <el-button class="filter-item" style="margin-left: 10px;" @click="handleClick4createUsers" type="primary" icon="plus">添加用户
         </el-button>
 
+
+
         <br>
         <br>
+
+
 
 
         <div v-if="ifShow">
@@ -117,6 +131,8 @@
 
           <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter2">搜索</el-button>
         </div>
+
+
 
       </div>
       <br/>
@@ -151,9 +167,9 @@
         <el-table-column align="center" prop="vip" label="玩家类型" width="150">
           <template scope="scope">
             <span v-if="scope.row.vip===0">普通玩家</span>
-            <span v-else-if="scope.row.vip===1">推广员</span>
-            <span v-else-if="scope.row.vip===2">金牌代理</span>
-            <span v-else-if="scope.row.vip===3">王牌代理</span>
+            <span v-else-if="scope.row.vip===1">vip玩家</span>
+            <!--<span v-else-if="scope.row.vip===2">金牌代理</span>-->
+            <!--<span v-else-if="scope.row.vip===3">王牌代理</span>-->
             <span v-else></span>
           </template>
         </el-table-column>
@@ -179,7 +195,7 @@
               </div>
               <div style="margin-top: 5px">
                 <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"
-                           icon="edit">{{scope.row.edit ? '完成' : '修改玩家类型'}}
+                           icon="edit">{{scope.row.edit ? '完成' : '修改玩家信息'}}
                 </el-button>
 
                 <br/>
@@ -223,6 +239,24 @@
   export default {
     directives: {
       waves
+    },
+    watch: {
+      value: {
+        handler(newVal) {
+          // fetchData()
+          // alert('1')
+          // alert(newVal)
+          this.listLoading = true;
+          getList(this.currentPage, this.page_size, newVal).then(response => {
+            this.tableData = response.data.tableData;
+            this.totalPage = response.data.totalPage;
+            this.ifShow = response.data.show
+            this.listLoading = false;
+          });
+
+        },
+        deep: true
+      }
     },
     methods: {
 
@@ -341,7 +375,7 @@
 
       fetchData() {
         this.listLoading = true;
-        getList(this.currentPage, this.page_size).then(response => {
+        getList(this.currentPage, this.page_size, this.value).then(response => {
           this.tableData = response.data.tableData;
           this.totalPage = response.data.totalPage;
           this.ifShow = response.data.show
@@ -399,6 +433,17 @@
           sort: '+id'
         },
         formLabelWidth: '120px',
+        options: [{
+          value: '0',
+          label: '全部玩家'
+        }, {
+          value: '1',
+          label: '代理玩家'
+        }, {
+          value: '2',
+          label: '普通玩家'
+        }],
+        value: '0'
 
 
       }

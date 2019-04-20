@@ -12,6 +12,14 @@
     </el-input>
     <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
 
+    &nbsp;
+    <el-select v-model="value" placeholder="充值类型过滤">
+      <el-option
+        v-for="item in options"
+        :label="item.label"
+        :value="item.value">
+      </el-option>
+    </el-select>
 
     <div class="app-container calendar-list-container">
 
@@ -75,6 +83,19 @@
   export default {
     directives: {
       waves
+    },
+    watch: {
+      value: {
+        handler(newVal) {
+          this.listLoading = true;
+          getList(this.currentPage, this.page_size,this.value).then(response => {
+            this.tableData = response.data.tableData;
+            this.totalPage = response.data.totalPage;
+            this.listLoading = false;
+          })
+        },
+        deep: true
+      }
     },
     methods: {
       stateFormat(row, column) {
@@ -141,7 +162,7 @@
       },
       fetchData() {
         this.listLoading = true;
-        getList(this.currentPage, this.page_size).then(response => {
+        getList(this.currentPage, this.page_size, this.value).then(response => {
           this.tableData = response.data.tableData;
           this.totalPage = response.data.totalPage;
           this.listLoading = false;
@@ -193,9 +214,35 @@
           type: undefined,
           sort: '+id'
         },
-
+// 1 微信  2 支付宝  3 分享赠送  4 充值卡  5绑定赠送  11.提现 12.转换
 
         formLabelWidth: '120px',
+        options: [{
+          value: '0',
+          label: '全部类型'
+        }, {
+          value: '1',
+          label: '微信'
+        }, {
+          value: '2',
+          label: '支付宝'
+        }, {
+          value: '3',
+          label: '分享赠送'
+        }, {
+          value: '4',
+          label: '充值卡'
+        }, {
+          value: '5',
+          label: '绑定赠送'
+        }, {
+          value: '11',
+          label: '提现'
+        }, {
+          value: '12',
+          label: '提现'
+        }],
+        value: '0'
 
 
       }
