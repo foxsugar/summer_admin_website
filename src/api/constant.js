@@ -13,6 +13,29 @@ export function constant(method, constantForm) {
   })
 }
 
+export function getList(value) {
+  return fetch({
+    url: '/constant/value',
+    method: 'get',
+    params: {
+      value
+    }
+  })
+}
+
+export function changeConstant(value, msg, pxId) {
+  return fetch({
+    url: '/constant/changeConstant',
+    method: 'get',
+    params: {
+      msg,
+      value,
+      pxId
+    }
+  })
+}
+
+
 export function update(constantForm) {
   return fetch({
     url: '/constant/update',

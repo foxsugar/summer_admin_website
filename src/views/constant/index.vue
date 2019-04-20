@@ -55,7 +55,7 @@
         <!--</el-slider>-->
       <!--</el-form>-->
 
-      <el-form-item label="一级提成(%)">
+      <el-form-item label="百人抽成(%)">
         <!--<el-input  v-model="constantForm.download" placeholder=""></el-input>-->
           <div class="block">
             <el-slider
@@ -65,7 +65,7 @@
           </div>
       </el-form-item>
 
-      <el-form-item label="二级提成(%)" max="60">
+      <el-form-item label="百人返利(%)" max="100">
         <div class="block">
           <el-slider
             v-model="constantForm.income2"
@@ -73,6 +73,37 @@
           </el-slider>
         </div>
       </el-form-item>
+
+
+      <el-form-item label="四人返利(%)" max="100">
+        <div class="block">
+          <el-slider
+            v-model="constantForm.income3"
+            show-input>
+          </el-slider>
+        </div>
+      </el-form-item>
+
+
+      <el-form-item label="大赢家付(%)" max="100">
+        <div class="block">
+          <el-slider
+            v-model="constantForm.income4"
+            show-input>
+          </el-slider>
+        </div>
+      </el-form-item>
+
+
+      <el-form-item label="AA支付(%)" max="100">
+        <div class="block">
+          <el-slider
+            v-model="constantForm.income5"
+            show-input>
+          </el-slider>
+        </div>
+      </el-form-item>
+
 
       <el-form-item>
         <div class="block">
@@ -103,8 +134,11 @@
           download: '',
           download2: '',
           access_code: '',
-          income1: 20,
-          income2: 40
+          income1: 0,
+          income2: 0,
+          income3: 0,
+          income4: 0,
+          income5: 0
 
         }
       }
@@ -127,6 +161,7 @@
               message: '修改成功',
               type: 'success'
             });
+            this.get()
           });
       }
     }

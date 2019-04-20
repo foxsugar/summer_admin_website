@@ -57,6 +57,16 @@ export const asyncRouterMap = [
     ]
   },
 
+  {
+    path: '/notice',
+    component: Layout,
+    redirect: '/constant/noticce',
+    icon: 'table',
+    noDropdown: true,
+    children: [
+      { path: 'index', name: '公告信息', component: _import('constant/noticce'), meta: { role: ['admin'] }}
+    ]
+  },
   // {
   //   path: '/agent',
   //   component: Layout,
