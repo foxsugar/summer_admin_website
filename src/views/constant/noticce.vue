@@ -22,6 +22,41 @@
       </div>
 
     </el-dialog>
+
+    <!--充值-->
+    <el-dialog class="app-edit" title="添加数据" :visible.sync="dialogTableVisible" size="small">
+
+      <el-tag type="primary" v-if="value==0">添加公告</el-tag>
+      <el-tag type="primary" v-if="value==1">添加解释</el-tag>
+      <el-tag type="primary" v-if="value==2">添加promo</el-tag>
+      <br/>
+      <br/>
+      <el-input :disabled="false" v-model="addContent"></el-input>
+      <!--<el-input :disabled="false" v-model="addContent"></el-input>-->
+
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogTableVisible2 = false">取 消</el-button>
+        <el-button type="primary" @click="doCharge2">修 改</el-button>
+      </div>
+
+    </el-dialog>
+
+    <!--充值-->
+    <el-dialog class="app-edit" title="删除数据" :visible.sync="dialogFormVisible1" size="small">
+
+      <el-tag type="primary" v-if="value==0">删除公告</el-tag>
+      <el-tag type="primary" v-if="value==1">删除解释</el-tag>
+      <el-tag type="primary" v-if="value==2">删除promo</el-tag>
+      <br/>
+      <br/>
+      <!--<span>-->
+      <el-tag type="danger">确定要删除:Id为{{this.chargeForm.pxId}}内容为： {{this.chargeForm.key}}的数据？</el-tag>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible1 = false">取 消</el-button>
+        <el-button type="primary" @click="doCharge3">确 定</el-button>
+      </div>
+
+    </el-dialog>
     <!--搜索框 + 表格-->
     <div class="app-container calendar-list-container">
 
@@ -34,8 +69,16 @@
             :value="item.value">
           </el-option>
         </el-select>
+
+        <el-button class="filter-item" style="margin-left: 10px;" @click="handleAdd" type="primary" icon="plus">添加
+        </el-button>
+
       </div>
+
+      &nbsp;
+
       <br/>
+
 
       <!--表格-->
       <el-table :data="tableData" v-loading.body="listLoading" element-loading-text="给我一点时间" stripe border fit
@@ -67,6 +110,22 @@
             </template>
           </el-table-column>
         </div>
+
+        <div v-if="ifShow">
+          <el-table-column align="center" fixed="right" label="操作" width="150">
+            <br/>
+            <template scope="scope">
+              <div style="margin-top: 5px">
+                <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick2(scope)' size="small"
+                           icon="edit">{{scope.row.edit ? '完成' : '删除公告信息'}}
+                </el-button>
+
+                <br/>
+              </div>
+            </template>
+          </el-table-column>
+        </div>
+
       </el-table>
     </div>
 
@@ -90,7 +149,7 @@
 </template>
 
 <script>
-  import {getList, changeConstant} from '@/api/constant'
+  import {getList, changeConstant, addConstant, deleteConstant} from '@/api/constant'
   import waves from '@/directive/waves.js'// 水波纹指令
 
   export default {
@@ -122,12 +181,40 @@
           this.listLoading = false;
         })
       },
-
+      handleAdd() {
+        this.dialogTableVisible = true
+      },
       handleEditClick(val) {
         this.chargeForm.pxId = val.row.px;
         this.chargeForm.key = val.row.key;
         this.chargeDialogFormVisible = true
 
+      },
+      handleEditClick2(val) {
+        this.chargeForm.pxId = val.row.px;
+        this.chargeForm.key = val.row.key;
+        this.dialogFormVisible1 = true
+
+      },
+      doCharge2() {
+        addConstant(this.value, this.addContent).then(response => {
+          this.$message({
+            message: '添加消息成功',
+            type: 'success'
+          })
+          this.fetchData()
+        })
+        this.dialogTableVisible = false
+      },
+      doCharge3() {
+        deleteConstant(this.value, this.chargeForm.pxId).then(response => {
+          this.$message({
+            message: '删除消息成功',
+            type: 'success'
+          })
+          this.fetchData()
+        })
+        this.dialogFormVisible1 = false
       },
       doCharge() {
         changeConstant(this.value, this.chargeForm.key, this.chargeForm.pxId).then(response => {
@@ -153,7 +240,7 @@
         currentPage: 1,
         page_size: 200,
         page_sizes: [20, 50, 100, 200],
-
+        addContent: '',
         dialogTableVisible: false,
         dialogFormVisible1: false,
         dialogFormVisible4CreateUsers: false,

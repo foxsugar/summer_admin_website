@@ -35,6 +35,27 @@ export function changeConstant(value, msg, pxId) {
   })
 }
 
+export function deleteConstant(value, pxId) {
+  return fetch({
+    url: '/constant/delete',
+    method: 'get',
+    params: {
+      pxId,
+      value
+    }
+  })
+}
+
+export function addConstant(value, msg) {
+  return fetch({
+    url: '/constant/insert',
+    method: 'get',
+    params: {
+      msg,
+      value
+    }
+  })
+}
 
 export function update(constantForm) {
   return fetch({
