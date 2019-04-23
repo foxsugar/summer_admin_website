@@ -58,49 +58,47 @@
       <el-form-item label="百人抽成(%)">
         <!--<el-input  v-model="constantForm.download" placeholder=""></el-input>-->
           <div class="block">
-            <el-slider
-              v-model="constantForm.income1"
-              show-input>
-            </el-slider>
+            <el-input-number v-model="constantForm.income1" :step="0.01"></el-input-number>
+            <!--<el-slider v-model="constantForm.income1"></el-slider>-->
           </div>
       </el-form-item>
 
       <el-form-item label="百人返利(%)" max="100">
         <div class="block">
-          <el-slider
-            v-model="constantForm.income2"
-            show-input>
-          </el-slider>
+          <el-input-number v-model="constantForm.income2" :step="0.01"></el-input-number>
+          <!--<el-slider-->
+            <!--v-model="constantForm.income2">-->
+          <!--</el-slider>-->
         </div>
       </el-form-item>
 
 
       <el-form-item label="四人返利(%)" max="100">
         <div class="block">
-          <el-slider
-            v-model="constantForm.income3"
-            show-input>
-          </el-slider>
+          <!--<el-slider-->
+            <!--v-model="constantForm.income3">-->
+          <!--</el-slider>-->
+          <el-input-number v-model="constantForm.income3" :step="0.01"></el-input-number>
         </div>
       </el-form-item>
 
 
       <el-form-item label="大赢家付(%)" max="100">
         <div class="block">
-          <el-slider
-            v-model="constantForm.income4"
-            show-input>
-          </el-slider>
+          <!--<el-slider-->
+            <!--v-model="constantForm.income4">-->
+          <!--</el-slider>-->
+          <el-input-number v-model="constantForm.income4" :step="0.01"></el-input-number>
         </div>
       </el-form-item>
 
 
       <el-form-item label="AA支付(%)" max="100">
         <div class="block">
-          <el-slider
-            v-model="constantForm.income5"
-            show-input>
-          </el-slider>
+          <!--<el-slider-->
+            <!--v-model="constantForm.income5">-->
+          <!--</el-slider>-->
+          <el-input-number v-model="constantForm.income1" :step="0.05"></el-input-number>
         </div>
       </el-form-item>
 

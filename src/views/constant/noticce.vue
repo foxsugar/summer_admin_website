@@ -5,8 +5,8 @@
     <el-dialog class="app-edit" title="修改" :visible.sync="chargeDialogFormVisible" size="small">
 
       <el-tag type="primary" v-if="value==0">修改公告,Id是{{chargeForm.pxId}}</el-tag>
-      <el-tag type="primary" v-if="value==1">修改解释,Id是{{chargeForm.pxId}}</el-tag>
-      <el-tag type="primary" v-if="value==2">修改promo,Id是{{chargeForm.pxId}}</el-tag>
+      <el-tag type="primary" v-if="value==1">修改玩法说明,Id是{{chargeForm.pxId}}</el-tag>
+      <el-tag type="primary" v-if="value==2">修改推广信息,Id是{{chargeForm.pxId}}</el-tag>
       <br/>
       <br/>
       <el-form :model="chargeForm">
@@ -27,8 +27,8 @@
     <el-dialog class="app-edit" title="添加数据" :visible.sync="dialogTableVisible" size="small">
 
       <el-tag type="primary" v-if="value==0">添加公告</el-tag>
-      <el-tag type="primary" v-if="value==1">添加解释</el-tag>
-      <el-tag type="primary" v-if="value==2">添加promo</el-tag>
+      <el-tag type="primary" v-if="value==1">添加玩法说明</el-tag>
+      <el-tag type="primary" v-if="value==2">添加推广信息</el-tag>
       <br/>
       <br/>
       <el-input :disabled="false" v-model="addContent"></el-input>
@@ -45,8 +45,8 @@
     <el-dialog class="app-edit" title="删除数据" :visible.sync="dialogFormVisible1" size="small">
 
       <el-tag type="primary" v-if="value==0">删除公告</el-tag>
-      <el-tag type="primary" v-if="value==1">删除解释</el-tag>
-      <el-tag type="primary" v-if="value==2">删除promo</el-tag>
+      <el-tag type="primary" v-if="value==1">删除玩法说明</el-tag>
+      <el-tag type="primary" v-if="value==2">删除推广信息</el-tag>
       <br/>
       <br/>
       <!--<span>-->
@@ -102,7 +102,7 @@
             <template scope="scope">
               <div style="margin-top: 5px">
                 <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"
-                           icon="edit">{{scope.row.edit ? '完成' : '修改公告信息'}}
+                           icon="edit">{{scope.row.edit ? '完成' : '修改'}}
                 </el-button>
 
                 <br/>
@@ -117,7 +117,7 @@
             <template scope="scope">
               <div style="margin-top: 5px">
                 <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick2(scope)' size="small"
-                           icon="edit">{{scope.row.edit ? '完成' : '删除公告信息'}}
+                           icon="edit">{{scope.row.edit ? '完成' : '删除'}}
                 </el-button>
 
                 <br/>
@@ -278,10 +278,10 @@
           label: '公告'
         }, {
           value: '1',
-          label: '解释'
+          label: '玩法说明'
         }, {
           value: '2',
-          label: 'promo'
+          label: '推广信息'
         }],
         value: '0'
       }

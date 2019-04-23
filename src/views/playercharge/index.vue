@@ -29,9 +29,12 @@
 
         <el-table-column align="center"  prop="order_id" label="订单id" width="120"></el-table-column>
 
+
+
         <el-table-column align="center" prop="username" label="用户名" width="150"></el-table-column>
 
-        <el-table-column align="center" prop="createtime" label="创建时间" width="250"></el-table-column>
+        <el-table-column align="center" prop="share_content" label="银行卡" width="150" v-if="value=='11'"></el-table-column>
+        <el-table-column align="center" prop="sp_ip" label="手机号" width="150" v-if="value=='11'"></el-table-column>
 
         <el-table-column align="center" prop="money" label="充值金额" width="100"></el-table-column>
 
@@ -42,6 +45,8 @@
         <el-table-column align="center" prop="charge_type" label="充值类型" width="150"></el-table-column>
 
         <el-table-column align="center" prop="userid" label="用户id" width="150"></el-table-column>
+
+        <el-table-column align="center" prop="createtime" label="创建时间" width="250"></el-table-column>
 
         <!--<el-table-column align="center" fixed="right" label="操作" min-width="220">-->
           <!--<template scope="scope">-->
@@ -218,8 +223,8 @@
 
         formLabelWidth: '120px',
         options: [{
-          value: '0',
-          label: '全部类型'
+          value: '11',
+          label: '提现'
         }, {
           value: '1',
           label: '微信'
@@ -236,13 +241,13 @@
           value: '5',
           label: '绑定赠送'
         }, {
-          value: '11',
-          label: '提现'
-        }, {
           value: '12',
-          label: '提现'
+          label: '转换'
+        }, {
+          value: '0',
+          label: '全部类型'
         }],
-        value: '0'
+        value: '11'
 
 
       }

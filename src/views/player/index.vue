@@ -387,8 +387,10 @@
 
       },
       handleEditClick(val) {
+        this.chargeForm.id = val.row.id
+        this.chargeForm.agent_id = val.row.referee
         this.chargeDialogFormVisible = true
-        this.chargeForm.id = val.row.id;
+
 
       },
 
