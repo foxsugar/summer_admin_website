@@ -98,7 +98,7 @@
           <!--<el-slider-->
             <!--v-model="constantForm.income5">-->
           <!--</el-slider>-->
-          <el-input-number v-model="constantForm.income1" :step="0.05"></el-input-number>
+          <el-input-number v-model="constantForm.income5" :step="0.05"></el-input-number>
         </div>
       </el-form-item>
 
