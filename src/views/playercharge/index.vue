@@ -63,7 +63,7 @@
 
         <el-table-column align="center" prop="createtime" label="创建时间" width="250"></el-table-column>
 
-        <el-table-column align="center" fixed="right" label="操作" min-width="220">
+        <el-table-column align="center" fixed="right" label="操作" min-width="220" v-if="value=='11'">
           <template scope="scope">
             <el-button @click="handleClick(scope)" type="danger" size="small">修改打款状态</el-button>
           </template>
