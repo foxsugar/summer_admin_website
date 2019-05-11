@@ -27,8 +27,23 @@
       <el-table :data="tableData" v-loading.body="listLoading" element-loading-text="给我一点时间" stripe border fit
                 highlight-current-row style="width: 100%">
 
+
+        <!--<el-table-column align="center" prop="a1" label="打款状态" width="160">-->
+          <!--<template scope="scope">-->
+            <!--<div v-if="scope.row.a1===1">已打款</div>-->
+            <!--<div v-if="scope.row.a1===3">未打款</div>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
         <el-table-column align="center"  prop="order_id" label="订单id" width="120"></el-table-column>
 
+
+        <el-table-column align="center" prop="a1" label="打款状态" width="150">
+          <template scope="scope">
+            <span v-if="scope.row.a1===0">未打款</span>
+            <span v-else-if="scope.row.a1===1">已打款</span>
+            <span v-else></span>
+          </template>
+        </el-table-column>
 
 
         <el-table-column align="center" prop="username" label="用户名" width="150"></el-table-column>
@@ -48,16 +63,21 @@
 
         <el-table-column align="center" prop="createtime" label="创建时间" width="250"></el-table-column>
 
-        <!--<el-table-column align="center" fixed="right" label="操作" min-width="220">-->
-          <!--<template scope="scope">-->
-            <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"-->
-                       <!--icon="edit">{{scope.row.edit ? '完成' : '编辑'}}-->
-            <!--</el-button>-->
-            <!--&lt;!&ndash;<el-button @click="handleClick" type="primary" size="small">编辑</el-button>&ndash;&gt;-->
-            <!--<el-button @click="handleClick" type="danger" size="small">删除</el-button>-->
-          <!--</template>-->
-        <!--</el-table-column>-->
+        <el-table-column align="center" fixed="right" label="操作" min-width="220">
+          <template scope="scope">
+            <el-button @click="handleClick(scope)" type="danger" size="small">修改打款状态</el-button>
+          </template>
+        </el-table-column>
 
+        <!--<template scope="scope">-->
+          <!--<div style="margin-top: 5px">-->
+            <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"-->
+                       <!--icon="edit">{{scope.row.edit ? '完成' : '修改代理主键'}}-->
+            <!--</el-button>-->
+
+            <!--<br/>-->
+          <!--</div>-->
+        <!--</template>-->
       </el-table>
     </div>
 
@@ -81,7 +101,7 @@
 </template>
 
 <script>
-  import {getList, getSearchList, fetchList} from '@/api/charge'
+  import {getList, getSearchList, fetchList,updateA1} from '@/api/charge'
   import {charge} from '@/api/player'
   import waves from '@/directive/waves.js'// 水波纹指令
 
@@ -128,9 +148,17 @@
         })
       },
 
-      handleClick() {
-//        console.log(query)
-        this.dialogFormVisible = true
+      handleClick(scope) {
+        // alert(scope.row.order_id)
+        updateA1(scope.row.order_id).then(response => {
+          this.tableData.forEach(td => {
+            this.$message({
+              message: '修改成功',
+              type: 'success'
+            })
+          })
+          this.getFilterList()
+        })
       },
       handleChargeClick(scope){
         this.chargeDialogFormVisible = true

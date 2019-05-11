@@ -25,6 +25,16 @@ export function getSearchList(name) {
   })
 }
 
+export function updateA1(aid) {
+  return fetch({
+    url: '/player/updatea1',
+    method: 'get',
+    params: {
+      aid
+    }
+  })
+}
+
 export function fetchList(query) {
   return fetch({
     url: '/player/fetchlist',
