@@ -157,7 +157,7 @@
               type: 'success'
             })
           })
-          this.getFilterList()
+          this.fetchData()
         })
       },
       handleChargeClick(scope){
