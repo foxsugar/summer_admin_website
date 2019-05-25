@@ -337,18 +337,18 @@
       },
 
       doCreateUser() {
-        this.usersForm.openId = null
-        this.usersForm.userId = null
-
-        this.usersForm.account = null
-
-        this.usersForm.username = null
-        this.usersForm.openId = null
-
-        this.usersForm.password = null
-        this.usersForm.vip = 0
-        this.usersForm.image = 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=253777390,947512827&fm=23&gp=0.jpg'
-        this.usersForm.sex = 0
+        // this.usersForm.openId = null
+        // this.usersForm.userId = null
+        //
+        // this.usersForm.account = null
+        //
+        // this.usersForm.username = null
+        // this.usersForm.openId = null
+        //
+        // this.usersForm.password = null
+        // this.usersForm.vip = 0
+        // this.usersForm.image = 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=253777390,947512827&fm=23&gp=0.jpg'
+        // this.usersForm.sex = 0
 
         changeCreateUsers(this.usersForm).then(response => {
           this.tableData.forEach(td => {
