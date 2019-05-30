@@ -115,6 +115,15 @@ export function fetchListWithReferee(query) {
   })
 }
 
+export function fetchListWithUserId(query) {
+  return fetch({
+    url: '/player/fetchPlayersUserId',
+    method: 'get',
+    params: query
+  })
+}
+
+
 export function fetchListVip(query) {
   return fetch({
     url: '/player/fetchplayersvip',

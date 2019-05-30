@@ -380,6 +380,7 @@
           importance: undefined,
           title: undefined,
           referee: undefined,
+          userId: undefined,
           type: undefined,
           sort: '+id'
         },

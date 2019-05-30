@@ -25,6 +25,12 @@
         <el-input type="textarea" v-model="constantForm.marquee" placeholder=""></el-input>
       </el-form-item>
 
+      <el-form-item label="公告1">
+        <el-input type="textarea" v-model="constantForm.marquee1" placeholder=""></el-input>
+      </el-form-item>
+      <el-form-item label="公告2">
+        <el-input type="textarea" v-model="constantForm.marquee2" placeholder=""></el-input>
+      </el-form-item>
       <el-form-item label="下载地址">
         <el-input  v-model="constantForm.download" placeholder=""></el-input>
       </el-form-item>
@@ -81,7 +87,14 @@
       </el-form-item>
 
     </el-form>
+
+    <el-button type="text" @click="open">查看在线人数</el-button>
+
   </div>
+
+
+
+
 </template>
 
 
@@ -128,7 +141,32 @@
               type: 'success'
             });
           });
+      },
+
+
+
+
+
+
+      open() {
+        let url = process.env.BASE_API.replace('8000','8085')
+
+        url += 'getOnlineUser'
+        window.open(url);
+        // this.$alert(process.env.BASE_API);
       }
+
+
+
+
+
+
+
+
+
+
+
+
     }
   }
 </script>

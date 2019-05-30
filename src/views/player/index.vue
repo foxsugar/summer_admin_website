@@ -69,6 +69,16 @@
           <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter2">搜索</el-button>
         </div>
 
+        <br>
+        <div v-if="ifShow">
+          &nbsp;   &nbsp;    &nbsp;
+          <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="id"
+                    v-model="listQuery.userId">
+          </el-input>
+
+          <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter3">搜索</el-button>
+        </div>
+
       </div>
       <br/>
 
@@ -184,6 +194,11 @@
         console.log(this.listQuery)
         this.getFilterList2()
       },
+      handleFilter3(){
+        this.listQuery.page = 1
+        console.log(this.listQuery)
+        this.getFilterList3()
+      },
 
       getFilterList() {
         this.listLoading = true
@@ -200,6 +215,17 @@
       getFilterList2() {
         this.listLoading = true
         fetchListWithReferee(this.listQuery).then(response => {
+          this.list = response.data.items
+          this.total = response.data.total
+          this.listLoading = false
+          this.tableData = response.data.tableData
+          this.totalPage = response.data.totalPage
+          this.listLoading = false
+        })
+      },
+      getFilterList3() {
+        this.listLoading = true
+        fetchListWithUserId(this.listQuery).then(response => {
           this.list = response.data.items
           this.total = response.data.total
           this.listLoading = false
