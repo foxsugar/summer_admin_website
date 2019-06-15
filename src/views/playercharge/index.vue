@@ -51,6 +51,7 @@
 
         <el-table-column align="center" prop="username" label="用户名" width="150"></el-table-column>
 
+        <el-table-column align="center" prop="share_area" label="银行卡名称" width="150" v-if="value=='11'"></el-table-column>
         <el-table-column align="center" prop="share_content" label="银行卡" width="150" v-if="value=='11'"></el-table-column>
         <el-table-column align="center" prop="sp_ip" label="手机号" width="150" v-if="value=='11'"></el-table-column>
 
