@@ -40,8 +40,8 @@
         <el-table-column align="center" prop="a1" label="打款状态" width="150">
           <template scope="scope">
             <div v-if="value=='11'">
-              <span v-if="scope.row.a1===0">未打款</span>
-              <span v-else-if="scope.row.a1===1">已打款</span>
+              <span v-if="scope.row.status===0">未打款</span>
+              <span v-else-if="scope.row.status===1">已打款</span>
               <span v-else></span>
             </div>
 
