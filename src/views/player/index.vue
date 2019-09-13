@@ -51,9 +51,29 @@
         <el-form-item label="用户名" :label-width="formLabelWidth">
           <el-input :disabled="false" v-model="usersForm.username"></el-input>
         </el-form-item>
-        <el-form-item label="vip" :label-width="formLabelWidth">
-          <el-input :disabled="false" v-model="usersForm.vip"></el-input>
+        <el-form-item label="玩家类型" :label-width="formLabelWidth">
+          <template>
+            <el-select v-model="vip" placeholder="请选择">
+              <el-option
+                v-for="item in options"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </template>
+
         </el-form-item>
+
+        <!--<template>-->
+          <!--<el-select v-model="vip" placeholder="请选择玩家类型">-->
+            <!--<el-option-->
+              <!--v-for="item in options"-->
+              <!--:label="item.label"-->
+              <!--:value="item.value">-->
+            <!--</el-option>-->
+          <!--</el-select>-->
+        <!--</template>-->
+
       </el-form>
 
       <div slot="footer" class="dialog-footer">
@@ -180,6 +200,8 @@
           <template scope="scope">
             <span v-if="scope.row.vip===0">普通玩家</span>
             <span v-else-if="scope.row.vip===1">vip玩家</span>
+            <span v-else-if="scope.row.vip===2">代理</span>
+            <span v-else-if="scope.row.vip===3">工会</span>
             <!--<span v-else-if="scope.row.vip===2">金牌代理</span>-->
             <!--<span v-else-if="scope.row.vip===3">王牌代理</span>-->
             <span v-else></span>
@@ -459,11 +481,11 @@
           image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=253777390,947512827&fm=23&gp=0.jpg',
           sex: 1,
           username: '',
-          vip: 0
+          vip: 0,
         },
         playerVipForm:{
           id: '',
-          vip: 0
+          vip: 0,
         },
         listQuery: {
           page: 1,
