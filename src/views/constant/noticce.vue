@@ -282,6 +282,12 @@
         }, {
           value: '2',
           label: '推广信息'
+        }, {
+          value: '3',
+          label: '微信客服'
+        }, {
+          value: '4',
+          label: 'QQ客服'
         }],
         value: '0'
       }
