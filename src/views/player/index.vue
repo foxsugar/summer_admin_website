@@ -101,9 +101,12 @@
           <el-input :disabled="false" v-model="usersForm.image"></el-input>
         </el-form-item>
         <el-form-item label="性别" :label-width="formLabelWidth">
-          <!--<el-input :disabled="false" v-model="usersForm.sex"></el-input>-->
-          <el-radio class="radio" v-model="usersForm.sex" label="1">男</el-radio>
-          <el-radio class="radio" v-model="usersForm.sex" label="2">女</el-radio>
+          <!--<el-radio class="radio" v-model="usersForm.sex" label="1">男</el-radio>-->
+          <!--<el-radio class="radio" v-model="usersForm.sex" label="2">女</el-radio>-->
+          <el-radio-group v-model="usersForm.sex">
+            <el-radio :label="1">男</el-radio>
+            <el-radio :label="2">女</el-radio>
+          </el-radio-group>
         </el-form-item>
         <el-form-item label="用户名" :label-width="formLabelWidth">
           <el-input :disabled="false" v-model="usersForm.username"></el-input>
@@ -111,6 +114,22 @@
         <el-form-item label="vip" :label-width="formLabelWidth">
           <el-input :disabled="false" v-model="usersForm.vip"></el-input>
         </el-form-item>
+
+        <el-form-item label="vip" :label-width="formLabelWidth">
+          <el-radio-group v-model="usersForm.vip">
+            <el-radio :label="0">普通玩家</el-radio>
+            <el-radio :label="1">机器人</el-radio>
+            <el-radio :label="2">代理</el-radio>
+            <el-radio :label="3">工会</el-radio>
+          </el-radio-group>
+
+          <!--<el-radio class="radio" v-model="usersForm.vip" label="0">普通玩家</el-radio>-->
+          <!--<el-radio class="radio" v-model="usersForm.vip" label="1">机器人</el-radio>-->
+          <!--<el-radio class="radio" v-model="usersForm.vip" label="2">代理</el-radio>-->
+          <!--<el-radio class="radio" v-model="usersForm.vip" label="3">工会</el-radio>-->
+        </el-form-item>
+
+
       </el-form>
 
       <div slot="footer" class="dialog-footer">
