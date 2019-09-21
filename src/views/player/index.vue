@@ -140,6 +140,31 @@
     </el-dialog>
 
 
+    <el-dialog class="app-edit" title="玩家数据修复" :visible.sync="repairFormVisible" size="small">
+
+      <el-form :model="usersForm">
+        <el-form-item label="childNum" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="usersForm.account"></el-input>
+        </el-form-item>
+
+        <el-form-item label="weekRebate" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="usersForm.account"></el-input>
+        </el-form-item>
+
+        <el-form-item label="allRebate" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="usersForm.account"></el-input>
+        </el-form-item>
+
+      </el-form>
+
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="repairFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="doRepairData">修 改</el-button>
+      </div>
+
+    </el-dialog>
+
+
 
     <!--搜索框 + 表格-->
     <div class="app-container calendar-list-container">
@@ -253,6 +278,15 @@
 
                 <br/>
               </div>
+
+
+              <div style="margin-top: 5px">
+                <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditRepairClick(scope)' size="small"
+                           icon="edit">{{scope.row.edit ? '完成' : '玩家数据修复'}}
+                </el-button>
+
+                <br/>
+              </div>
             </template>
 
 
@@ -285,8 +319,9 @@
 </template>
 
 <script>
-  import {getList, fetchList, fetchListWithReferee, editPlayerVIP} from '@/api/player'
-  import {changeUserDelegate, changeCreateUsers, udpateUsers} from '@/api/player'
+  import { getList, fetchList, fetchListWithReferee, editPlayerVIP } from '@/api/player'
+  import { changeUserDelegate, changeCreateUsers, udpateUsers } from '@/api/player'
+  import { updateRepair } from '@/api/agent'
   import waves from '@/directive/waves.js'// 水波纹指令
 
   export default {
@@ -299,27 +334,26 @@
           // fetchData()
           // alert('1')
           // alert(newVal)
-          this.listLoading = true;
+          this.listLoading = true
           getList(this.currentPage, this.page_size, newVal).then(response => {
-            this.tableData = response.data.tableData;
-            this.totalPage = response.data.totalPage;
+            this.tableData = response.data.tableData
+            this.totalPage = response.data.totalPage
             this.ifShow = response.data.show
-            this.listLoading = false;
-          });
-
+            this.listLoading = false
+          })
         },
         deep: true
       }
     },
     methods: {
 
-      handleFilter(){
+      handleFilter() {
         this.listQuery.page = 1
         console.log(this.listQuery)
         this.getFilterList()
       },
 
-      handleFilter2(){
+      handleFilter2() {
         this.listQuery.page = 1
         console.log(this.listQuery)
         this.getFilterList2()
@@ -338,7 +372,7 @@
       },
 
       handleClick() {
-        this.dialogFormVisible = true;
+        this.dialogFormVisible = true
       },
 
       getFilterList2() {
@@ -354,24 +388,24 @@
       },
 
       handleClick4createUsers() {
-        this.dialogFormVisible4CreateUsers = true;
+        this.dialogFormVisible4CreateUsers = true
       },
       handleChargeClick(scope) {
-        this.chargeDialogFormVisible = true;
-        this.chargeForm.id = scope.row.id;
-        this.chargeForm.username = scope.row.id;
-        this.chargeForm.num = 0;
+        this.chargeDialogFormVisible = true
+        this.chargeForm.id = scope.row.id
+        this.chargeForm.username = scope.row.id
+        this.chargeForm.num = 0
       },
       doCharge() {
         changeUserDelegate(this.chargeForm).then(response => {
           this.tableData.forEach(td => {
             if (td.id == this.chargeForm.id) {
-              td.referee = response.data;
+              td.referee = response.data
             }
             this.$message({
               message: '修改绑定代理成功',
               type: 'success'
-            });
+            })
           })
         })
         this.chargeDialogFormVisible = false
@@ -396,49 +430,59 @@
             this.$message({
               message: '创建用户成功',
               type: 'success'
-            });
+            })
           })
         })
         this.dialogFormVisible4CreateUsers = false
       },
 
-      doUpdateUser(){
-        this.vipFormVisible = false;
+      doUpdateUser() {
+        this.vipFormVisible = false
         udpateUsers(this.usersForm).then(response => {
           this.tableData.forEach(td => {
             this.$message({
               message: '修改用户成功',
               type: 'success'
-            });
+            })
           })
 
           this.fetchData()
         })
-
       },
+
+      doRepairData() {
+        this.repairFormVisible = false
+        updateRepair(this.usersForm).then(response => {
+          this.tableData.forEach(td => {
+            this.$message({
+              message: '修正数据成功',
+              type: 'success'
+            })
+          })
+
+          this.fetchData()
+        })
+      },
+
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`)
-        this.page_size = val;
+        this.page_size = val
         this.fetchData()
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`)
-        this.currentPage = val;
+        this.currentPage = val
         this.fetchData()
-
       },
       handleEditClick(val) {
         this.chargeForm.id = val.row.id
         this.chargeForm.agent_id = val.row.referee
         this.chargeDialogFormVisible = true
-
-
       },
 
       handleEditVIPClick(val) {
-
-        // alert(val.row.open_id)
-        this.usersForm.userId = val.row.id;
+      // alert(val.row.open_id)
+        this.usersForm.userId = val.row.id
 
         this.usersForm.account = val.row.account
 
@@ -449,22 +493,31 @@
         this.usersForm.vip = val.row.vip
         this.usersForm.image = val.row.image
         this.usersForm.sex = val.row.sex
-        this.vipFormVisible = true;
+        this.vipFormVisible = true
+      },
+      handleEditRepairClick(val) {
+        this.usersForm.userId = val.row.id
+        this.usersForm.account = val.row.account
 
+        this.usersForm.username = val.row.username
+        this.usersForm.openId = val.row.open_id
 
+        this.usersForm.password = val.row.password
+        this.usersForm.vip = val.row.vip
+        this.usersForm.image = val.row.image
+        this.usersForm.sex = val.row.sex
+        this.repairFormVisible = true
       },
 
       fetchData() {
-        this.listLoading = true;
+        this.listLoading = true
         getList(this.currentPage, this.page_size, this.value).then(response => {
-          this.tableData = response.data.tableData;
-          this.totalPage = response.data.totalPage;
+          this.tableData = response.data.tableData
+          this.totalPage = response.data.totalPage
           this.ifShow = response.data.show
-          this.listLoading = false;
-        });
-
-      },
-
+          this.listLoading = false
+        })
+      }
 
     },
 
@@ -486,6 +539,7 @@
         dialogFormVisible4CreateUsers: false,
         chargeDialogFormVisible: false,
         vipFormVisible: false,
+        repairFormVisible: false,
         chargeForm: {
           id: '',
           username: '',
@@ -500,11 +554,11 @@
           image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=253777390,947512827&fm=23&gp=0.jpg',
           sex: 1,
           username: '',
-          vip: 0,
+          vip: 0
         },
-        playerVipForm:{
+        playerVipForm: {
           id: '',
-          vip: 0,
+          vip: 0
         },
         listQuery: {
           page: 1,
@@ -526,7 +580,6 @@
           label: '普通玩家'
         }],
         value: '0'
-
 
       }
     }

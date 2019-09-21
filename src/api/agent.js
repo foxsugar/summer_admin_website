@@ -81,3 +81,15 @@ export function editAgent(changeForm) {
     }
   })
 }
+
+
+export function updateRepair(usersForm) {
+  return fetch({
+    url: '/agent/fixData',
+    method: 'get',
+    params: {
+      // chargeForm
+      usersForm
+    }
+  })
+}
