@@ -280,13 +280,13 @@
               </div>
 
 
-              <div style="margin-top: 5px">
-                <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditRepairClick(scope)' size="small"
-                           icon="edit">{{scope.row.edit ? '完成' : '玩家数据修复'}}
-                </el-button>
+              <!--<div style="margin-top: 5px">-->
+                <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditRepairClick(scope)' size="small"-->
+                           <!--icon="edit">{{scope.row.edit ? '完成' : '玩家数据修复'}}-->
+                <!--</el-button>-->
 
-                <br/>
-              </div>
+                <!--<br/>-->
+              <!--</div>-->
             </template>
 
 
