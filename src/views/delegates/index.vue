@@ -175,7 +175,7 @@
 
         <p>&nbsp; &nbsp;&nbsp;&nbsp; 本周一级返利:{{ this.dict.firstRebate }}&nbsp;本周二级返利:{{ this.dict.secondRebate }} &nbsp;本周三级返利:{{ this.dict.thirdRebate }} &nbsp;全部一级贡献:{{ this.dict.allFirstContribute }} &nbsp; 全部二级贡献:{{ this.dict.allSecondContribute }}  &nbsp;全部三级贡献:{{ this.dict.allThirdContribute }} </p>
 
-        <p>&nbsp; &nbsp;&nbsp;&nbsp; 全部一级返利:{{ this.dict.allFirstRebate }}&nbsp;全部二级返利:{{ this.dict.allSecondRebate }}  &nbsp;全部三级返利:{{ this.dict.allThirdRebate }}  &nbsp;游戏次数:{{ this.dict.totalPlayGameNumber }}&nbsp;分享次数:{{ this.dict.shareWXCount }}  </p>
+        <p>&nbsp; &nbsp;&nbsp;&nbsp; 全部一级返利:{{ this.dict.allFirstRebate }}&nbsp;全部二级返利:{{ this.dict.allSecondRebate }}  &nbsp;全部三级返利:{{ this.dict.allThirdRebate }}    </p>
 
         <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="代理id"
                   v-model="uid">
@@ -227,6 +227,10 @@
         </el-table-column>
 
         <el-table-column align="center" prop="money" label="房卡" width="150"></el-table-column>
+
+        <el-table-column align="center" prop="shareWXCount" label="微信分享次数" width="150"></el-table-column>
+
+        <el-table-column align="center" prop="totalPlayGameNumber" label="游戏总局数" width="150"></el-table-column>
 
         <el-table-column align="center" prop="gold" label="金币" width="150"></el-table-column>
 
