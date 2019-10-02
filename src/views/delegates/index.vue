@@ -2,11 +2,19 @@
   <div>
 
     <!--充值-->
-    <el-dialog class="app-edit" title="修改绑定代理ID" :visible.sync="chargeDialogFormVisible" size="small">
+    <el-dialog class="app-edit" title="修正数据" :visible.sync="chargeDialogFormVisible" size="small">
 
       <el-form :model="chargeForm">
-        <el-form-item label="输入代理ID" :label-width="formLabelWidth">
-          <el-input :disabled="false" v-model="chargeForm.agent_id"></el-input>
+        <el-form-item label="修正玩家人数" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="dict.fixNum"></el-input>
+        </el-form-item>
+
+        <el-form-item label="修正本周数据" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="dict.fixRebate"></el-input>
+        </el-form-item>
+
+        <el-form-item label="修正历史数据" :label-width="formLabelWidth">
+          <el-input :disabled="false" v-model="dict.fixAllRebate"></el-input>
         </el-form-item>
 
       </el-form>
@@ -177,6 +185,7 @@
 
         <p>&nbsp; &nbsp;&nbsp;&nbsp; 全部一级返利:{{ this.dict.allFirstRebate }}&nbsp;全部二级返利:{{ this.dict.allSecondRebate }}  &nbsp;全部三级返利:{{ this.dict.allThirdRebate }}    </p>
 
+        <p>&nbsp; &nbsp;&nbsp;&nbsp; 修正玩家人数:{{ this.dict.fixNum }}&nbsp;&nbsp;&nbsp;&nbsp 修正本周数据:{{ this.dict.fixRebate }}  &nbsp;&nbsp;&nbsp;&nbsp 修正历史数据:{{ this.dict.fixAllRebate }}    </p>
         <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="代理id"
                   v-model="uid">
         </el-input>
@@ -255,57 +264,17 @@
         <!--</template>-->
         <!--</el-table-column>-->
 
-        <div v-if="ifShow">
+        <div v-if="true">
           <el-table-column align="center" fixed="right" label="操作" min-width="150">
             <br/>
             <template scope="scope">
               <div style="margin-top: 5px">
                 <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditClick(scope)' size="small"
-                           icon="edit">{{scope.row.edit ? '完成' : '修改代理主键'}}
+                           icon="edit">{{scope.row.edit ? '完成' : '修正玩家数据'}}
                 </el-button>
 
                 <br/>
               </div>
-              <div style="margin-top: 5px">
-                <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"
-                           icon="edit">{{scope.row.edit ? '完成' : '修改玩家信息'}}
-                </el-button>
-
-                <br/>
-              </div>
-
-              <div style="margin-top: 5px">
-                <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"
-                           icon="edit">{{scope.row.edit ? '完成' : '查看一级代理'}}
-                </el-button>
-
-                <br/>
-              </div>
-
-              <div style="margin-top: 5px">
-                <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"
-                           icon="edit">{{scope.row.edit ? '完成' : '查看二级代理'}}
-                </el-button>
-
-                <br/>
-              </div>
-
-              <div style="margin-top: 5px">
-                <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"
-                           icon="edit">{{scope.row.edit ? '完成' : '查看三级代理'}}
-                </el-button>
-
-                <br/>
-              </div>
-
-
-              <!--<div style="margin-top: 5px">-->
-              <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditRepairClick(scope)' size="small"-->
-              <!--icon="edit">{{scope.row.edit ? '完成' : '玩家数据修复'}}-->
-              <!--</el-button>-->
-
-              <!--<br/>-->
-              <!--</div>-->
             </template>
 
 
@@ -340,7 +309,7 @@
 <script>
   import { getList, fetchList, fetchListWithReferee, editPlayerVIP } from '@/api/player'
   import { changeUserDelegate, changeCreateUsers, udpateUsers } from '@/api/player'
-  import { getDelegateList } from '@/api/delegates'
+  import { getDelegateList, fixData } from '@/api/delegates'
   import { updateRepair } from '@/api/agent'
   import waves from '@/directive/waves.js'// 水波纹指令
 
@@ -420,16 +389,8 @@
         this.chargeForm.num = 0
       },
       doCharge() {
-        changeUserDelegate(this.chargeForm).then(response => {
-          this.tableData.forEach(td => {
-            if (td.id == this.chargeForm.id) {
-              td.referee = response.data
-            }
-            this.$message({
-              message: '修改绑定代理成功',
-              type: 'success'
-            })
-          })
+        fixData(this.dict.fixNum, this.dict.fixRebate, this.dict.fixAllRebate, this.uid).then(response => {
+          this.fetchData()
         })
         this.chargeDialogFormVisible = false
       },
@@ -557,21 +518,21 @@
           firstNum: 0,
           secondNum: 0,
           thirdNum: 0,
-          firstContribute: 0.0,
-          secondContribute:  0.0,
-          thirdContribute:  0.0,
-          firstRebate:  0.0,
-          secondRebate:  0.0,
-          thirdRebate:  0.0,
-          allFirstContribute:  0.0,
-          allSecondContribute:  0.0,
-          allThirdContribute:  0.0,
-          allFirstRebate: 0.0,
-          allSecondRebate: 0.0,
-          allThirdRebate: 0.0,
-          totalPlayGameNumber: 0,
-          playGameTime: 0,
-          shareWXCount: 0
+          firstContribute: '0',
+          secondContribute: '0',
+          thirdContribute:  '0',
+          firstRebate:  '0',
+          secondRebate:  '0',
+          thirdRebate:  '0',
+          allFirstContribute:  '0',
+          allSecondContribute: '0',
+          allThirdContribute:  '0',
+          allFirstRebate: '0',
+          allSecondRebate: '0',
+          allThirdRebate: '0',
+          fixNum: 0,
+          fixRebate: '0',
+          fixAllRebate: '0'
         },
         listLoading: true,
         ifShow: false,
