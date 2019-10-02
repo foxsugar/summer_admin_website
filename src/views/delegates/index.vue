@@ -199,6 +199,7 @@
           </el-option>
         </el-select>
 
+        <el-button class="filter-item" type="primary" v-waves  @click="handleEditClick">修正数据</el-button>
         <div v-if="ifShow">
           &nbsp;   &nbsp;    &nbsp;
           <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="邀请码"
@@ -206,9 +207,19 @@
           </el-input>
 
           <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter2">搜索</el-button>
+
+
+
         </div>
 
+        <div style="margin-top: 5px">
+          <!--<el-button  class="filter-item" type="primary" @click='handleEditClick(scope)' size="small"-->
+                     <!--icon="edit">{{scope.row.edit ? '完成' : '修正玩家数据'}}-->
+          <!--</el-button>-->
 
+
+          <br/>
+        </div>
 
       </div>
       <br/>
@@ -264,7 +275,7 @@
         <!--</template>-->
         <!--</el-table-column>-->
 
-        <div v-if="true">
+        <div v-if="false">
           <el-table-column align="center" fixed="right" label="操作" min-width="150">
             <br/>
             <template scope="scope">
@@ -458,9 +469,9 @@
         this.currentPage = val
         this.fetchData()
       },
-      handleEditClick(val) {
-        this.chargeForm.id = val.row.id
-        this.chargeForm.agent_id = val.row.referee
+      handleEditClick() {
+        // this.chargeForm.id = val.row.id
+        // this.chargeForm.agent_id = val.row.referee
         this.chargeDialogFormVisible = true
       },
 
