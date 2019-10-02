@@ -279,29 +279,29 @@
                 <br/>
               </div>
 
-              <div style="margin-top: 5px">
-                <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"
-                           icon="edit">{{scope.row.edit ? '完成' : '查看一级代理'}}
-                </el-button>
+              <!--<div style="margin-top: 5px">-->
+                <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"-->
+                           <!--icon="edit">{{scope.row.edit ? '完成' : '查看一级代理'}}-->
+                <!--</el-button>-->
 
-                <br/>
-              </div>
+                <!--<br/>-->
+              <!--</div>-->
 
-              <div style="margin-top: 5px">
-                <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"
-                           icon="edit">{{scope.row.edit ? '完成' : '查看二级代理'}}
-                </el-button>
+              <!--<div style="margin-top: 5px">-->
+                <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"-->
+                           <!--icon="edit">{{scope.row.edit ? '完成' : '查看二级代理'}}-->
+                <!--</el-button>-->
 
-                <br/>
-              </div>
+                <!--<br/>-->
+              <!--</div>-->
 
-              <div style="margin-top: 5px">
-                <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"
-                           icon="edit">{{scope.row.edit ? '完成' : '查看三级代理'}}
-                </el-button>
+              <!--<div style="margin-top: 5px">-->
+                <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"-->
+                           <!--icon="edit">{{scope.row.edit ? '完成' : '查看三级代理'}}-->
+                <!--</el-button>-->
 
-                <br/>
-              </div>
+                <!--<br/>-->
+              <!--</div>-->
 
 
               <!--<div style="margin-top: 5px">-->
