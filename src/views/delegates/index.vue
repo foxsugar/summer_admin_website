@@ -65,13 +65,13 @@
         </el-form-item>
 
         <!--<template>-->
-          <!--<el-select v-model="vip" placeholder="请选择玩家类型">-->
-            <!--<el-option-->
-              <!--v-for="item in options"-->
-              <!--:label="item.label"-->
-              <!--:value="item.value">-->
-            <!--</el-option>-->
-          <!--</el-select>-->
+        <!--<el-select v-model="vip" placeholder="请选择玩家类型">-->
+        <!--<el-option-->
+        <!--v-for="item in options"-->
+        <!--:label="item.label"-->
+        <!--:value="item.value">-->
+        <!--</el-option>-->
+        <!--</el-select>-->
         <!--</template>-->
 
       </el-form>
@@ -170,16 +170,18 @@
     <div class="app-container calendar-list-container">
 
       <div class="filter-container">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+        <p>&nbsp; &nbsp;&nbsp;&nbsp; 一级人数:{{ this.dict.firstNum }}&nbsp;二级人数:{{ this.dict.secondNum }} &nbsp;三级人数:{{ this.dict.thirdNum }} &nbsp;本周一级贡献度:{{ this.dict.firstContribute }} &nbsp; 本周二级贡献度:{{ this.dict.secondContribute }}  &nbsp;本周三级贡献度:{{ this.dict.thirdNum }} </p>
 
+        <p>&nbsp; &nbsp;&nbsp;&nbsp; 本周一级返利:{{ this.dict.firstRebate }}&nbsp;本周二级返利:{{ this.dict.secondRebate }} &nbsp;本周三级返利:{{ this.dict.thirdRebate }} &nbsp;全部一级贡献:{{ this.dict.allFirstContribute }} &nbsp; 全部二级贡献:{{ this.dict.allSecondContribute }}  &nbsp;全部三级贡献:{{ this.dict.allThirdContribute }} </p>
 
-        <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="用户名"
-                  v-model="listQuery.title">
+        <p>&nbsp; &nbsp;&nbsp;&nbsp; 全部一级返利:{{ this.dict.allFirstRebate }}&nbsp;全部二级返利:{{ this.dict.allSecondRebate }}  &nbsp;全部三级返利:{{ this.dict.allThirdRebate }}  &nbsp;游戏次数:{{ this.dict.totalPlayGameNumber }}&nbsp;分享次数:{{ this.dict.shareWXCount }}  </p>
+
+        <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="代理id"
+                  v-model="uid">
         </el-input>
 
         <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
-
-        &nbsp;
         <el-select v-model="value" placeholder="玩家过滤">
           <el-option
             v-for="item in options"
@@ -187,17 +189,6 @@
             :value="item.value">
           </el-option>
         </el-select>
-
-        <el-button class="filter-item" style="margin-left: 10px;" @click="handleClick4createUsers" type="primary" icon="plus">添加用户
-        </el-button>
-
-
-
-        <br>
-        <br>
-
-
-
 
         <div v-if="ifShow">
           &nbsp;   &nbsp;    &nbsp;
@@ -220,9 +211,9 @@
         <el-table-column align="center" prop="id" label="id" width="120"></el-table-column>
 
         <el-table-column label="头像" width="100">
-                           <template scope="scope">
-                               <img :src="scope.row.image" width="60" height="60" class="head_pic"/>
-                           </template>
+          <template scope="scope">
+            <img :src="scope.row.image" width="60" height="60" class="head_pic"/>
+          </template>
         </el-table-column>
 
         <el-table-column align="center" prop="account" label="账号" width="350"></el-table-column>
@@ -305,11 +296,11 @@
 
 
               <!--<div style="margin-top: 5px">-->
-                <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditRepairClick(scope)' size="small"-->
-                           <!--icon="edit">{{scope.row.edit ? '完成' : '玩家数据修复'}}-->
-                <!--</el-button>-->
+              <!--<el-button :type="scope.row.edit?'success':'primary'" @click='handleEditRepairClick(scope)' size="small"-->
+              <!--icon="edit">{{scope.row.edit ? '完成' : '玩家数据修复'}}-->
+              <!--</el-button>-->
 
-                <!--<br/>-->
+              <!--<br/>-->
               <!--</div>-->
             </template>
 
@@ -345,6 +336,7 @@
 <script>
   import { getList, fetchList, fetchListWithReferee, editPlayerVIP } from '@/api/player'
   import { changeUserDelegate, changeCreateUsers, udpateUsers } from '@/api/player'
+  import { getDelegateList } from '@/api/delegates'
   import { updateRepair } from '@/api/agent'
   import waves from '@/directive/waves.js'// 水波纹指令
 
@@ -359,12 +351,13 @@
           // alert('1')
           // alert(newVal)
           this.listLoading = true
-          getList(this.currentPage, this.page_size, newVal).then(response => {
-            this.tableData = response.data.tableData
-            this.totalPage = response.data.totalPage
-            this.ifShow = response.data.show
-            this.listLoading = false
-          })
+          // getList(this.currentPage, this.page_size, newVal).then(response => {
+          //   this.tableData = response.data.tableData
+          //   this.totalPage = response.data.totalPage
+          //   this.ifShow = response.data.show
+          //   this.listLoading = false
+          // })
+          this.fetchData()
         },
         deep: true
       }
@@ -372,9 +365,11 @@
     methods: {
 
       handleFilter() {
-        this.listQuery.page = 1
-        console.log(this.listQuery)
-        this.getFilterList()
+        // this.listQuery.page = 1
+        // console.log(this.listQuery)
+        // this.getFilterList()
+        this.currentPage = 1
+        this.fetchData()
       },
 
       handleFilter2() {
@@ -505,7 +500,7 @@
       },
 
       handleEditVIPClick(val) {
-      // alert(val.row.open_id)
+        // alert(val.row.open_id)
         this.usersForm.userId = val.row.id
 
         this.usersForm.account = val.row.account
@@ -535,10 +530,11 @@
 
       fetchData() {
         this.listLoading = true
-        getList(this.currentPage, this.page_size, this.value).then(response => {
+        getDelegateList(this.currentPage, this.page_size, this.value, this.uid).then(response => {
           this.tableData = response.data.tableData
           this.totalPage = response.data.totalPage
-          this.ifShow = response.data.show
+          // this.ifShow = response.data.show
+          this.dict = response.data.dict
           this.listLoading = false
         })
       }
@@ -550,8 +546,31 @@
     },
     data() {
       return {
+
+        // 其他信息
+        dict: {
+          firstNum: 0,
+          secondNum: 0,
+          thirdNum: 0,
+          firstContribute: 0.0,
+          secondContribute:  0.0,
+          thirdContribute:  0.0,
+          firstRebate:  0.0,
+          secondRebate:  0.0,
+          thirdRebate:  0.0,
+          allFirstContribute:  0.0,
+          allSecondContribute:  0.0,
+          allThirdContribute:  0.0,
+          allFirstRebate: 0.0,
+          allSecondRebate: 0.0,
+          allThirdRebate: 0.0,
+          totalPlayGameNumber: 0,
+          playGameTime: 0,
+          shareWXCount: 0
+        },
         listLoading: true,
         ifShow: false,
+        uid: '',
         tableData: [],
         totalPage: 0,
         currentPage: 1,
@@ -594,22 +613,16 @@
         },
         formLabelWidth: '120px',
         options: [{
-          value: '0',
-          label: '全部玩家'
-        }, {
           value: '1',
-          label: '代理玩家'
+          label: '一级代理'
         }, {
           value: '2',
-          label: '普通玩家'
+          label: '二级代理'
         }, {
           value: '3',
-          label: '机器人'
-        }, {
-          value: '4',
-          label: '工会玩家'
+          label: '三级代理'
         }],
-        value: '0'
+        value: '1'
 
       }
     }

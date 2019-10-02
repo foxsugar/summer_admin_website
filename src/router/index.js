@@ -92,6 +92,16 @@ export const asyncRouterMap = [
     ]
   },
   {
+    path: '/delegates',
+    component: Layout,
+    redirect: '/delegates/index',
+    icon: 'yonghuming',
+    noDropdown: true,
+    children: [
+      { path: 'index', name: '代理管理', component: _import('delegates/index'), meta: { role: ['delegate'] }}
+    ]
+  },
+  {
     path: '/charge',
     component: Layout,
     redirect: '/charge/index',
