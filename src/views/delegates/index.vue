@@ -529,8 +529,9 @@
       },
 
       fetchData() {
-        this.listLoading = true
+        // this.listLoading = true
         getDelegateList(this.currentPage, this.page_size, this.value, this.uid).then(response => {
+          this.listLoading = false
           this.tableData = response.data.tableData
           this.totalPage = response.data.totalPage
           // this.ifShow = response.data.show
