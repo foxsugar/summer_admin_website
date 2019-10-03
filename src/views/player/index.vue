@@ -111,25 +111,6 @@
         <el-form-item label="用户名" :label-width="formLabelWidth">
           <el-input :disabled="false" v-model="usersForm.username"></el-input>
         </el-form-item>
-        <el-form-item label="vip" :label-width="formLabelWidth">
-          <el-input :disabled="false" v-model="usersForm.vip"></el-input>
-        </el-form-item>
-
-        <el-form-item label="vip" :label-width="formLabelWidth">
-          <el-radio-group v-model="usersForm.vip">
-            <el-radio :label="0">普通玩家</el-radio>
-            <el-radio :label="1">机器人</el-radio>
-            <el-radio :label="2">代理</el-radio>
-            <el-radio :label="3">工会</el-radio>
-          </el-radio-group>
-
-          <!--<el-radio class="radio" v-model="usersForm.vip" label="0">普通玩家</el-radio>-->
-          <!--<el-radio class="radio" v-model="usersForm.vip" label="1">机器人</el-radio>-->
-          <!--<el-radio class="radio" v-model="usersForm.vip" label="2">代理</el-radio>-->
-          <!--<el-radio class="radio" v-model="usersForm.vip" label="3">工会</el-radio>-->
-        </el-form-item>
-
-
       </el-form>
 
       <div slot="footer" class="dialog-footer">
@@ -138,6 +119,31 @@
       </div>
 
     </el-dialog>
+
+
+    <el-dialog class="app-edit" title="修改玩家类型" :visible.sync="typeFormVisible" size="small">
+
+      <el-form :model="usersForm">
+
+        <el-form-item label="vip" :label-width="formLabelWidth">
+          <el-radio-group v-model="usersForm.vip">
+            <el-radio :label="0">普通玩家</el-radio>
+            <el-radio :label="1">机器人</el-radio>
+            <el-radio :label="2">代理</el-radio>
+            <el-radio :label="3">工会</el-radio>
+          </el-radio-group>
+        </el-form-item>
+
+
+      </el-form>
+
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="typeFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="doUpdateUser2">修 改</el-button>
+      </div>
+
+    </el-dialog>
+
 
 
     <el-dialog class="app-edit" title="玩家数据修复" :visible.sync="repairFormVisible" size="small">
@@ -274,6 +280,14 @@
               <div style="margin-top: 5px">
                 <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPClick(scope)' size="small"
                            icon="edit">{{scope.row.edit ? '完成' : '修改玩家信息'}}
+                </el-button>
+
+                <br/>
+              </div>
+
+              <div style="margin-top: 5px">
+                <el-button :type="scope.row.edit?'success':'primary'" @click='handleEditVIPTypeClick(scope)' size="small"
+                           icon="edit">{{scope.row.edit ? '完成' : '修改玩家类型'}}
                 </el-button>
 
                 <br/>
@@ -462,6 +476,21 @@
 
       doUpdateUser() {
         this.vipFormVisible = false
+        this.usersForm.type = 0
+        udpateUsers(this.usersForm).then(response => {
+          this.tableData.forEach(td => {
+            this.$message({
+              message: '修改用户成功',
+              type: 'success'
+            })
+          })
+
+          this.fetchData()
+        })
+      },
+      doUpdateUser2() {
+        this.typeFormVisible = false
+        this.usersForm.type = 1
         udpateUsers(this.usersForm).then(response => {
           this.tableData.forEach(td => {
             this.$message({
@@ -519,6 +548,22 @@
         this.usersForm.sex = val.row.sex
         this.vipFormVisible = true
       },
+      handleEditVIPTypeClick(val) {
+        // alert(val.row.open_id)
+        this.usersForm.userId = val.row.id
+
+        this.usersForm.account = val.row.account
+
+        this.usersForm.username = val.row.username
+        this.usersForm.openId = val.row.open_id
+
+        this.usersForm.password = val.row.password
+        this.usersForm.vip = val.row.vip
+        this.usersForm.image = val.row.image
+        this.usersForm.sex = val.row.sex
+        // this.vipFormVisible = true
+        this.typeFormVisible = true
+      },
       handleEditRepairClick(val) {
         this.usersForm.userId = val.row.id
         this.usersForm.account = val.row.account
@@ -563,6 +608,7 @@
         dialogFormVisible4CreateUsers: false,
         chargeDialogFormVisible: false,
         vipFormVisible: false,
+        typeFormVisible: false,
         repairFormVisible: false,
         chargeForm: {
           id: '',
@@ -578,7 +624,8 @@
           image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=253777390,947512827&fm=23&gp=0.jpg',
           sex: 1,
           username: '',
-          vip: 0
+          vip: 0,
+          type: 0
         },
         playerVipForm: {
           id: '',
