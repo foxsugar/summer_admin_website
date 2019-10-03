@@ -88,12 +88,12 @@
     <el-dialog class="app-edit" title="修改玩家信息" :visible.sync="vipFormVisible" size="small">
 
       <el-form :model="usersForm">
-        <el-form-item label="account" :label-width="formLabelWidth">
-          <el-input :disabled="false" v-model="usersForm.account"></el-input>
-        </el-form-item>
-        <el-form-item label="openId" :label-width="formLabelWidth">
-          <el-input :disabled="false" v-model="usersForm.openId"></el-input>
-        </el-form-item>
+        <!--<el-form-item label="account" :label-width="formLabelWidth">-->
+          <!--<el-input :disabled="false" v-model="usersForm.account"></el-input>-->
+        <!--</el-form-item>-->
+        <!--<el-form-item label="openId" :label-width="formLabelWidth">-->
+          <!--<el-input :disabled="false" v-model="usersForm.openId"></el-input>-->
+        <!--</el-form-item>-->
         <el-form-item label="密码" :label-width="formLabelWidth">
           <el-input :disabled="false" v-model="usersForm.password"></el-input>
         </el-form-item>
