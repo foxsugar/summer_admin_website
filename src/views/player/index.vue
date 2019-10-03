@@ -108,9 +108,9 @@
             <el-radio :label="2">女</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="用户名" :label-width="formLabelWidth">
-          <el-input :disabled="false" v-model="usersForm.username"></el-input>
-        </el-form-item>
+        <!--<el-form-item label="用户名" :label-width="formLabelWidth">-->
+          <!--<el-input :disabled="false" v-model="usersForm.username"></el-input>-->
+        <!--</el-form-item>-->
       </el-form>
 
       <div slot="footer" class="dialog-footer">
